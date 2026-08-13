@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>RK's Villa | Luxury 4-BHK Private Pool Villa in Siolim, Goa</title>
+    <meta name="description"
+        content="Book direct with host Ravi at RK's Villa, a luxury 4-BHK private pool sanctuary in Siolim, North Goa. Save 15-20% compared to Airbnb. Live Hostex availability calendar.">
+    <meta name="keywords"
+        content="RK Villa Goa, Villa in Siolim, 4 BHK Private Pool Villa Goa, Luxury Villa Siolim, Direct Booking Villa Goa, Hostex Villa Goa">
+
+    <!-- Google Fonts: Playfair Display & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap"
+        rel="stylesheet">
+
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .tour-play-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(18, 18, 18, 0.75);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--color-gold);
+            color: var(--color-gold);
+            padding: 10px 22px;
+            border-radius: 30px;
+            font-size: 0.82rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            margin-top: 18px;
+        }
+
+        .tour-play-btn:hover {
+            background: var(--color-gold);
+            color: var(--color-bg);
+            box-shadow: 0 4px 20px rgba(201, 169, 110, 0.4);
+        }
+
+        .play-pulse-icon {
+            width: 32px;
+            height: 32px;
+            background-color: var(--color-gold);
+            color: var(--color-bg);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: pulse-ring 2s infinite;
+        }
+
+        @keyframes pulse-ring {
+            0% {
+                box-shadow: 0 0 0 0 rgba(201, 169, 110, 0.6);
+            }
+
+            70% {
+                box-shadow: 0 0 0 12px rgba(201, 169, 110, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(201, 169, 110, 0);
+            }
+        }
+    </style>
+    <!-- JSON-LD Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LodgingBusiness",
+      "name": "RK's Villa",
+      "image": "gallery/4.png",
+      "description": "Luxury 4-BHK private pool villa in Siolim, North Goa featuring soaking bathtub, private garden, chef on call, and Hostex PMS direct bookings.",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Siolim Marna Village",
+        "addressLocality": "Siolim",
+        "addressRegion": "Goa",
+        "addressCountry": "IN"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "15.6159",
+        "longitude": "73.7872"
+      },
+      "telephone": "+919970341234",
+      "priceRange": "₹₹₹",
+      "amenityFeature": [
+        {"@type": "LocationFeatureSpecification", "name": "Private Swimming Pool"},
+        {"@type": "LocationFeatureSpecification", "name": "4 Ensuite Bedrooms"},
+        {"@type": "LocationFeatureSpecification", "name": "Soaking Bathtub Master Suite"},
+        {"@type": "LocationFeatureSpecification", "name": "Big Sound Box with Karaoke"}
+      ]
+    }
+    </script>
+</head>
+
+<body>
+
+    <!-- NAVIGATION HEADER -->
+    <header id="site-header" class="header-wrapper">
+        <div class="container flex-between" style="height: 100%;">
+            <a href="index.html" class="logo-container">
+                <svg class="logo-icon" viewBox="0 0 24 24">
+                    <path d="M12 3L2 12h3v8h14v-8h3L12 3zm0 2.2L19 11.5V18H5v-6.5l7-6.3z" />
+                    <path d="M10 12h4v4h-4z" />
+                </svg>
+                <div>
+                    <span class="logo-text">RK'S VILLA</span>
+                    <span class="logo-subtext">Luxury Living</span>
+                </div>
+            </a>
+
+            <nav class="nav-links">
+                <a href="index.html" class="active">Home</a>
+                <a href="villa.html">The Villa</a>
+                <a href="experiences.html">Experiences</a>
+                <a href="rates.html">Live Rates</a>
+                <a href="gallery.html">Gallery</a>
+                <a href="guide.html">Goa Guide</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+
+            <div class="nav-ctas">
+                <a href="tel:+919970341234" class="btn btn-secondary" style="padding: 8px 18px; font-size: 0.75rem;">
+                    <i data-lucide="phone" class="btn-icon"></i> Call
+                </a>
+                <a href="contact.html" class="btn btn-primary" style="padding: 8px 18px; font-size: 0.75rem;">Book
+                    Now</a>
+            </div>
+
+            <button id="mobile-menu-btn" class="menu-toggle-btn" aria-label="Toggle Navigation Menu">
+                <i data-lucide="menu" style="width: 28px; height: 28px;"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- MOBILE NAVIGATION OVERLAY DRAWER -->
+    <div id="mobile-menu-overlay" class="mobile-menu-drawer">
+        <button id="close-menu-btn" class="close-btn" aria-label="Close Menu">
+            <i data-lucide="x" style="width: 32px; height: 32px;"></i>
+        </button>
+        <nav class="mobile-nav-links">
+            <a href="index.html" class="mobile-nav-link active">Home</a>
+            <a href="villa.html" class="mobile-nav-link">The Villa</a>
+            <a href="experiences.html" class="mobile-nav-link">Experiences</a>
+            <a href="rates.html" class="mobile-nav-link">Live Rates</a>
+            <a href="gallery.html" class="mobile-nav-link">Gallery</a>
+            <a href="guide.html" class="mobile-nav-link">Goa Guide</a>
+            <a href="contact.html" class="mobile-nav-link">Contact</a>
+        </nav>
+        <div class="mobile-nav-ctas">
+            <a href="tel:+919970341234" class="btn btn-secondary">
+                <i data-lucide="phone" class="btn-icon"></i> Call Host (+91 99703 41234)
+            </a>
+            <a href="rates.html" class="btn btn-primary">Book Direct & Save 15%</a>
+        </div>
+    </div>
+
+    <!-- STICKY WHATSAPP FLOATING BUTTON -->
+    <a href="https://wa.me/919970341234?text=Hi%20Ravi%20sir%2C%20I%20am%20interested%20in%20booking%20RK%27s%20Villa%20for%20my%20stay"
+        target="_blank" rel="noopener noreferrer" class="whatsapp-float-btn" aria-label="Chat on WhatsApp">
+        <i data-lucide="message-circle" style="width: 28px; height: 28px;"></i>
+    </a>
+
+    <!-- MOBILE BOTTOM STICKY QUICK-ACTION BAR -->
+    <div class="mobile-sticky-cta-bar">
+        <a href="tel:+919970341234" class="sticky-cta-link call">
+            <i data-lucide="phone" style="width: 16px; height: 16px;"></i> Call Host
+        </a>
+        <a href="https://wa.me/919970341234?text=Hi%20Ravi%20sir%2C%20I%20am%20interested%20in%20booking%20RK%27s%20Villa%20for%20my%20stay"
+            target="_blank" rel="noopener noreferrer" class="sticky-cta-link wa">
+            <i data-lucide="message-circle" style="width: 16px; height: 16px;"></i> WhatsApp
+        </a>
+    </div>
+
+    <main>
+        <!-- MINIMALIST HERO SECTION WITH FAST HERO LOOP VIDEO -->
+        <section class="hero-wrapper">
+            <video id="hero-video" class="hero-video-bg" autoplay loop muted playsinline poster="gallery/4.png">
+                <source src="videos/hero-loop.mp4" type="video/mp4">
+            </video>
+
+            <div class="hero-overlay"></div>
+
+            <div class="hero-content">
+                <span class="label-mini reveal active" style="margin-bottom: 8px;">Siolim • North Goa</span>
+                <h1 class="hero-title reveal active">Your Own Private 4-BHK Luxury Villa in Goa</h1>
+                <p class="hero-subhead reveal active">
+                    Full private pool. Master suite soaking tub. Private chef on call. Zero shared spaces — just you,
+                    your family, and North Goa.
+                </p>
+
+                <div class="hero-ctas reveal active">
+                    <a href="rates.html" class="btn btn-primary">Check Availability</a>
+                    <a href="#virtual-tour-section" class="btn btn-secondary"><i data-lucide="play" class="btn-icon"
+                            style="fill: currentColor;"></i> Watch Full Tour</a>
+                </div>
+            </div>
+
+            <!-- Hero Feature Highlight Reel Bar -->
+            <div class="hero-highlight-bar reveal active">
+                <div class="hero-highlight-grid">
+                    <div class="hero-highlight-card active" data-video="videos/pool-loop.mp4">
+                        <div class="card-icon-box"><i data-lucide="waves"></i></div>
+                        <div class="card-text-box">
+                            <span class="card-title-text">Private Pool</span>
+                            <span class="card-sub-text">4.5ft Deep Sanctuary</span>
+                        </div>
+                    </div>
+
+                    <div class="hero-highlight-card" data-video="videos/bedroom-loop.mp4">
+                        <div class="card-icon-box"><i data-lucide="bed"></i></div>
+                        <div class="card-text-box">
+                            <span class="card-title-text">Master Suites</span>
+                            <span class="card-sub-text">4 King Ensuite Rooms</span>
+                        </div>
+                    </div>
+
+                    <div class="hero-highlight-card" data-video="videos/kitchen-loop.mp4">
+                        <div class="card-icon-box"><i data-lucide="coffee"></i></div>
+                        <div class="card-text-box">
+                            <span class="card-title-text">Lounge & Bar</span>
+                            <span class="card-sub-text">Gourmet Teak Setup</span>
+                        </div>
+                    </div>
+
+                    <div class="hero-highlight-card" data-video="videos/balcony-loop.mp4">
+                        <div class="card-icon-box"><i data-lucide="trees"></i></div>
+                        <div class="card-text-box">
+                            <span class="card-title-text">Garden Gazebo</span>
+                            <span class="card-sub-text">Pergola Sundowner</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 1: 2-COLUMN INTRO & STATS -->
+        <section class="section-py section-dark-alternate">
+            <div class="container">
+                <div class="grid-2" style="align-items: center;">
+                    <div class="villa-images reveal active">
+                        <div class="villa-img-large">
+                            <img src="gallery/2.png" alt="Living Lounge & Teak Bar" loading="lazy">
+                        </div>
+                        <div class="villa-img-small">
+                            <img src="gallery/10.png" alt="8-Seater Dining Setup" loading="lazy">
+                        </div>
+                        <div class="villa-img-small">
+                            <img src="gallery/4.png" alt="Private Pool Deck & Garden" loading="lazy">
+                        </div>
+                    </div>
+
+                    <div class="villa-description reveal active">
+                        <span class="label-mini">Independent Luxury Villa</span>
+                        <h2 class="title-medium">Designed for Families & Groups Who Want Total Privacy</h2>
+                        <p class="text-muted" style="margin-bottom: 20px; line-height: 1.8;">
+                            Located in quiet Siolim Marna, RK's Villa gives you 3 floors of pure private luxury. No
+                            noisy hotel lobbies or shared pools — your group gets all 4 ensuite master bedrooms, a
+                            private 4.5ft swimming pool, a teak bar lounge, and a dedicated caretaker team to handle
+                            everything from morning tea to late-night seafood BBQs.
+                        </p>
+
+                        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin: 25px 0;">
+                            <div
+                                style="background: var(--color-card); padding: 16px; border-radius: 4px; border: 1px solid var(--color-border);">
+                                <span
+                                    style="color: var(--color-gold); font-size: 0.95rem; font-family: var(--font-sans); font-weight: 500; letter-spacing: 0.05em; display: block; margin-bottom: 4px;">4
+                                    BHK</span>
+                                <p style="font-size: 0.8rem; color: var(--color-muted);">Ensuite Master Bedrooms</p>
+                            </div>
+                            <div
+                                style="background: var(--color-card); padding: 16px; border-radius: 4px; border: 1px solid var(--color-border);">
+                                <span
+                                    style="color: var(--color-gold); font-size: 0.95rem; font-family: var(--font-sans); font-weight: 500; letter-spacing: 0.05em; display: block; margin-bottom: 4px;">4.5
+                                    FT</span>
+                                <p style="font-size: 0.8rem; color: var(--color-muted);">Private Swimming Pool</p>
+                            </div>
+                            <div
+                                style="background: var(--color-card); padding: 16px; border-radius: 4px; border: 1px solid var(--color-border);">
+                                <span
+                                    style="color: var(--color-gold); font-size: 0.95rem; font-family: var(--font-sans); font-weight: 500; letter-spacing: 0.05em; display: block; margin-bottom: 4px;">8
+                                    SEATER</span>
+                                <p style="font-size: 0.8rem; color: var(--color-muted);">Teak Bar & Dining Table</p>
+                            </div>
+                            <div
+                                style="background: var(--color-card); padding: 16px; border-radius: 4px; border: 1px solid var(--color-border);">
+                                <span
+                                    style="color: var(--color-gold); font-size: 0.95rem; font-family: var(--font-sans); font-weight: 500; letter-spacing: 0.05em; display: block; margin-bottom: 4px;">BATHTUB</span>
+                                <p style="font-size: 0.8rem; color: var(--color-muted);">Top Floor Master Suite</p>
+                            </div>
+                        </div>
+
+                        <div style="margin-top: 25px;">
+                            <a href="villa.html" class="btn btn-secondary">View 3-Level Floor Specs <i
+                                    data-lucide="arrow-right" class="btn-icon"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: VIRTUAL TOUR TEASER -->
+        <section id="virtual-tour-section" class="section-py"
+            style="background-color: #050505; border-bottom: 1px solid var(--color-border);">
+            <div class="container">
+                <div style="text-align: center; margin-bottom: 35px;" class="reveal active">
+                    <span class="label-mini">4-Minute Walkthrough</span>
+                    <h2 class="title-large">Virtual Villa Tour</h2>
+                    <p class="text-desc">Experience every corner of RK's Villa before you step foot in Goa.</p>
+                </div>
+
+                <div class="full-video-wrapper reveal active" style="position: relative; border-radius: 6px; overflow: hidden; border: 1px solid var(--color-border);">
+                    <video id="theater-video-player" controls preload="metadata" poster="gallery/11.png" style="width: 100%; border-radius: 4px; background-color: #000;">
+                        <source src="videos/villa-tour.mp4" type="video/mp4">
+                        <source src="videos/full-tour-opt.mp4" type="video/mp4">
+                    </video>
+                </div>
+
+                <!-- Interactive Chapter Jump Shortcuts -->
+                <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 20px;" class="reveal active">
+                    <button onclick="seekVillaTour(15)" class="btn btn-secondary" style="padding: 8px 14px; font-size: 0.72rem;"><i data-lucide="waves" class="btn-icon"></i> Pool & Deck (0:15)</button>
+                    <button onclick="seekVillaTour(70)" class="btn btn-secondary" style="padding: 8px 14px; font-size: 0.72rem;"><i data-lucide="bed" class="btn-icon"></i> Master Bedrooms (1:10)</button>
+                    <button onclick="seekVillaTour(140)" class="btn btn-secondary" style="padding: 8px 14px; font-size: 0.72rem;"><i data-lucide="coffee" class="btn-icon"></i> Teak Bar Lounge (2:20)</button>
+                    <button onclick="seekVillaTour(185)" class="btn btn-secondary" style="padding: 8px 14px; font-size: 0.72rem;"><i data-lucide="trees" class="btn-icon"></i> Garden Gazebo (3:05)</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: FEATURED AMENITIES 6-ICON GRID -->
+        <section class="section-py">
+            <div class="container">
+                <div style="text-align: center; margin-bottom: 50px;" class="reveal active">
+                    <span class="label-mini">Estate Highlights</span>
+                    <h2 class="title-large">Featured Luxury Amenities</h2>
+                    <p class="text-desc">Handcrafted for comfort, connection, and effortless luxury.</p>
+                </div>
+
+                <div class="grid-3 reveal active">
+                    <div class="amenity-card-custom"
+                        style="background: var(--color-card); padding: 30px; border-radius: 4px; border: 1px solid var(--color-border);">
+                        <div style="color: var(--color-gold); margin-bottom: 16px;"><i data-lucide="waves"
+                                style="width: 36px; height: 36px;"></i></div>
+                        <h3 style="font-family: var(--font-serif); font-size: 1.2rem; margin-bottom: 8px;">Private
+                            Swimming Pool</h3>
+                        <p style="font-size: 0.88rem; color: var(--color-muted);">4.5ft depth pool with floating
+                            baskets, floaters, and poolside Buddha statue.</p>
+                    </div>
+
+                    <div class="amenity-card-custom"
+                        style="background: var(--color-card); padding: 30px; border-radius: 4px; border: 1px solid var(--color-border);">
+                        <div style="color: var(--color-gold); margin-bottom: 16px;"><i data-lucide="bath"
+                                style="width: 36px; height: 36px;"></i></div>
+                        <h3 style="font-family: var(--font-serif); font-size: 1.2rem; margin-bottom: 8px;">Soaking
+                            Bathtub Suite</h3>
+                        <p style="font-size: 0.88rem; color: var(--color-muted);">Top floor Master Suite featuring a
+                            luxurious soaking tub, rain shower, and balcony.</p>
+                    </div>
+
+                    <div class="amenity-card-custom"
+                        style="background: var(--color-card); padding: 30px; border-radius: 4px; border: 1px solid var(--color-border);">
+                        <div style="color: var(--color-gold); margin-bottom: 16px;"><i data-lucide="chef-hat"
+                                style="width: 36px; height: 36px;"></i></div>
+                        <h3 style="font-family: var(--font-serif); font-size: 1.2rem; margin-bottom: 8px;">Gourmet
+                            Kitchen & Air Fryer</h3>
+                        <p style="font-size: 0.88rem; color: var(--color-muted);">Fully equipped modular kitchen with
+                            gas burner, oven, toaster, kettle, air fryer & RO purifier.</p>
+                    </div>
+
+                    <div class="amenity-card-custom"
+                        style="background: var(--color-card); padding: 30px; border-radius: 4px; border: 1px solid var(--color-border);">
+                        <div style="color: var(--color-gold); margin-bottom: 16px;"><i data-lucide="music"
+                                style="width: 36px; height: 36px;"></i></div>
+                        <h3 style="font-family: var(--font-serif); font-size: 1.2rem; margin-bottom: 8px;">Karaoke &
+                            Sound Box</h3>
+                        <p style="font-size: 0.88rem; color: var(--color-muted);">Big sound box speaker with karaoke mic
+                            setup for evening living room celebrations.</p>
+                    </div>
+
+                    <div class="amenity-card-custom"
+                        style="background: var(--color-card); padding: 30px; border-radius: 4px; border: 1px solid var(--color-border);">
+                        <div style="color: var(--color-gold); margin-bottom: 16px;"><i data-lucide="coffee"
+                                style="width: 36px; height: 36px;"></i></div>
+                        <h3 style="font-family: var(--font-serif); font-size: 1.2rem; margin-bottom: 8px;">Floating Pool
+                            Breakfast</h3>
+                        <p style="font-size: 0.88rem; color: var(--color-muted);">Instagram-ready floating breakfast
+                            tray delivered to your private pool upon request.</p>
+                    </div>
+
+                    <div class="amenity-card-custom"
+                        style="background: var(--color-card); padding: 30px; border-radius: 4px; border: 1px solid var(--color-border);">
+                        <div style="color: var(--color-gold); margin-bottom: 16px;"><i data-lucide="flame"
+                                style="width: 36px; height: 36px;"></i></div>
+                        <h3 style="font-family: var(--font-serif); font-size: 1.2rem; margin-bottom: 8px;">Chef On Call
+                            & BBQ</h3>
+                        <p style="font-size: 0.88rem; color: var(--color-muted);">Electric barbecue setup with on-call
+                            private chef for sizzlers and Goan seafood.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: AS FEATURED ON (YOUTUBE FACADE - SINGLE EMBED ZERO PAGE-WEIGHT IMPACT) -->
+        <section class="section-py section-dark-alternate">
+            <div class="container">
+                <div style="text-align: center; margin-bottom: 40px;" class="reveal active">
+                    <span class="label-mini">Vlog Feature</span>
+                    <h2 class="title-medium">As Featured On Travel Vlogs</h2>
+                    <p class="text-desc">Watch independent vlogger Explore With Gaurav tour RK's Villa.</p>
+                </div>
+
+                <div class="reveal active" style="max-width: 900px; margin: 0 auto;">
+                    <div id="yt-facade-container" class="youtube-facade"
+                        style="background-image: url('https://img.youtube.com/vi/gWLk2z4-lLo/maxresdefault.jpg');"
+                        onclick="loadYouTubeIframe()">
+                        <div class="youtube-facade-overlay">
+                            <span class="youtube-facade-badge"><i data-lucide="youtube"
+                                    style="width: 16px; height: 16px;"></i> Featured Vlog</span>
+                            <div class="youtube-facade-play-btn">
+                                <i data-lucide="play"
+                                    style="width: 28px; height: 28px; fill: currentColor; margin-left: 3px;"></i>
+                            </div>
+                            <p style="color: white; font-weight: 500; font-size: 1.05rem;">Goa's Hidden Luxury Villa —
+                                4BHK Tour by Gaurav Vaikul</p>
+                            <span style="font-size: 0.8rem; color: rgba(255,255,255,0.7);">Click to stream video without
+                                slowing down page load</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: LOCATION PREVIEW & DISTANCE HIGHLIGHT -->
+        <section class="section-py">
+            <div class="container reveal active">
+                <div style="max-width: 800px; margin-bottom: 40px;">
+                    <span class="label-mini">Siolim, North Goa</span>
+                    <h2 class="title-large" style="margin-bottom: 18px;">Peaceful Serenity, Minutes from Beaches</h2>
+                    <p class="text-desc" style="margin: 0 0 30px 0; text-align: left;">
+                        Tucked in a quiet residential lane in Siolim Marna Village, RK's Villa offers complete privacy
+                        while keeping you 7–10 minutes from Vagator, Anjuna, and Morjim beaches.
+                    </p>
+
+                    <div style="display: flex; gap: 40px; flex-wrap: wrap; margin-bottom: 35px;">
+                        <div>
+                            <span
+                                style="font-size: 1.15rem; color: var(--color-gold); font-weight: 500; display: block;">7.8
+                                km</span>
+                            <span style="font-size: 0.85rem; color: var(--color-muted);">Vagator Beach</span>
+                        </div>
+
+                        <div>
+                            <span
+                                style="font-size: 1.15rem; color: var(--color-gold); font-weight: 500; display: block;">3.8
+                                km</span>
+                            <span style="font-size: 0.85rem; color: var(--color-muted);">Thalassa Restaurant</span>
+                        </div>
+
+                        <div>
+                            <span
+                                style="font-size: 1.15rem; color: var(--color-gold); font-weight: 500; display: block;">21.3
+                                km</span>
+                            <span style="font-size: 0.85rem; color: var(--color-muted);">MOPA Airport</span>
+                        </div>
+                    </div>
+
+                    <a href="guide.html" class="btn btn-secondary">Explore Location Guide <i data-lucide="arrow-right"
+                            class="btn-icon"></i></a>
+                </div>
+
+                <!-- CLEAN, OPEN MAP FRAME -->
+                <div
+                    style="border-radius: 4px; overflow: hidden; height: 380px; width: 100%; border: 1px solid var(--color-border);">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15372.456073167198!2d73.77843818625902!3d15.615900000000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bbbef31665a31a9%3A0xb3adac4ff4ef3223!2sSiolim%2C%20Goa!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+                        width="100%" height="100%"
+                        style="border:0; filter: invert(90%) hue-rotate(180deg) brightness(85%) contrast(90%);"
+                        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 6: DIRECT BOOKING SAVINGS BANNER -->
+        <section class="section-py section-dark-alternate">
+            <div class="container reveal active">
+                <div class="direct-wrapper"
+                    style="text-align: center; background: var(--color-card); border: 1px solid var(--color-gold); padding: 50px 30px; border-radius: 6px; box-shadow: 0 10px 30px rgba(201, 169, 110, 0.12);">
+                    <span class="scarcity-banner">💡 Direct Host Deal</span>
+                    <h2 class="title-large" style="margin-bottom: 12px;">Why Waste ₹11,000+ On Airbnb Service Fees?</h2>
+                    <p class="text-desc" style="max-width: 680px; margin-bottom: 30px;">
+                        When you book directly with host Ravi, you pay 0% platform commissions. That means instant
+                        savings of ₹8,000 to ₹15,000 per stay, early check-in priority, and custom Goan meal packages
+                        tailor-made for your group.
+                    </p>
+                    <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+                        <a href="rates.html" class="btn btn-primary">Lock Direct Rate & Save 15%</a>
+                        <a href="https://wa.me/919970341234?text=Hi%20Ravi%20sir%2C%20I%20want%20to%20book%20RK%27s%20Villa%20directly%20without%20Airbnb%20fees"
+                            target="_blank" rel="noopener noreferrer" class="btn btn-secondary"><i
+                                data-lucide="message-circle" class="btn-icon"></i> Chat With Host Ravi</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="grid-4" style="gap: 40px; margin-bottom: 50px;">
+                <div class="footer-col">
+                    <a href="index.html" class="logo-container" style="margin-bottom: 20px;">
+                        <svg class="logo-icon" viewBox="0 0 24 24">
+                            <path d="M12 3L2 12h3v8h14v-8h3L12 3zm0 2.2L19 11.5V18H5v-6.5l7-6.3z" />
+                            <path d="M10 12h4v4h-4z" />
+                        </svg>
+                        <div>
+                            <span class="logo-text" style="font-size: 1.15rem;">RK'S VILLA</span>
+                            <span class="logo-subtext" style="font-size: 0.5rem;">Luxury Living</span>
+                        </div>
+                    </a>
+                    <p class="text-muted" style="font-size: 0.85rem; line-height: 1.6;">
+                        An exclusive 4-BHK private pool sanctuary in Siolim, North Goa, catering to discerning travelers
+                        seeking high-end luxury.
+                    </p>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Explore</h4>
+                    <ul>
+                        <li><a href="villa.html">The Villa</a></li>
+                        <li><a href="experiences.html">Curated Experiences</a></li>
+                        <li><a href="rates.html">Live Rates</a></li>
+                        <li><a href="gallery.html">Visual Gallery</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Contact Host</h4>
+                    <ul class="footer-contact-info">
+                        <li>
+                            <i data-lucide="user"></i>
+                            <span>Ravi (Owner)</span>
+                        </li>
+                        <li>
+                            <i data-lucide="phone"></i>
+                            <div>
+                                <a href="tel:+919970341234" style="display: block;">+91 99703 41234</a>
+                                <a href="tel:+918983041234" style="display: block; margin-top: 4px;">+91 89830 41234</a>
+                            </div>
+                        </li>
+                        <li>
+                            <i data-lucide="map-pin"></i>
+                            <span>Siolim Marna Village, North Goa, India</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Secure Booking</h4>
+                    <p class="text-muted" style="font-size: 0.85rem; margin-bottom: 20px;">
+                        We process all reservations directly with the owner to secure custom packages.
+                    </p>
+                    <a href="contact.html" class="btn btn-primary" style="width: 100%;">Inquire Availability</a>
+                </div>
+            </div>
+
+            <div class="footer-bottom flex-between">
+                <p>&copy; 2026 RK'S VILLA. All rights reserved. GST registration pending.</p>
+                <p>Website designed by <a href="#" target="_blank" rel="noopener noreferrer">Velora Web Studios</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        function loadYouTubeIframe() {
+            const container = document.getElementById('yt-facade-container');
+            if (container) {
+                container.innerHTML = `
+                <iframe 
+                    src="https://www.youtube-nocookie.com/embed/gWLk2z4-lLo?autoplay=1&rel=0" 
+                    title="Goa's Hidden Luxury Villa — 4BHK Tour" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    allowfullscreen>
+                </iframe>
+            `;
+                container.style.aspectRatio = '16 / 9';
+            }
+        }
+
+        function seekVillaTour(seconds) {
+            const video = document.getElementById('theater-video-player');
+            if (video) {
+                const applySeek = () => {
+                    video.currentTime = seconds;
+                };
+
+                video.play().then(() => {
+                    video.currentTime = seconds;
+                }).catch(() => {
+                    if (video.readyState >= 1) {
+                        video.currentTime = seconds;
+                    } else {
+                        video.addEventListener('loadedmetadata', applySeek, { once: true });
+                    }
+                });
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+
+            const header = document.getElementById('site-header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+
+            // Hero Feature Highlight Reel Controller
+            const heroVideo = document.getElementById('hero-video');
+            const highlightCards = document.querySelectorAll('.hero-highlight-card');
+
+            highlightCards.forEach(card => {
+                card.addEventListener('click', () => {
+                    highlightCards.forEach(c => c.classList.remove('active'));
+                    card.classList.add('active');
+
+                    const videoSrc = card.dataset.video;
+                    if (heroVideo && videoSrc) {
+                        heroVideo.src = videoSrc;
+                        heroVideo.muted = true;
+                        heroVideo.play().catch(() => { });
+                    }
+                });
+            });
+
+
+
+            // Mobile Drawer Controller
+            const mobileBtn = document.getElementById('mobile-menu-btn');
+            const mobClose = document.getElementById('close-menu-btn');
+            const mobileOverlay = document.getElementById('mobile-menu-overlay');
+
+            if (mobileBtn && mobClose && mobileOverlay) {
+                mobileBtn.addEventListener('click', () => {
+                    mobileOverlay.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                });
+
+                const closeDrawer = () => {
+                    mobileOverlay.classList.remove('active');
+                    document.body.style.overflow = '';
+                };
+
+                mobClose.addEventListener('click', closeDrawer);
+                document.querySelectorAll('.mobile-nav-link').forEach(link => {
+                    link.addEventListener('click', closeDrawer);
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Contact & Reservations — RK's Villa | Siolim, North Goa</title>
+    <meta name="description" content="Book direct with host Ravi for RK's Villa in Siolim, North Goa. Call +91 99703 41234 or submit direct reservation request form. Best price guaranteed.">
+    
+    <!-- Google Fonts: Playfair Display & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-label {
+            display: block;
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--color-gold);
+            margin-bottom: 8px;
+        }
+        .form-input, .form-textarea {
+            width: 100%;
+            background-color: var(--color-card-light);
+            border: 1px solid var(--color-border);
+            color: var(--color-text);
+            padding: 14px 16px;
+            font-family: var(--font-sans);
+            font-size: 0.95rem;
+            border-radius: 2px;
+            transition: var(--transition-smooth);
+        }
+        .form-input:focus, .form-textarea:focus {
+            outline: none;
+            border-color: var(--color-gold);
+            box-shadow: 0 0 15px rgba(201, 169, 110, 0.2);
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- NAVIGATION HEADER -->
+<header id="site-header" class="header-wrapper">
+    <div class="container flex-between" style="height: 100%;">
+        <a href="index.html" class="logo-container">
+            <svg class="logo-icon" viewBox="0 0 24 24">
+                <path d="M12 3L2 12h3v8h14v-8h3L12 3zm0 2.2L19 11.5V18H5v-6.5l7-6.3z"/>
+                <path d="M10 12h4v4h-4z" />
+            </svg>
+            <div>
+                <span class="logo-text">RK'S VILLA</span>
+                <span class="logo-subtext">Luxury Living</span>
+            </div>
+        </a>
+
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="villa.html">The Villa</a>
+            <a href="experiences.html">Experiences</a>
+            <a href="rates.html">Live Rates</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="guide.html">Goa Guide</a>
+            <a href="contact.html" class="active">Contact</a>
+        </nav>
+
+        <div class="nav-ctas">
+            <a href="tel:+919970341234" class="btn btn-secondary" style="padding: 8px 18px; font-size: 0.75rem;">
+                <i data-lucide="phone" class="btn-icon"></i> Call
+            </a>
+            <a href="contact.html" class="btn btn-primary" style="padding: 8px 18px; font-size: 0.75rem;">Book Now</a>
+        </div>
+
+        <button id="mobile-menu-btn" class="menu-toggle-btn">
+            <i data-lucide="menu" style="width: 28px; height: 28px;"></i>
+        </button>
+    </div>
+</header>
+
+<!-- MOBILE NAVIGATION OVERLAY DRAWER -->
+<div id="mobile-menu-overlay" class="mobile-menu-drawer">
+    <button id="close-menu-btn" class="close-btn">
+        <i data-lucide="x" style="width: 32px; height: 32px;"></i>
+    </button>
+    <nav class="mobile-nav-links">
+        <a href="index.html" class="mobile-nav-link">Home</a>
+        <a href="villa.html" class="mobile-nav-link">The Villa</a>
+        <a href="experiences.html" class="mobile-nav-link">Experiences</a>
+        <a href="rates.html" class="mobile-nav-link">Live Rates</a>
+        <a href="gallery.html" class="mobile-nav-link">Gallery</a>
+        <a href="guide.html" class="mobile-nav-link">Goa Guide</a>
+        <a href="contact.html" class="mobile-nav-link active">Contact</a>
+    </nav>
+    <div class="mobile-nav-ctas">
+        <a href="tel:+919970341234" class="btn btn-secondary">
+            <i data-lucide="phone" class="btn-icon"></i> Call Now
+        </a>
+        <a href="contact.html" class="btn btn-primary">Book Now</a>
+    </div>
+</div>
+
+<!-- STICKY WHATSAPP FLOATING BUTTON -->
+<a href="https://wa.me/919970341234?text=Hi%20Ravi%20sir%2C%20I%20am%20interested%20in%20booking%20RK%27s%20Villa%20for%20my%20stay" target="_blank" rel="noopener noreferrer" class="whatsapp-float-btn">
+    <i data-lucide="message-circle" style="width: 28px; height: 28px;"></i>
+</a>
+
+<!-- MOBILE BOTTOM STICKY QUICK-ACTION BAR -->
+<div class="mobile-sticky-cta-bar">
+    <a href="tel:+919970341234" class="sticky-cta-link call">
+        <i data-lucide="phone" style="width: 16px; height: 16px;"></i> Call Host
+    </a>
+    <a href="https://wa.me/919970341234?text=Hi%20Ravi%20sir%2C%20I%20am%20interested%20in%20booking%20RK%27s%20Villa%20for%20my%20stay" target="_blank" rel="noopener noreferrer" class="sticky-cta-link wa">
+        <i data-lucide="message-circle" style="width: 16px; height: 16px;"></i> WhatsApp
+    </a>
+</div>
+
+<main>
+    <!-- FULLSCREEN 100VH SUBPAGE HEADER BANNER -->
+    <section class="hero-wrapper subpage-banner banner-contact">
+        <div class="hero-content">
+            <span class="label-mini reveal active" style="margin-bottom: 8px;">Direct Host Booking</span>
+            <h1 class="hero-title reveal active">Reservations & Inquiry</h1>
+            <p class="hero-subhead reveal active">
+                Connect directly with owner Ravi to secure custom rates, corporate retreats, or family packages.
+            </p>
+        </div>
+
+        <a href="#reservation-form-section" class="hero-scroll-btn">
+            <i data-lucide="chevron-down" style="width: 32px; height: 32px;"></i>
+        </a>
+    </section>
+
+    <!-- SECTION 1: FORM & HOST CARDS -->
+    <section id="reservation-form-section" class="section-py">
+        <div class="container">
+            <div class="grid-2" style="gap: 40px;">
+                
+                <!-- Form Column -->
+                <div style="background-color: var(--color-card); border: 1px solid var(--color-border); padding: 30px; border-radius: 2px;" class="reveal active">
+                    <h3 style="font-family: var(--font-serif); font-size: 1.6rem; margin-bottom: 15px; color: var(--color-text);">Direct Reservation Request</h3>
+                    <p class="text-muted" style="font-size: 0.85rem; margin-bottom: 25px;">
+                        Fill in your stay details. Host Ravi will reply within 30 minutes with confirmed rates and payment links.
+                    </p>
+
+                    <form action="https://api.web3forms.com/submit" method="POST" id="booking-inquiry-form">
+                        <!-- Web3Forms Access Key placeholder -->
+                        <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY">
+                        <input type="hidden" name="subject" value="New Direct Booking Inquiry — RK's Villa Website">
+
+                        <div class="form-group">
+                            <label class="form-label">Full Name *</label>
+                            <input type="text" name="name" class="form-input" placeholder="e.g. Vikram Sharma" required>
+                        </div>
+
+                        <div class="grid-2" style="gap: 15px;">
+                            <div class="form-group">
+                                <label class="form-label">Phone / WhatsApp *</label>
+                                <input type="tel" name="phone" class="form-input" placeholder="+91 98765 43210" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Email Address</label>
+                                <input type="email" name="email" class="form-input" placeholder="vikram@example.com">
+                            </div>
+                        </div>
+
+                        <div class="grid-2" style="gap: 15px;">
+                            <div class="form-group">
+                                <label class="form-label">Check-in Date *</label>
+                                <input type="date" name="checkin" class="form-input" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Check-out Date *</label>
+                                <input type="date" name="checkout" class="form-input" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Number of Guests *</label>
+                            <select name="guests" class="form-input" required style="cursor: pointer;">
+                                <option value="2 Guests">2 Guests (1 Bedroom)</option>
+                                <option value="4 Guests">4 Guests (2 Bedrooms)</option>
+                                <option value="6 Guests">6 Guests (3 Bedrooms)</option>
+                                <option value="8 Guests" selected>8 Guests (Full 4-BHK Villa)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Special Requests (Optional)</label>
+                            <textarea name="message" class="form-textarea" rows="3" placeholder="e.g. Floating breakfast preference, chef BBQ request..."></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" style="width: 100%; padding: 15px;">
+                            Submit Direct Inquiry <i data-lucide="send" class="btn-icon"></i>
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Host Details Column -->
+                <div class="reveal active" style="display: flex; flex-direction: column; justify-content: space-between;">
+                    <div style="background-color: var(--color-card); border: 1px solid var(--color-border); padding: 30px; border-radius: 2px; margin-bottom: 24px;">
+                        <span class="label-mini">Direct Reservations</span>
+                        <h3 style="font-family: var(--font-serif); font-size: 1.6rem; margin-bottom: 15px; color: var(--color-text);">Contact Host & Reservations</h3>
+                        
+                        <p class="text-muted" style="font-size: 0.88rem; margin-bottom: 25px; line-height: 1.6;">
+                            "When you book directly with our team, you save third-party platform commissions, get live Hostex calendar availability, and enjoy personal care throughout your stay."
+                        </p>
+
+                        <div style="display: flex; flex-direction: column; gap: 15px;">
+                            <a href="tel:+919970341234" class="btn btn-secondary" style="justify-content: flex-start; padding: 14px 20px;">
+                                <i data-lucide="phone" style="color: var(--color-gold);"></i> Host Ravi / Samir: +91 99703 41234
+                            </a>
+                            <a href="tel:+918983041234" class="btn btn-secondary" style="justify-content: flex-start; padding: 14px 20px;">
+                                <i data-lucide="phone" style="color: var(--color-gold);"></i> Reservations (Suchita): +91 89830 41234
+                            </a>
+                            <a href="https://wa.me/919970341234?text=Hi%20Ravi%20sir%2C%20I%20am%20interested%20in%20booking%20RK%27s%20Villa%20for%20my%20stay" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="justify-content: flex-start; padding: 14px 20px; background-color: #25D366; color: white; border: none;">
+                                <i data-lucide="message-circle"></i> Chat on WhatsApp (Instant Reply)
+                            </a>
+                        </div>
+                    </div>
+
+                    <div style="background-color: var(--color-card); border: 1px solid var(--color-border); padding: 25px; border-radius: 2px;">
+                        <h4 style="font-family: var(--font-serif); font-size: 1.1rem; color: var(--color-gold); margin-bottom: 10px;">Property Address</h4>
+                        <p class="text-muted" style="font-size: 0.85rem; line-height: 1.6;">
+                            RK's Villa (Unit A2), Siolim Marna Village Road, Siolim, North Goa 403517, India. Exact gate location pin sent on booking confirmation.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 2: FREQUENTLY ASKED QUESTIONS -->
+    <section class="section-py section-dark-alternate">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 45px;" class="reveal active">
+                <span class="label-mini">Need Help?</span>
+                <h2 class="title-large">Frequently Asked Questions</h2>
+                <p class="text-desc">Quick answers to common questions about stay policies, check-in, and deposits.</p>
+            </div>
+
+            <div style="max-width: 800px; margin: 0 auto;" class="reveal active">
+                <!-- FAQ 1 -->
+                <div style="background-color: var(--color-bg); border: 1px solid var(--color-border); padding: 20px; border-radius: 2px; margin-bottom: 12px;">
+                    <h4 style="font-family: var(--font-serif); font-size: 1.1rem; color: var(--color-gold); margin-bottom: 6px;">What are the check-in and check-out timings?</h4>
+                    <p class="text-muted" style="font-size: 0.88rem;">Check-in is at 2:00 PM and check-out is at 11:00 AM. Early check-in or late check-out is subject to availability and can be arranged directly with host Ravi.</p>
+                </div>
+
+                <!-- FAQ 2 -->
+                <div style="background-color: var(--color-bg); border: 1px solid var(--color-border); padding: 20px; border-radius: 2px; margin-bottom: 12px;">
+                    <h4 style="font-family: var(--font-serif); font-size: 1.1rem; color: var(--color-gold); margin-bottom: 6px;">Is security deposit required?</h4>
+                    <p class="text-muted" style="font-size: 0.88rem;">Yes, a refundable security deposit of ₹10,000 is collected upon arrival and refunded 100% on check-out after property inspection.</p>
+                </div>
+
+                <!-- FAQ 3 -->
+                <div style="background-color: var(--color-bg); border: 1px solid var(--color-border); padding: 20px; border-radius: 2px;">
+                    <h4 style="font-family: var(--font-serif); font-size: 1.1rem; color: var(--color-gold); margin-bottom: 6px;">Are pets allowed at the villa?</h4>
+                    <p class="text-muted" style="font-size: 0.88rem;">Well-behaved pets are welcome on request with prior approval from the owner.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+    <div class="container">
+        <div class="grid-4" style="gap: 40px; margin-bottom: 50px;">
+            <div class="footer-col">
+                <a href="index.html" class="logo-container" style="margin-bottom: 20px;">
+                    <svg class="logo-icon" viewBox="0 0 24 24">
+                        <path d="M12 3L2 12h3v8h14v-8h3L12 3zm0 2.2L19 11.5V18H5v-6.5l7-6.3z"/>
+                        <path d="M10 12h4v4h-4z" />
+                    </svg>
+                    <div>
+                        <span class="logo-text" style="font-size: 1.15rem;">RK'S VILLA</span>
+                        <span class="logo-subtext" style="font-size: 0.5rem;">Luxury Living</span>
+                    </div>
+                </a>
+                <p class="text-muted" style="font-size: 0.85rem; line-height: 1.6;">
+                    An exclusive 4-BHK private pool sanctuary in Siolim, North Goa, catering to discerning travelers seeking high-end luxury.
+                </p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Explore</h4>
+                <ul>
+                    <li><a href="villa.html">The Villa</a></li>
+                    <li><a href="experiences.html">Curated Experiences</a></li>
+                    <li><a href="rates.html">Live Rates</a></li>
+                    <li><a href="gallery.html">Visual Gallery</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Contact Host</h4>
+                <ul class="footer-contact-info">
+                    <li>
+                        <i data-lucide="user"></i>
+                        <span>Ravi (Owner)</span>
+                    </li>
+                    <li>
+                        <i data-lucide="phone"></i>
+                        <div>
+                            <a href="tel:+919970341234" style="display: block;">+91 99703 41234</a>
+                            <a href="tel:+918983041234" style="display: block; margin-top: 4px;">+91 89830 41234</a>
+                        </div>
+                    </li>
+                    <li>
+                        <i data-lucide="map-pin"></i>
+                        <span>Siolim Marna Village, North Goa, India</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Secure Booking</h4>
+                <p class="text-muted" style="font-size: 0.85rem; margin-bottom: 20px;">
+                    We process all reservations directly with the owner to secure custom packages.
+                </p>
+                <a href="contact.html" class="btn btn-primary" style="width: 100%;">Inquire Availability</a>
+            </div>
+        </div>
+
+        <div class="footer-bottom flex-between">
+            <p>&copy; 2026 RK'S VILLA. All rights reserved. GST registration pending.</p>
+            <p>Website designed by <a href="#" target="_blank" rel="noopener noreferrer">Velora Web Studios</a></p>
+        </div>
+    </div>
+</footer>
+
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
+        }
+
+        const header = document.getElementById('site-header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        const form = document.getElementById('booking-inquiry-form');
+        if (form) {
+            form.addEventListener('submit', (e) => {
+                const name = form.querySelector('[name="name"]').value;
+                const phone = form.querySelector('[name="phone"]').value;
+                const checkin = form.querySelector('[name="checkin"]').value;
+                const checkout = form.querySelector('[name="checkout"]').value;
+                const guests = form.querySelector('[name="guests"]').value;
+                const message = form.querySelector('[name="message"]').value;
+
+                const waText = encodeURIComponent(`Hi Ravi sir, I'm ${name} (${phone}). I submitted an inquiry for RK's Villa for ${guests} from ${checkin} to ${checkout}. ${message ? 'Note: ' + message : ''}`);
+                setTimeout(() => {
+                    window.open(`https://wa.me/919970341234?text=${waText}`, '_blank');
+                }, 500);
+            });
+        }
+
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobClose = document.getElementById('close-menu-btn');
+        const mobileOverlay = document.getElementById('mobile-menu-overlay');
+
+        if (mobileBtn && mobClose && mobileOverlay) {
+            mobileBtn.addEventListener('click', () => {
+                mobileOverlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+
+            const closeDrawer = () => {
+                mobileOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+            };
+
+            mobClose.addEventListener('click', closeDrawer);
+            document.querySelectorAll('.mobile-nav-link').forEach(link => {
+                link.addEventListener('click', closeDrawer);
+            });
+        }
+    });
+</script>
+</body>
+</html>

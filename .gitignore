@@ -1,0 +1,11 @@
+# Ignore video files larger than 100MB due to GitHub file size limits
+videos/full-tour-opt.mp4
+videos/gdrive-clip.mp4
+videos/villa-tour.mp4
+
+# Temporary or scratch folders
+scratch/
+.system_generated/
+.tempmediaStorage/
+*log
+rk villa asset/

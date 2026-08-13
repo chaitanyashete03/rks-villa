@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Visual Gallery — RK's Villa | Siolim, North Goa</title>
+    <meta name="description" content="Explore high-definition photos and 4K video walkthrough of RK's Villa in Siolim, North Goa. Private pool, luxury interiors, master bedrooms, and tropical gardens.">
+    
+    <!-- Google Fonts: Playfair Display & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        .gallery-filter-btn {
+            background: transparent;
+            border: 1px solid var(--color-border);
+            color: var(--color-muted);
+            padding: 8px 18px;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            min-height: 38px;
+        }
+        .gallery-filter-btn.active, .gallery-filter-btn:hover {
+            border-color: var(--color-gold);
+            color: var(--color-bg);
+            background-color: var(--color-gold);
+        }
+        .gallery-grid-item {
+            position: relative;
+            height: 260px;
+            border-radius: 2px;
+            overflow: hidden;
+            border: 1px solid var(--color-border);
+            cursor: pointer;
+        }
+        .gallery-grid-item img, .gallery-grid-item video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .gallery-grid-item:hover img, .gallery-grid-item:hover video {
+            transform: scale(1.08);
+        }
+        .gallery-overlay-badge {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(10,10,10,0.85) 0%, transparent 60%);
+            display: flex;
+            align-items: flex-end;
+            padding: 16px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .gallery-grid-item:hover .gallery-overlay-badge {
+            opacity: 1;
+        }
+        /* Lightbox Modal */
+        .lightbox-modal {
+            position: fixed;
+            inset: 0;
+            background-color: rgba(10,10,10,0.95);
+            backdrop-filter: blur(16px);
+            z-index: 300;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .lightbox-modal.active {
+            display: flex;
+        }
+        .lightbox-content-box {
+            max-width: 1000px;
+            max-height: 85vh;
+            position: relative;
+        }
+        .lightbox-content-box img, .lightbox-content-box video {
+            max-width: 100%;
+            max-height: 85vh;
+            border-radius: 2px;
+            border: 1px solid var(--color-gold);
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- NAVIGATION HEADER -->
+<header id="site-header" class="header-wrapper">
+    <div class="container flex-between" style="height: 100%;">
+        <a href="index.html" class="logo-container">
+            <svg class="logo-icon" viewBox="0 0 24 24">
+                <path d="M12 3L2 12h3v8h14v-8h3L12 3zm0 2.2L19 11.5V18H5v-6.5l7-6.3z"/>
+                <path d="M10 12h4v4h-4z" />
+            </svg>
+            <div>
+                <span class="logo-text">RK'S VILLA</span>
+                <span class="logo-subtext">Luxury Living</span>
+            </div>
+        </a>
+
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="villa.html">The Villa</a>
+            <a href="experiences.html">Experiences</a>
+            <a href="rates.html">Live Rates</a>
+            <a href="gallery.html" class="active">Gallery</a>
+            <a href="guide.html">Goa Guide</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+
+        <div class="nav-ctas">
+            <a href="tel:+919970341234" class="btn btn-secondary" style="padding: 8px 18px; font-size: 0.75rem;">
+                <i data-lucide="phone" class="btn-icon"></i> Call
+            </a>
+            <a href="contact.html" class="btn btn-primary" style="padding: 8px 18px; font-size: 0.75rem;">Book Now</a>
+        </div>
+
+        <button id="mobile-menu-btn" class="menu-toggle-btn">
+            <i data-lucide="menu" style="width: 28px; height: 28px;"></i>
+        </button>
+    </div>
+</header>
+
+<!-- MOBILE NAVIGATION OVERLAY DRAWER -->
+<div id="mobile-menu-overlay" class="mobile-menu-drawer">
+    <button id="close-menu-btn" class="close-btn">
+        <i data-lucide="x" style="width: 32px; height: 32px;"></i>
+    </button>
+    <nav class="mobile-nav-links">
+        <a href="index.html" class="mobile-nav-link">Home</a>
+        <a href="villa.html" class="mobile-nav-link">The Villa</a>
+        <a href="experiences.html" class="mobile-nav-link">Experiences</a>
+        <a href="rates.html" class="mobile-nav-link">Live Rates</a>
+        <a href="gallery.html" class="mobile-nav-link active">Gallery</a>
+        <a href="guide.html" class="mobile-nav-link">Goa Guide</a>
+        <a href="contact.html" class="mobile-nav-link">Contact</a>
+    </nav>
+    <div class="mobile-nav-ctas">
+        <a href="tel:+919970341234" class="btn btn-secondary">
+            <i data-lucide="phone" class="btn-icon"></i> Call Now
+        </a>
+        <a href="contact.html" class="btn btn-primary">Book Now</a>
+    </div>
+</div>
+
+<!-- STICKY WHATSAPP FLOATING BUTTON -->
+<a href="https://wa.me/919970341234?text=Hi%20Ravi%20sir%2C%20I%20am%20interested%20in%20booking%20RK%27s%20Villa%20for%20my%20stay" target="_blank" rel="noopener noreferrer" class="whatsapp-float-btn">
+    <i data-lucide="message-circle" style="width: 28px; height: 28px;"></i>
+</a>
+
+<!-- MOBILE BOTTOM STICKY QUICK-ACTION BAR -->
+<div class="mobile-sticky-cta-bar">
+    <a href="tel:+919970341234" class="sticky-cta-link call">
+        <i data-lucide="phone" style="width: 16px; height: 16px;"></i> Call Host
+    </a>
+    <a href="https://wa.me/919970341234?text=Hi%20Ravi%20sir%2C%20I%20am%20interested%20in%20booking%20RK%27s%20Villa%20for%20my%20stay" target="_blank" rel="noopener noreferrer" class="sticky-cta-link wa">
+        <i data-lucide="message-circle" style="width: 16px; height: 16px;"></i> WhatsApp
+    </a>
+</div>
+
+<main>
+    <!-- FULLSCREEN 100VH SUBPAGE HEADER BANNER -->
+    <section class="hero-wrapper subpage-banner banner-gallery">
+        <div class="hero-content">
+            <span class="label-mini reveal active" style="margin-bottom: 8px;">Visual Showcase</span>
+            <h1 class="hero-title reveal active">The Villa Gallery</h1>
+            <p class="hero-subhead reveal active">
+                High-definition photo collection and motion loops of the private pool, interiors, master suites, and tropical gardens.
+            </p>
+        </div>
+
+        <a href="#gallery-grid-section" class="hero-scroll-btn">
+            <i data-lucide="chevron-down" style="width: 32px; height: 32px;"></i>
+        </a>
+    </section>
+
+    <!-- SECTION 1: FILTERABLE PHOTO GALLERY -->
+    <section id="gallery-grid-section" class="section-py">
+        <div class="container">
+            <!-- Category Filter Pills -->
+            <div style="display: flex; justify-content: center; gap: 10px; margin-bottom: 35px; flex-wrap: wrap;" class="reveal active">
+                <button class="gallery-filter-btn active" data-filter="all">All Photos (21)</button>
+                <button class="gallery-filter-btn" data-filter="pool">Private Pool & Deck</button>
+                <button class="gallery-filter-btn" data-filter="rooms">Bedrooms & Suites</button>
+                <button class="gallery-filter-btn" data-filter="living">Living Lounge & Bar</button>
+                <button class="gallery-filter-btn" data-filter="exterior">Gardens & Gazebo</button>
+            </div>
+
+            <!-- Gallery Masonry Grid -->
+            <div class="masonry-grid reveal active" id="gallery-grid">
+                
+                <!-- Item 1: Pool PNG 4 -->
+                <div class="masonry-item" data-category="pool" data-type="image" data-src="gallery/4.png">
+                    <img src="gallery/4.png" alt="Private Swimming Pool Deck" loading="lazy">
+                    <div class="masonry-item-caption">
+                        <span class="label-mini" style="font-size: 0.65rem; margin-bottom: 2px;">Pool Sanctuary</span>
+                        <h4 class="masonry-item-title">4.5ft Private Swimming Pool</h4>
+                    </div>
+                </div>
+
+                <!-- Item 2: Villa Facade PNG 11 -->
+                <div class="masonry-item" data-category="exterior" data-type="image" data-src="gallery/11.png">
+                    <img src="gallery/11.png" alt="Villa Architectural Facade" loading="lazy">
+                    <div class="masonry-item-caption">
+                        <span class="label-mini" style="font-size: 0.65rem; margin-bottom: 2px;">Architecture</span>
+                        <h4 class="masonry-item-title">Private Estate Grounds</h4>
+                    </div>
+                </div>
+
+                <!-- Item 3: Lounge PNG 2 -->
+                <div class="masonry-item" data-category="living" data-type="image" data-src="gallery/2.png">
+                    <img src="gallery/2.png" alt="Luxury Living Lounge" loading="lazy">
+                    <div class="masonry-item-caption">
+                        <span class="label-mini" style="font-size: 0.65rem; margin-bottom: 2px;">Living Room</span>
+                        <h4 class="masonry-item-title">High Ceiling Living Lounge</h4>
+                    </div>
+                </div>
+
+                <!-- Item 4: Master Suite PNG 3 -->
+                <div class="masonry-item" data-category="rooms" data-type="image" data-src="gallery/3.png">
+                    <img src="gallery/3.png" alt="Master Suite 1" loading="lazy">
+                    <div class="masonry-item-caption">
+                        <span class="label-mini" style="font-size: 0.65rem; margin-bottom: 2px;">Accommodations</span>
+                        <h4 class="masonry-item-title">Master Suite with Bathtub</h4>
+                    </div>
+                </div>
+
+                <!-- Item 5: Floating Breakfast PNG 13 -->
+                <div class="masonry-item" data-category="pool" data-type="image" data-src="gallery/13.png">
+                    <img src="gallery/13.png" alt="Floating Pool Breakfast" loading="lazy">
+                    <div class="masonry-item-caption">
+                        <span class="label-mini" style="font-size: 0.65rem; margin-bottom: 2px;">Experiences</span>
+                        <h4 class="masonry-item-title">Floating Pool Breakfast</h4>
+                    </div>
+                </div>
+
+                <!-- Item 6: Dining Lounge PNG 10 -->
+                <div class="masonry-item" data-category="living" data-type="image" data-src="gallery/10.png">
+                    <img src="gallery/10.png" alt="8-Seater Dining Lounge" loading="lazy">
+                    <div class="masonry-item-caption">
+                        <span class="label-mini" style="font-size: 0.65rem; margin-bottom: 2px;">Dining & Bar</span>
+                        <h4 class="masonry-item-title">8-Seater Teak Dining Area</h4>
+                    </div>
+                </div>
+
+                <!-- Item 7: Garden Gazebo PNG 14 -->
+                <div class="masonry-item" data-category="exterior" data-type="image" data-src="gallery/14.png">
+                    <img src="gallery/14.png" alt="Garden Pergola Gazebo" loading="lazy">
+                    <div class="masonry-item-caption">
+                        <span class="label-mini" style="font-size: 0.65rem; margin-bottom: 2px;">Pergola Gazebo</span>
+                        <h4 class="masonry-item-title">Tropical Garden Pergola</h4>
+                    </div>
+                </div>
+
+                <!-- Item 8: Bedroom PNG 7 -->
+                <div class="masonry-item" data-category="rooms" data-type="image" data-src="gallery/7.png">
+                    <img src="gallery/7.png" alt="Master Suite 2" loading="lazy">
+                    <div class="masonry-item-caption">
+                        <span class="label-mini" style="font-size: 0.65rem; margin-bottom: 2px;">Accommodations</span>
+                        <h4 class="masonry-item-title">Ensuite Master Bedroom</h4>
+                    </div>
+                </div>
+
+                <!-- Item 9: Pool Side PNG 5 -->
+                <div class="masonry-item" data-category="pool" data-type="image" data-src="gallery/5.png">
+                    <img src="gallery/5.png" alt="Pool Sun Deck Loungers" loading="lazy">
+                    <div class="masonry-item-caption">
+                        <span class="label-mini" style="font-size: 0.65rem; margin-bottom: 2px;">Sun Deck</span>
+                        <h4 class="masonry-item-title">Poolside Sun Loungers</h4>
+                    </div>
+                </div>
+
+                <!-- Item 10: Exterior Palms PNG 6 -->
+                <div class="masonry-item" data-category="exterior" data-type="image" data-src="gallery/6.png">
+                    <img src="gallery/6.png" alt="Palms & Garden Walkway" loading="lazy">
+                    <div class="masonry-item-caption">
+                        <span class="label-mini" style="font-size: 0.65rem; margin-bottom: 2px;">Sanctuary</span>
+                        <h4 class="masonry-item-title">Lush Tropical Palm Gardens</h4>
+                    </div>
+                </div>
+
+                <!-- Item 11: Bedroom PNG 8 -->
+                <div class="masonry-item" data-category="rooms" data-type="image" data-src="gallery/8.png">
+                    <img src="gallery/8.png" alt="Ground Floor Suite 3" loading="lazy">
+                    <div class="masonry-item-caption">
+                        <span class="label-mini" style="font-size: 0.65rem; margin-bottom: 2px;">Accommodations</span>
+                        <h4 class="masonry-item-title">Ground Level King Bedroom</h4>
+                    </div>
+                </div>
+
+                <!-- Item 12: Bedroom PNG 9 -->
+                <div class="masonry-item" data-category="rooms" data-type="image" data-src="gallery/9.png">
+                    <img src="gallery/9.png" alt="King Bedroom 4" loading="lazy">
+                    <div class="masonry-item-caption">
+                        <span class="label-mini" style="font-size: 0.65rem; margin-bottom: 2px;">Accommodations</span>
+                        <h4 class="masonry-item-title">Private Garden View Suite</h4>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- DEDICATED VIRTUAL TOUR SECTION -->
+    <section class="section-py section-dark-alternate">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 35px;" class="reveal active">
+                <span class="label-mini">Motion Experience</span>
+                <h2 class="title-large">Full Video Tour</h2>
+                <p class="text-desc">Watch Ravi's 4-minute complete property walkthrough.</p>
+            </div>
+
+            <div class="full-video-wrapper reveal active" style="max-width: 950px; margin: 0 auto; border-radius: 6px; overflow: hidden; border: 1px solid var(--color-border);">
+                <video controls preload="none" poster="gallery/11.png" style="width: 100%; display: block; background-color: #000;">
+                    <source src="videos/full-tour-opt.mp4" type="video/mp4">
+                    <source src="videos/full-tour.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+    </section>
+
+    <!-- LIGHTBOX MODAL -->
+    <div id="lightbox-modal" class="lightbox-modal">
+        <button id="close-lightbox" style="position: absolute; top: 30px; right: 30px; color: white;">
+            <i data-lucide="x" style="width: 36px; height: 36px;"></i>
+        </button>
+        <div class="lightbox-content-box" id="lightbox-target">
+            <!-- Injected via JavaScript -->
+        </div>
+    </div>
+</main>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+    <div class="container">
+        <div class="grid-4" style="gap: 40px; margin-bottom: 50px;">
+            <div class="footer-col">
+                <a href="index.html" class="logo-container" style="margin-bottom: 20px;">
+                    <svg class="logo-icon" viewBox="0 0 24 24">
+                        <path d="M12 3L2 12h3v8h14v-8h3L12 3zm0 2.2L19 11.5V18H5v-6.5l7-6.3z"/>
+                        <path d="M10 12h4v4h-4z" />
+                    </svg>
+                    <div>
+                        <span class="logo-text" style="font-size: 1.15rem;">RK'S VILLA</span>
+                        <span class="logo-subtext" style="font-size: 0.5rem;">Luxury Living</span>
+                    </div>
+                </a>
+                <p class="text-muted" style="font-size: 0.85rem; line-height: 1.6;">
+                    An exclusive 4-BHK private pool sanctuary in Siolim, North Goa, catering to discerning travelers seeking high-end luxury.
+                </p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Explore</h4>
+                <ul>
+                    <li><a href="villa.html">The Villa</a></li>
+                    <li><a href="experiences.html">Curated Experiences</a></li>
+                    <li><a href="rates.html">Live Rates</a></li>
+                    <li><a href="gallery.html">Visual Gallery</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Contact Host</h4>
+                <ul class="footer-contact-info">
+                    <li>
+                        <i data-lucide="user"></i>
+                        <span>Ravi (Owner)</span>
+                    </li>
+                    <li>
+                        <i data-lucide="phone"></i>
+                        <div>
+                            <a href="tel:+919970341234" style="display: block;">+91 99703 41234</a>
+                            <a href="tel:+918983041234" style="display: block; margin-top: 4px;">+91 89830 41234</a>
+                        </div>
+                    </li>
+                    <li>
+                        <i data-lucide="map-pin"></i>
+                        <span>Siolim Marna Village, North Goa, India</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Secure Booking</h4>
+                <p class="text-muted" style="font-size: 0.85rem; margin-bottom: 20px;">
+                    We process all reservations directly with the owner to secure custom packages.
+                </p>
+                <a href="contact.html" class="btn btn-primary" style="width: 100%;">Inquire Availability</a>
+            </div>
+        </div>
+
+        <div class="footer-bottom flex-between">
+            <p>&copy; 2026 RK'S VILLA. All rights reserved. GST registration pending.</p>
+            <p>Website designed by <a href="#" target="_blank" rel="noopener noreferrer">Velora Web Studios</a></p>
+        </div>
+    </div>
+</footer>
+
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
+        }
+
+        const header = document.getElementById('site-header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        const filterBtns = document.querySelectorAll('.gallery-filter-btn');
+        const galleryItems = document.querySelectorAll('.masonry-item');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const filter = btn.dataset.filter;
+                galleryItems.forEach(item => {
+                    if (filter === 'all' || item.dataset.category === filter) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Lightbox Modal
+        const modal = document.getElementById('lightbox-modal');
+        const target = document.getElementById('lightbox-target');
+        const closeBtn = document.getElementById('close-lightbox');
+
+        galleryItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const src = item.dataset.src;
+                const type = item.dataset.type;
+
+                if (type === 'video') {
+                    target.innerHTML = `<video controls autoplay style="width: 100%; max-height: 80vh;"><source src="${src}" type="video/mp4"></video>`;
+                } else {
+                    target.innerHTML = `<img src="${src}" style="width: 100%; max-height: 80vh; object-fit: contain;">`;
+                }
+
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        if (closeBtn && modal) {
+            closeBtn.addEventListener('click', () => {
+                modal.classList.remove('active');
+                target.innerHTML = '';
+                document.body.style.overflow = '';
+            });
+        }
+
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobClose = document.getElementById('close-menu-btn');
+        const mobileOverlay = document.getElementById('mobile-menu-overlay');
+
+        if (mobileBtn && mobClose && mobileOverlay) {
+            mobileBtn.addEventListener('click', () => {
+                mobileOverlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+
+            const closeDrawer = () => {
+                mobileOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+            };
+
+            mobClose.addEventListener('click', closeDrawer);
+            document.querySelectorAll('.mobile-nav-link').forEach(link => {
+                link.addEventListener('click', closeDrawer);
+            });
+        }
+    });
+</script>
+</body>
+</html>
