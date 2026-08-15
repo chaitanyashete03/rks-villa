@@ -6,16 +6,25 @@
 
 /* 1. CSS VARIABLES & SYSTEM PRESETS */
 :root {
-    /* Colors */
-    --color-bg: #0B0C10;          /* 60% - Rich Obsidian Black */
-    --color-card: #15181F;        /* Secondary Dark Charcoal Card */
-    --color-card-light: #1E212A;  /* Accent Dark Gray */
-    --color-gold: #D4AF37;        /* 10% - Champagne Gold / Imperial Brass */
-    --color-gold-hover: #F0D670;  /* Light Gold Hover */
-    --color-text: #F7F7F7;        /* Parchment White / Warm Silk */
-    --color-muted: #B5B8C0;       /* Muted Slate Gray Text */
-    --color-border: rgba(212, 175, 55, 0.22); /* Delicate Imperial Gold Border */
-    --color-border-hover: rgba(212, 175, 55, 0.6);
+    /* Base Backgrounds (60%) */
+    --color-bg: #0B0C10;          /* Main layout background */
+    --color-card: #15181F;        /* Tier 1 elements (Amenity grid items, floor plan cards) */
+    --color-card-light: #1E212A;  /* Tier 2 elements (Form inputs, dark headers, active tabs) */
+
+    /* Typography & Layout (30%) */
+    --color-text: #F7F7F7;        /* Headings, pricing figures, main menus */
+    --color-muted: #B5B8C0;       /* Paragraph text, villa specs (sq ft, BHK subtexts) */
+
+    /* Accents & Interactions (10%) */
+    --color-gold: #D4AF37;        /* Primary CTAs, high-priority icons, badges */
+    --color-gold-hover: #F0D670;  /* Smooth transition color for hover states */
+    
+    /* Borders & Accents */
+    --color-border: rgba(212, 175, 55, 0.22); 
+    --color-border-hover: rgba(212, 175, 55, 0.60);
+
+    /* Text on Accent (Accessibility Safeguard) */
+    --color-text-on-gold: #000000; /* Dark text for crisp legibility inside gold CTAs */
 
     /* Fonts */
     --font-serif: 'Playfair Display', serif;
