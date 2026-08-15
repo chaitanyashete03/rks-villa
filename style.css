@@ -7,15 +7,15 @@
 /* 1. CSS VARIABLES & SYSTEM PRESETS */
 :root {
     /* Colors */
-    --color-bg: #0A0A0A;          /* 60% - Main Deep Black */
-    --color-card: #121212;        /* 30% - Premium Charcoal */
-    --color-card-light: #1A1A1A;  /* 30% - Accent Dark Gray */
-    --color-gold: #C9A96E;        /* 10% - Champagne Gold Accent */
-    --color-gold-hover: #E8D5B5;  /* 10% - Light Gold Hover */
-    --color-text: #F5F0E8;        /* Cream White Text */
-    --color-muted: #A0A0A0;       /* Muted Gray Text */
-    --color-border: rgba(201, 169, 110, 0.22); /* Delicate Gold Border */
-    --color-border-hover: rgba(201, 169, 110, 0.6);
+    --color-bg: #0B0C10;          /* 60% - Rich Obsidian Black */
+    --color-card: #15181F;        /* Secondary Dark Charcoal Card */
+    --color-card-light: #1E212A;  /* Accent Dark Gray */
+    --color-gold: #D4AF37;        /* 10% - Champagne Gold / Imperial Brass */
+    --color-gold-hover: #F0D670;  /* Light Gold Hover */
+    --color-text: #F7F7F7;        /* Parchment White / Warm Silk */
+    --color-muted: #B5B8C0;       /* Muted Slate Gray Text */
+    --color-border: rgba(212, 175, 55, 0.22); /* Delicate Imperial Gold Border */
+    --color-border-hover: rgba(212, 175, 55, 0.6);
 
     /* Fonts */
     --font-serif: 'Playfair Display', serif;
