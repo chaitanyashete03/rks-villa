@@ -317,8 +317,8 @@
                     style="position: relative; border-radius: 6px; overflow: hidden; border: 1px solid var(--color-border);">
                     <video id="theater-video-player" controls preload="metadata" poster="gallery/11.png"
                         style="width: 100%; border-radius: 4px; background-color: #000;">
-                        <source src="videos/villa-tour.mp4" type="video/mp4">
-                        <source src="videos/full-tour-opt.mp4" type="video/mp4">
+                        <source src="videos/villa-tour-web.mp4" type="video/mp4">
+                        <source src="videos/full-tour.mp4" type="video/mp4">
                     </video>
                 </div>
 
@@ -601,19 +601,23 @@
         function seekVillaTour(seconds) {
             const video = document.getElementById('theater-video-player');
             if (video) {
-                const applySeek = () => {
-                    video.currentTime = seconds;
+                video.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+                const performSeek = () => {
+                    try {
+                        video.currentTime = seconds;
+                        video.play().catch(() => {});
+                    } catch(e) {
+                        console.log("Seek error:", e);
+                    }
                 };
 
-                video.play().then(() => {
-                    video.currentTime = seconds;
-                }).catch(() => {
-                    if (video.readyState >= 1) {
-                        video.currentTime = seconds;
-                    } else {
-                        video.addEventListener('loadedmetadata', applySeek, { once: true });
-                    }
-                });
+                if (video.readyState >= 1) {
+                    performSeek();
+                } else {
+                    video.load();
+                    video.addEventListener('loadedmetadata', performSeek, { once: true });
+                }
             }
         }
 
