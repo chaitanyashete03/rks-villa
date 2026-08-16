@@ -256,33 +256,21 @@ img, video {
 .logo-container {
     display: flex;
     align-items: center;
-    gap: 10px;
 }
 
-.logo-icon {
-    width: 26px;
-    height: 26px;
-    fill: var(--color-gold);
+.site-logo-img {
+    height: 48px;
+    width: auto;
+    max-height: 52px;
+    object-fit: contain;
+    transition: var(--transition-smooth);
+    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.5));
 }
 
-.logo-text {
-    font-family: var(--font-serif);
-    font-size: 1.05rem;
-    font-weight: 400;
-    letter-spacing: 0.2em;
-    color: var(--color-text);
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
-}
-
-.logo-subtext {
-    font-size: 0.5rem;
-    font-family: var(--font-sans);
-    letter-spacing: 0.35em;
-    text-transform: uppercase;
-    color: var(--color-gold);
-    display: block;
-    margin-top: 1px;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+@media (max-width: 768px) {
+    .site-logo-img {
+        height: 38px !important;
+    }
 }
 
 .nav-links {
