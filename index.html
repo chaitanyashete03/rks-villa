@@ -461,22 +461,22 @@
                     <div style="display: flex; gap: 40px; flex-wrap: wrap; margin-bottom: 35px;">
                         <div>
                             <span
-                                style="font-size: 1.15rem; color: var(--color-gold); font-weight: 500; display: block;">7.8
-                                km</span>
+                                style="font-size: 1.15rem; color: var(--color-gold); font-weight: 600; display: block;">10
+                                Mins</span>
                             <span style="font-size: 0.85rem; color: var(--color-muted);">Vagator Beach</span>
                         </div>
 
                         <div>
                             <span
-                                style="font-size: 1.15rem; color: var(--color-gold); font-weight: 500; display: block;">3.8
-                                km</span>
+                                style="font-size: 1.15rem; color: var(--color-gold); font-weight: 600; display: block;">6
+                                Mins</span>
                             <span style="font-size: 0.85rem; color: var(--color-muted);">Thalassa Restaurant</span>
                         </div>
 
                         <div>
                             <span
-                                style="font-size: 1.15rem; color: var(--color-gold); font-weight: 500; display: block;">21.3
-                                km</span>
+                                style="font-size: 1.15rem; color: var(--color-gold); font-weight: 600; display: block;">25
+                                Mins</span>
                             <span style="font-size: 0.85rem; color: var(--color-muted);">MOPA Airport</span>
                         </div>
                     </div>
@@ -606,21 +606,19 @@
             if (video) {
                 video.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
-                const performSeek = () => {
-                    try {
-                        video.currentTime = seconds;
-                        video.play().catch(() => {});
-                    } catch(e) {
-                        console.log("Seek error:", e);
-                    }
+                const applySeek = () => {
+                    video.currentTime = seconds;
                 };
 
-                if (video.readyState >= 1) {
-                    performSeek();
-                } else {
-                    video.load();
-                    video.addEventListener('loadedmetadata', performSeek, { once: true });
-                }
+                video.play().then(() => {
+                    video.currentTime = seconds;
+                }).catch(() => {
+                    if (video.readyState >= 1) {
+                        video.currentTime = seconds;
+                    } else {
+                        video.addEventListener('loadedmetadata', applySeek, { once: true });
+                    }
+                });
             }
         }
 
