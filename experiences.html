@@ -129,9 +129,12 @@
 
                 <!-- Experience 2: Private Chef & Seafood BBQ -->
                 <div style="background: var(--color-card); border: 1px solid var(--color-border); border-radius: 6px; overflow: hidden; display: flex; flex-direction: column;">
-                    <div style="height: 230px; overflow: hidden; position: relative;">
-                        <img src="gallery/7.png" alt="Private Chef & Seafood BBQ" style="width: 100%; height: 100%; object-fit: cover;">
+                    <div style="height: 280px; overflow: hidden; position: relative; background-color: #000;">
+                        <video id="bbq-video-card" muted loop playsinline poster="gallery/bbq-frame-12.jpg" style="width: 100%; height: 100%; object-fit: cover;">
+                            <source src="videos/rksvilla-bbq.mp4" type="video/mp4">
+                        </video>
                         <span style="position: absolute; top: 15px; left: 15px; background: rgba(10,10,10,0.85); border: 1px solid var(--color-gold); color: var(--color-gold); padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; text-transform: uppercase; font-weight: 600;">Private Dining</span>
+                        <span style="position: absolute; bottom: 15px; right: 15px; background: rgba(10,10,10,0.8); color: #fff; padding: 4px 10px; border-radius: 4px; font-size: 0.72rem; display: flex; align-items: center; gap: 5px; border: 1px solid rgba(212, 175, 55, 0.4);"><i data-lucide="flame" style="width:14px;height:14px;color:var(--color-gold);"></i> Live BBQ Grill</span>
                     </div>
                     <div style="padding: 24px; flex-grow: 1; display: flex; flex-direction: column;">
                         <h3 style="font-family: var(--font-serif); font-size: 1.15rem; color: var(--color-text); margin-bottom: 10px;">Private Chef & Seafood BBQ</h3>
@@ -314,6 +317,21 @@
 
             closeBtn.addEventListener('click', closeDrawer);
             mobileLinks.forEach(link => link.addEventListener('click', closeDrawer));
+        }
+
+        // Lazy Auto-Play BBQ Video Only When Scrolled Into View (Performance Optimization)
+        const bbqVideo = document.getElementById('bbq-video-card');
+        if (bbqVideo && 'IntersectionObserver' in window) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        bbqVideo.play().catch(() => {});
+                    } else {
+                        bbqVideo.pause();
+                    }
+                });
+            }, { threshold: 0.2 });
+            observer.observe(bbqVideo);
         }
     });
 </script>
