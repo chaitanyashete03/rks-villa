@@ -98,7 +98,7 @@ class AvailabilityCalendar {
                             <span id="calc-ota-price" style="text-decoration: line-through; color: var(--color-muted);">₹0</span>
                         </div>
                         <div class="calc-row flex-between calc-highlight">
-                            <span>Direct Host Price (Ravi):</span>
+                            <span>Direct Host Price (Samir / Ravi):</span>
                             <strong id="calc-direct-price" style="font-size: 1.3rem; color: var(--color-gold);">₹0</strong>
                         </div>
                         <div class="calc-row flex-between calc-savings">
@@ -260,8 +260,8 @@ class AvailabilityCalendar {
             document.getElementById('calc-direct-price').textContent = `₹${directTotal.toLocaleString('en-IN')}`;
             document.getElementById('calc-savings-amount').textContent = `₹${savings.toLocaleString('en-IN')} Saved!`;
 
-            // Pre-fill WhatsApp message
-            const waMsg = encodeURIComponent(`Hi Ravi sir, I want to book RK's Villa for ${nights} night(s) from ${checkInStr} to ${checkOutStr}. Direct Rate: ₹${directTotal.toLocaleString('en-IN')}. Please confirm availability!`);
+            // Pre-fill clean, natural WhatsApp booking inquiry
+            const waMsg = encodeURIComponent(`Hi Samir, I want to book RK's Villa for ${nights} night(s) from ${checkInStr} to ${checkOutStr}. Direct Rate: ₹${directTotal.toLocaleString('en-IN')}. Please confirm availability and share payment details.`);
             document.getElementById('whatsapp-direct-link').href = `https://wa.me/919970341234?text=${waMsg}`;
 
             initialMsg.style.display = 'none';
