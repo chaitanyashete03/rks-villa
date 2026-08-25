@@ -13,10 +13,7 @@ const OTA_MARKUP_PERCENT = 0.18;   // 18% OTA platform markup savings
 
 // Hostex PMS iCal Live Integration (RK's Villa)
 const HOSTEX_ICAL_URL = "https://hostex.io/web/ical/12771325.ics?t=a53ff0c4e21a146dbfef0170196fef6b";
-let BOOKED_DATES = new Set([
-    "2026-08-26", "2026-08-27", "2026-08-28",
-    "2026-08-30", "2026-08-31", "2026-09-01", "2026-09-02", "2026-09-03", "2026-09-04", "2026-09-05", "2026-09-06"
-]);
+let BOOKED_DATES = new Set();
 
 class AvailabilityCalendar {
     constructor(containerId) {
