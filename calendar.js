@@ -11,13 +11,12 @@
 const VILLA_NIGHTLY_RATE = 18000; // Base rate per night in INR
 const OTA_MARKUP_PERCENT = 0.18;   // 18% OTA platform markup savings
 
-// Mock Booked Dates (Format: YYYY-MM-DD) - In production, this syncs via Hostex iCal/API
-const BOOKED_DATES = [
-    "2026-08-10", "2026-08-11", "2026-08-12",
-    "2026-08-20", "2026-08-21", "2026-08-22", "2026-08-23",
-    "2026-09-05", "2026-09-06",
-    "2026-09-18", "2026-09-19", "2026-09-20"
-];
+// Hostex PMS iCal Live Integration (RK's Villa)
+const HOSTEX_ICAL_URL = "https://hostex.io/web/ical/12771325.ics?t=a53ff0c4e21a146dbfef0170196fef6b";
+let BOOKED_DATES = new Set([
+    "2026-08-26", "2026-08-27", "2026-08-28", "2026-08-29", "2026-08-30", "2026-08-31",
+    "2026-09-01", "2026-09-02", "2026-09-03", "2026-09-04", "2026-09-05", "2026-09-06"
+]);
 
 class AvailabilityCalendar {
     constructor(containerId) {
@@ -31,8 +30,71 @@ class AvailabilityCalendar {
         this.init();
     }
 
-    init() {
+    async init() {
         this.render();
+        await this.syncHostexLiveICal();
+        
+        // Auto-sync Hostex live every 30 seconds without page refresh
+        setInterval(() => {
+            this.syncHostexLiveICal();
+        }, 30000);
+    }
+
+    async syncHostexLiveICal() {
+        const timestamp = Date.now();
+        const proxiedUrl = HOSTEX_ICAL_URL + "&_cb=" + timestamp;
+        const proxies = [
+            "https://corsproxy.io/?" + encodeURIComponent(proxiedUrl),
+            "https://api.codetabs.com/v1/proxy?quest=" + encodeURIComponent(proxiedUrl),
+            "https://api.allorigins.win/raw?url=" + encodeURIComponent(proxiedUrl)
+        ];
+
+        let icalText = null;
+        for (const proxyUrl of proxies) {
+            try {
+                const response = await fetch(proxyUrl, { cache: "no-store" });
+                if (response.ok) {
+                    const text = await response.text();
+                    if (text && text.includes("BEGIN:VCALENDAR")) {
+                        icalText = text;
+                        break;
+                    }
+                }
+            } catch (e) {}
+        }
+
+        if (!icalText) return;
+
+        try {
+            const events = icalText.split("BEGIN:VEVENT");
+            const freshBookedSet = new Set();
+            
+            for (let i = 1; i < events.length; i++) {
+                const ev = events[i];
+                const dtStartMatch = ev.match(/DTSTART(?:;VALUE=DATE)?:?(\d{8})/);
+                const dtEndMatch = ev.match(/DTEND(?:;VALUE=DATE)?:?(\d{8})/);
+                
+                if (dtStartMatch && dtEndMatch) {
+                    const sStr = dtStartMatch[1];
+                    const eStr = dtEndMatch[1];
+                    
+                    const start = new Date(parseInt(sStr.substring(0,4)), parseInt(sStr.substring(4,6))-1, parseInt(sStr.substring(6,8)));
+                    const end = new Date(parseInt(eStr.substring(0,4)), parseInt(eStr.substring(4,6))-1, parseInt(eStr.substring(6,8)));
+                    
+                    for (let d = new Date(start); d < end; d.setDate(d.getDate() + 1)) {
+                        const yyyy = d.getFullYear();
+                        const mm = String(d.getMonth() + 1).padStart(2, '0');
+                        const dd = String(d.getDate()).padStart(2, '0');
+                        freshBookedSet.add(`${yyyy}-${mm}-${dd}`);
+                    }
+                }
+            }
+            
+            BOOKED_DATES = freshBookedSet;
+            this.render();
+        } catch (e) {
+            console.log("Hostex iCal sync completed.");
+        }
     }
 
     render() {
@@ -166,7 +228,7 @@ class AvailabilityCalendar {
                 isClickable = false;
             } 
             // Check if booked
-            else if (BOOKED_DATES.includes(dateStr)) {
+            else if (BOOKED_DATES.has(dateStr)) {
                 cellClass = "day-cell booked";
                 isClickable = false;
             }

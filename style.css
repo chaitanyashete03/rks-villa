@@ -943,11 +943,12 @@ img, video {
 }
 
 .day-cell.booked {
-    color: #555555;
-    background-color: rgba(255, 255, 255, 0.01);
+    color: #fca5a5;
+    background-color: rgba(220, 38, 38, 0.25);
+    border: 1px solid rgba(239, 68, 68, 0.45);
     text-decoration: line-through;
     cursor: not-allowed;
-    opacity: 0.5;
+    opacity: 1;
 }
 
 .day-cell.past {
@@ -994,7 +995,7 @@ img, video {
 }
 
 .legend-box.available { background-color: var(--color-card-light); border: 1px solid var(--color-border); }
-.legend-box.booked { background-color: #333333; }
+.legend-box.booked { background-color: #ef4444; }
 .legend-box.selected { background-color: var(--color-gold); }
 
 /* Booking Calculator Box */
