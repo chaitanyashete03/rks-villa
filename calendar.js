@@ -39,6 +39,21 @@ class AvailabilityCalendar {
 
     async syncHostexLiveICal() {
         const timestamp = Date.now();
+
+        // 1. Try Vercel Serverless Endpoint First (Cleanest, No CORS limits)
+        try {
+            const apiRes = await fetch(`/api/hostex-ical?_cb=${timestamp}`, { cache: "no-store" });
+            if (apiRes.ok) {
+                const apiData = await apiRes.json();
+                if (apiData && apiData.success && Array.isArray(apiData.bookedDates)) {
+                    BOOKED_DATES = new Set(apiData.bookedDates);
+                    this.render();
+                    return;
+                }
+            }
+        } catch (e) {}
+
+        // 2. Fallback to CORS Proxies if running on local simple HTTP server
         const proxiedUrl = HOSTEX_ICAL_URL + "&_cb=" + timestamp;
         const proxies = [
             "https://corsproxy.io/?" + encodeURIComponent(proxiedUrl),
