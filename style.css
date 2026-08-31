@@ -2172,3 +2172,15 @@ img, video {
     background: rgba(37, 211, 102, 0.1);
     font-weight: 700;
 }
+
+/* Google Maps Location Links */
+.dist-link {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px dotted var(--color-gold);
+    transition: var(--transition-smooth);
+}
+.dist-link:hover {
+    color: var(--color-gold);
+    border-bottom-style: solid;
+}
