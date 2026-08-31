@@ -12,7 +12,7 @@ const VILLA_NIGHTLY_RATE = 18000; // Base rate per night in INR
 const OTA_MARKUP_PERCENT = 0.18;   // 18% OTA platform markup savings
 
 // Hostex PMS iCal Live Integration (RK's Villa)
-const HOSTEX_ICAL_URL = "https://hostex.io/web/ical/12771325.ics?t=a53ff0c4e21a146dbfef0170196fef6b";
+const HOSTEX_ICAL_URL = "https://hostex.io/web/ical/12775375.ics?t=f4e552e719ec0cbf51f1d8f0fc5456b8";
 let BOOKED_DATES = new Set();
 
 class AvailabilityCalendar {
@@ -30,7 +30,7 @@ class AvailabilityCalendar {
     async init() {
         this.render();
         await this.syncHostexLiveICal();
-        
+
         // Auto-sync Hostex live every 30 seconds without page refresh
         setInterval(() => {
             this.syncHostexLiveICal();
@@ -51,7 +51,7 @@ class AvailabilityCalendar {
                     return;
                 }
             }
-        } catch (e) {}
+        } catch (e) { }
 
         // 2. Fallback to CORS Proxies if running on local simple HTTP server
         const proxiedUrl = HOSTEX_ICAL_URL + "&_cb=" + timestamp;
@@ -72,7 +72,7 @@ class AvailabilityCalendar {
                         break;
                     }
                 }
-            } catch (e) {}
+            } catch (e) { }
         }
 
         if (!icalText) return;
@@ -80,19 +80,19 @@ class AvailabilityCalendar {
         try {
             const events = icalText.split("BEGIN:VEVENT");
             const freshBookedSet = new Set();
-            
+
             for (let i = 1; i < events.length; i++) {
                 const ev = events[i];
                 const dtStartMatch = ev.match(/DTSTART(?:;VALUE=DATE)?:?(\d{8})/);
                 const dtEndMatch = ev.match(/DTEND(?:;VALUE=DATE)?:?(\d{8})/);
-                
+
                 if (dtStartMatch && dtEndMatch) {
                     const sStr = dtStartMatch[1];
                     const eStr = dtEndMatch[1];
-                    
-                    const start = new Date(parseInt(sStr.substring(0,4)), parseInt(sStr.substring(4,6))-1, parseInt(sStr.substring(6,8)));
-                    const end = new Date(parseInt(eStr.substring(0,4)), parseInt(eStr.substring(4,6))-1, parseInt(eStr.substring(6,8)));
-                    
+
+                    const start = new Date(parseInt(sStr.substring(0, 4)), parseInt(sStr.substring(4, 6)) - 1, parseInt(sStr.substring(6, 8)));
+                    const end = new Date(parseInt(eStr.substring(0, 4)), parseInt(eStr.substring(4, 6)) - 1, parseInt(eStr.substring(6, 8)));
+
                     for (let d = new Date(start); d < end; d.setDate(d.getDate() + 1)) {
                         const yyyy = d.getFullYear();
                         const mm = String(d.getMonth() + 1).padStart(2, '0');
@@ -101,7 +101,7 @@ class AvailabilityCalendar {
                     }
                 }
             }
-            
+
             BOOKED_DATES = freshBookedSet;
             this.render();
         } catch (e) {
@@ -238,7 +238,7 @@ class AvailabilityCalendar {
             if (currentCellDate < today) {
                 cellClass = "day-cell past";
                 isClickable = false;
-            } 
+            }
             // Check if booked
             else if (BOOKED_DATES.has(dateStr)) {
                 cellClass = "day-cell booked";

@@ -4,7 +4,7 @@ export default async function handler(req, res) {
     
     try {
         const timestamp = Date.now();
-        const hostexUrl = `https://hostex.io/web/ical/12771325.ics?t=a53ff0c4e21a146dbfef0170196fef6b&_cb=${timestamp}`;
+        const hostexUrl = `https://hostex.io/web/ical/12775375.ics?t=f4e552e719ec0cbf51f1d8f0fc5456b8&_cb=${timestamp}`;
         const response = await fetch(hostexUrl, {
             headers: {
                 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)',
