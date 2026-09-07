@@ -1,524 +1,653 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
+
 <head>
     <meta charset="UTF-8">
-    <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Visual Gallery — RK's Villa | Siolim, North Goa</title>
-    <meta name="description" content="Explore high-definition photos and 4K video walkthrough of RK's Villa in Siolim, North Goa. Private pool, luxury interiors, master bedrooms, and tropical gardens.">
-    
-    <!-- Google Fonts: Playfair Display & Inter -->
+    <title>Photo & Video Gallery | RK's Villa Siolim Goa</title>
+    <meta name="description"
+        content="Explore all 74 photos of RK's Villa, Siolim Goa — luxury 4-BHK private pool estate, soaking bathtub master suite, tropical deck, living lounge, and lush surroundings.">
+    <meta name="keywords"
+        content="RK Villa Photos, RK Villa Gallery, Luxury Villa Siolim Photos, Private Pool Villa Goa Gallery">
+
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
-    
-    <!-- Custom Stylesheet -->
+
+    <!-- Custom Main Stylesheet -->
     <link rel="stylesheet" href="style.css">
-    
+
     <style>
-        .gallery-filter-btn {
-            background: transparent;
+        /* UNIFIED SITE GALLERY STYLES */
+        .filter-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin: 35px 0 45px 0;
+        }
+
+        .filter-btn {
+            background: var(--color-card);
             border: 1px solid var(--color-border);
             color: var(--color-muted);
-            padding: 8px 18px;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            border-radius: 20px;
+            padding: 10px 24px;
+            border-radius: 30px;
+            font-family: var(--font-sans);
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
             cursor: pointer;
-            transition: var(--transition-smooth);
-            min-height: 38px;
+            transition: var(--transition-smooth, all 0.3s ease);
         }
-        .gallery-filter-btn.active, .gallery-filter-btn:hover {
+
+        .filter-btn:hover {
             border-color: var(--color-gold);
-            color: var(--color-bg);
-            background-color: var(--color-gold);
+            color: var(--color-gold);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(201, 169, 110, 0.15);
         }
-        .gallery-grid-item {
+
+        .filter-btn.active {
+            background: var(--color-gold);
+            border-color: var(--color-gold);
+            color: var(--color-bg, #0a0e14);
+            font-weight: 600;
+            box-shadow: 0 6px 20px rgba(201, 169, 110, 0.3);
+        }
+
+        .masonry-grid {
+            column-count: 3;
+            column-gap: 24px;
+            width: 100%;
+        }
+
+        @media (max-width: 992px) {
+            .masonry-grid {
+                column-count: 2;
+                column-gap: 18px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .masonry-grid {
+                column-count: 1;
+            }
+        }
+
+        .masonry-item {
+            break-inside: avoid;
+            margin-bottom: 24px;
             position: relative;
-            height: 260px;
-            border-radius: 2px;
+            border-radius: 8px;
             overflow: hidden;
+            background: var(--color-card);
             border: 1px solid var(--color-border);
             cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .gallery-grid-item img, .gallery-grid-item video {
+
+        .masonry-item:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6), 0 0 20px rgba(201, 169, 110, 0.25);
+            border-color: var(--color-gold);
+        }
+
+        .masonry-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .masonry-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .masonry-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .gallery-grid-item:hover img, .gallery-grid-item:hover video {
-            transform: scale(1.08);
-        }
-        .gallery-overlay-badge {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to top, rgba(10,10,10,0.85) 0%, transparent 60%);
-            display: flex;
-            align-items: flex-end;
-            padding: 16px;
+            background: linear-gradient(to bottom, rgba(10, 14, 20, 0.2) 0%, rgba(10, 14, 20, 0.65) 100%);
             opacity: 0;
-            transition: opacity 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.35s ease;
         }
-        .gallery-grid-item:hover .gallery-overlay-badge {
+
+        .masonry-item:hover .masonry-overlay {
             opacity: 1;
         }
-        /* Lightbox Modal */
+
+        .expand-icon-badge {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: rgba(10, 14, 20, 0.85);
+            border: 1px solid var(--color-gold);
+            color: var(--color-gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform: scale(0.85);
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(201, 169, 110, 0.3);
+        }
+
+        .masonry-item:hover .expand-icon-badge {
+            transform: scale(1);
+            background: var(--color-gold);
+            color: var(--color-bg, #0a0e14);
+        }
+
+        /* LIGHTBOX MODAL MATCHING SITE THEME */
         .lightbox-modal {
             position: fixed;
-            inset: 0;
-            background-color: rgba(10,10,10,0.95);
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(7, 10, 15, 0.96);
             backdrop-filter: blur(16px);
-            z-index: 300;
+            z-index: 10000;
             display: none;
             align-items: center;
             justify-content: center;
-            padding: 20px;
+            opacity: 0;
+            transition: opacity 0.35s ease;
         }
+
         .lightbox-modal.active {
             display: flex;
+            opacity: 1;
         }
-        .lightbox-content-box {
-            max-width: 1000px;
-            max-height: 85vh;
+
+        .lightbox-content {
             position: relative;
+            max-width: 92vw;
+            max-height: 88vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
-        .lightbox-content-box img, .lightbox-content-box video {
-            max-width: 100%;
-            max-height: 85vh;
-            border-radius: 2px;
+
+        .lightbox-img {
+            max-width: 90vw;
+            max-height: 80vh;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9), 0 0 25px rgba(201, 169, 110, 0.2);
+            border: 1px solid var(--color-border);
+            transition: opacity 0.25s ease, transform 0.25s ease;
+        }
+
+        .lightbox-close-btn {
+            position: absolute;
+            top: 25px;
+            right: 35px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid var(--color-border);
+            color: #fff;
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 10002;
+        }
+
+        .lightbox-close-btn:hover {
+            background: var(--color-gold);
+            color: var(--color-bg, #0a0e14);
+            border-color: var(--color-gold);
+            transform: rotate(90deg);
+        }
+
+        .lightbox-nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(10, 14, 20, 0.8);
             border: 1px solid var(--color-gold);
+            color: var(--color-gold);
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10001;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        }
+
+        .lightbox-nav-btn:hover {
+            background: var(--color-gold);
+            color: var(--color-bg, #0a0e14);
+            box-shadow: 0 0 25px rgba(201, 169, 110, 0.4);
+        }
+
+        .lightbox-prev {
+            left: 30px;
+        }
+
+        .lightbox-next {
+            right: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .lightbox-prev { left: 10px; width: 42px; height: 42px; }
+            .lightbox-next { right: 10px; width: 42px; height: 42px; }
+            .lightbox-close-btn { top: 15px; right: 15px; width: 40px; height: 40px; }
+        }
+
+        .lightbox-counter {
+            margin-top: 18px;
+            font-family: var(--font-serif);
+            font-size: 0.95rem;
+            color: var(--color-gold);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
         }
     </style>
 </head>
 
 <body>
 
-<!-- NAVIGATION HEADER -->
-<header id="site-header" class="header-wrapper">
-    <div class="container flex-between" style="height: 100%;">
-        <a href="index.html" class="logo-container" aria-label="RK's Villa Home">
-            <img src="gallery/logo.png" alt="RK's Villa - Luxury Living" class="site-logo-img site-logo-header">
-        </a>
-
-        <nav class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="villa.html">The Villa</a>
-            <a href="experiences.html">Experiences</a>
-            <a href="rates.html">Live Rates</a>
-            <a href="gallery.html" class="active">Gallery</a>
-            <a href="guide.html">Goa Guide</a>
-            <a href="contact.html">Contact</a>
-        </nav>
-
-        <div class="nav-ctas">
-            <a href="tel:+919970341234" class="btn btn-secondary" style="padding: 8px 18px; font-size: 0.75rem;">
-                <i data-lucide="phone" class="btn-icon"></i> Call
+    <!-- NAVIGATION HEADER -->
+    <header id="site-header" class="header-wrapper">
+        <div class="container flex-between" style="height: 100%;">
+            <a href="index.html" class="logo-container" aria-label="RK's Villa Home">
+                <img src="gallery/logo.png" alt="RK's Villa - Luxury Living" class="site-logo-img site-logo-header">
             </a>
-            <a href="contact.html" class="btn btn-primary" style="padding: 8px 18px; font-size: 0.75rem;">Book Now</a>
-        </div>
 
-        <button id="mobile-menu-btn" class="menu-toggle-btn">
-            <i data-lucide="menu" style="width: 28px; height: 28px;"></i>
+            <nav class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="villa.html">The Villa</a>
+                <a href="experiences.html">Experiences</a>
+                <a href="rates.html">Live Rates</a>
+                <a href="gallery.html" class="active">Gallery</a>
+                <a href="guide.html">Goa Guide</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+
+            <div class="nav-ctas">
+                <a href="tel:+919970341234" class="btn btn-secondary" style="padding: 8px 18px; font-size: 0.75rem;">
+                    <i data-lucide="phone" class="btn-icon"></i> Call
+                </a>
+                <a href="contact.html" class="btn btn-primary" style="padding: 8px 18px; font-size: 0.75rem;">Book Now</a>
+            </div>
+
+            <button id="mobile-menu-btn" class="menu-toggle-btn" aria-label="Toggle Navigation Menu">
+                <i data-lucide="menu" style="width: 28px; height: 28px;"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- MOBILE NAVIGATION OVERLAY DRAWER -->
+    <div id="mobile-menu-overlay" class="mobile-menu-drawer">
+        <button id="close-menu-btn" class="close-btn" aria-label="Close Menu">
+            <i data-lucide="x" style="width: 32px; height: 32px;"></i>
         </button>
+        <nav class="mobile-nav-links">
+            <a href="index.html" class="mobile-nav-link">Home</a>
+            <a href="villa.html" class="mobile-nav-link">The Villa</a>
+            <a href="experiences.html" class="mobile-nav-link">Experiences</a>
+            <a href="rates.html" class="mobile-nav-link">Live Rates</a>
+            <a href="gallery.html" class="mobile-nav-link active">Gallery</a>
+            <a href="guide.html" class="mobile-nav-link">Goa Guide</a>
+            <a href="contact.html" class="mobile-nav-link">Contact</a>
+        </nav>
+        <div class="mobile-nav-ctas">
+            <a href="tel:+919970341234" class="btn btn-secondary">
+                <i data-lucide="phone" class="btn-icon"></i> Call Owner RK (Ravi) (+91 99703 41234)
+            </a>
+            <a href="rates.html" class="btn btn-primary">Book Direct & Save 15%</a>
+        </div>
     </div>
-</header>
 
-<!-- MOBILE NAVIGATION OVERLAY DRAWER -->
-<div id="mobile-menu-overlay" class="mobile-menu-drawer">
-    <button id="close-menu-btn" class="close-btn">
-        <i data-lucide="x" style="width: 32px; height: 32px;"></i>
-    </button>
-    <nav class="mobile-nav-links">
-        <a href="index.html" class="mobile-nav-link">Home</a>
-        <a href="villa.html" class="mobile-nav-link">The Villa</a>
-        <a href="experiences.html" class="mobile-nav-link">Experiences</a>
-        <a href="rates.html" class="mobile-nav-link">Live Rates</a>
-        <a href="gallery.html" class="mobile-nav-link active">Gallery</a>
-        <a href="guide.html" class="mobile-nav-link">Goa Guide</a>
-        <a href="contact.html" class="mobile-nav-link">Contact</a>
-    </nav>
-    <div class="mobile-nav-ctas">
-        <a href="tel:+919970341234" class="btn btn-secondary">
-            <i data-lucide="phone" class="btn-icon"></i> Call Now
-        </a>
-        <a href="contact.html" class="btn btn-primary">Book Now</a>
-    </div>
-</div>
-
-<!-- STICKY WHATSAPP FLOATING BUTTON -->
-<a href="https://wa.me/919970341234?text=Hi%20Ravi%2C%20I%20am%20interested%20in%20booking%20RK%27s%20Villa%20for%20my%20stay" target="_blank" rel="noopener noreferrer" class="whatsapp-float-btn">
-    <i data-lucide="message-circle" style="width: 28px; height: 28px;"></i>
-</a>
-
-<!-- MOBILE BOTTOM STICKY QUICK-ACTION BAR -->
-<div class="mobile-sticky-cta-bar">
-    <a href="tel:+919970341234" class="sticky-cta-link call">
-        <i data-lucide="phone" style="width: 16px; height: 16px;"></i> Call Host
+    <!-- STICKY WHATSAPP FLOATING BUTTON -->
+    <a href="https://wa.me/919970341234?text=Hi%20Ravi%2C%20I%20am%20interested%20in%20booking%20RK%27s%20Villa%20for%20my%20stay"
+        target="_blank" rel="noopener noreferrer" class="whatsapp-float-btn" aria-label="Chat on WhatsApp">
+        <i data-lucide="message-circle" style="width: 28px; height: 28px;"></i>
     </a>
-    <a href="https://wa.me/919970341234?text=Hi%20Ravi%2C%20I%20am%20interested%20in%20booking%20RK%27s%20Villa%20for%20my%20stay" target="_blank" rel="noopener noreferrer" class="sticky-cta-link wa">
-        <i data-lucide="message-circle" style="width: 16px; height: 16px;"></i> WhatsApp
-    </a>
-</div>
 
-<main>
-    <!-- FULLSCREEN 100VH SUBPAGE HEADER BANNER -->
-    <section class="hero-wrapper subpage-banner banner-gallery">
-        <div class="hero-content">
-            <span class="label-mini reveal active" style="margin-bottom: 8px;">Visual Showcase</span>
-            <h1 class="hero-title reveal active">The Villa Gallery</h1>
-            <p class="hero-subhead reveal active">
-                High-definition photo collection and motion loops of the private pool, interiors, master suites, and tropical gardens.
-            </p>
-        </div>
-
-        <a href="#gallery-grid-section" class="hero-scroll-btn">
-            <i data-lucide="chevron-down" style="width: 32px; height: 32px;"></i>
-        </a>
-    </section>
-
-    <!-- SECTION 1: FILTERABLE PHOTO GALLERY -->
-    <section id="gallery-grid-section" class="section-py">
-        <div class="container">
-            <!-- Category Filter Pills -->
-            <div style="display: flex; justify-content: center; gap: 10px; margin-bottom: 35px; flex-wrap: wrap;" class="reveal active">
-                <button class="gallery-filter-btn active" data-filter="all">All Photos (21)</button>
-                <button class="gallery-filter-btn" data-filter="pool">Private Pool & Deck</button>
-                <button class="gallery-filter-btn" data-filter="rooms">Bedrooms & Suites</button>
-                <button class="gallery-filter-btn" data-filter="living">Living Lounge & Bar</button>
-                <button class="gallery-filter-btn" data-filter="exterior">Gardens & Gazebo</button>
+    <!-- MAIN CONTENT -->
+    <main>
+        <!-- UNIFIED SUBPAGE HEADER BANNER -->
+        <section class="hero-wrapper subpage-banner banner-gallery">
+            <div class="hero-content">
+                <span class="label-mini reveal active" style="margin-bottom: 8px;">Visual Collection</span>
+                <h1 class="hero-title reveal active">The Villa Gallery</h1>
+                <p class="hero-subhead reveal active">
+                    An exclusive visual tour of RK's Villa, Siolim Goa — private swimming pool, 4 luxury master suites, tropical garden & living spaces.
+                </p>
             </div>
 
-            <!-- Gallery Masonry Grid -->
-            <div class="masonry-grid reveal active" id="gallery-grid">
-                
-                <!-- Item 1: Aerial Drone View -->
-                <div class="masonry-item" data-category="exterior" data-type="image" data-src="gallery/drone view.png">
-                    <img src="gallery/drone view.png" alt="RK's Villa Aerial Drone View" loading="lazy">
-                    <div class="masonry-item-caption">
-                        <span class="label-mini" style="font-size: 0.65rem; margin-bottom: 2px;">Aerial Estate</span>
-                        <h4 class="masonry-item-title">4K Aerial View of Private Estate & Pool</h4>
+            <a href="#gallery-grid-section" class="hero-scroll-btn" aria-label="Scroll to gallery grid">
+                <i data-lucide="chevron-down" style="width: 32px; height: 32px;"></i>
+            </a>
+        </section>
+
+        <!-- GALLERY MASONRY GRID SECTION -->
+        <section id="gallery-grid-section" class="section-py">
+            <div class="container" style="max-width: 1400px;">
+                <div style="text-align: center; margin-bottom: 40px;" class="reveal active">
+                    <!-- CATEGORY FILTER BUTTONS -->
+                    <div class="filter-container" style="margin-top: 0;">
+                        <button class="filter-btn active" data-filter="all">All (74)</button>
+                        <button class="filter-btn" data-filter="pool">Pool & Deck</button>
+                        <button class="filter-btn" data-filter="bedrooms">Bedrooms</button>
+                        <button class="filter-btn" data-filter="living">Living</button>
+                        <button class="filter-btn" data-filter="estate">Grounds</button>
                     </div>
                 </div>
 
-                <!-- Item 2: Villa Outer Facade -->
-                <div class="masonry-item" data-category="exterior" data-type="image" data-src="gallery/outer part of villa.png">
-                    <img src="gallery/outer part of villa.png" alt="RK's Villa Architectural Facade" loading="lazy">
-                    <div class="masonry-item-caption">
-                        <span class="label-mini" style="font-size: 0.65rem; margin-bottom: 2px;">Architecture</span>
-                        <h4 class="masonry-item-title">3-Level Private Luxury Villa Architecture</h4>
-                    </div>
+                <div class="masonry-grid" id="gallery-grid">
+        <div class="masonry-item" data-category="exterior" data-full="gallery/asset_web/DSC09450-HDR.jpg"><div class="masonry-img-wrapper"><img src="gallery/asset_thumb/DSC09450-HDR.jpg" alt="RK Villa Gallery Photo" loading="lazy"><div class="masonry-overlay"><div class="masonry-expand-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg></div></div></div></div>
+        <div class="masonry-item" data-category="exterior" data-full="gallery/asset_web/DSC09466-HDR.jpg"><div class="masonry-img-wrapper"><img src="gallery/asset_thumb/DSC09466-HDR.jpg" alt="RK Villa Gallery Photo" loading="lazy"><div class="masonry-overlay"><div class="masonry-expand-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg></div></div></div></div>
+        <div class="masonry-item" data-category="exterior" data-full="gallery/asset_web/DSC09473.jpg"><div class="masonry-img-wrapper"><img src="gallery/asset_thumb/DSC09473.jpg" alt="RK Villa Gallery Photo" loading="lazy"><div class="masonry-overlay"><div class="masonry-expand-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg></div></div></div></div>
+        <div class="masonry-item" data-category="exterior" data-full="gallery/asset_web/DSC09474-HDR.jpg"><div class="masonry-img-wrapper"><img src="gallery/asset_thumb/DSC09474-HDR.jpg" alt="RK Villa Gallery Photo" loading="lazy"><div class="masonry-overlay"><div class="masonry-expand-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg></div></div></div></div>
+        <div class="masonry-item" data-category="exterior" data-full="gallery/asset_web/DSC09486.jpg"><div class="masonry-img-wrapper"><img src="gallery/asset_thumb/DSC09486.jpg" alt="RK Villa Gallery Photo" loading="lazy"><div class="masonry-overlay"><div class="masonry-expand-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg></div></div></div></div>
+        <div class="masonry-item" data-category="exterior" data-full="gallery/asset_web/DSC09499-HDR.jpg"><div class="masonry-img-wrapper"><img src="gallery/asset_thumb/DSC09499-HDR.jpg" alt="RK Villa Gallery Photo" loading="lazy"><div class="masonry-overlay"><div class="masonry-expand-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg></div></div></div></div>
+        <div class="masonry-item" data-category="exterior" data-full="gallery/asset_web/DSC09517.jpg"><div class="masonry-img-wrapper"><img src="gallery/asset_thumb/DSC09517.jpg" alt="RK Villa Gallery Photo" loading="lazy"><div class="masonry-overlay"><div class="masonry-expand-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg></div></div></div></div>
+        <div class="masonry-item" data-category="exterior" data-full="gallery/asset_web/DSC09535.jpg"><div class="masonry-img-wrapper"><img src="gallery/asset_thumb/DSC09535.jpg" alt="RK Villa Gallery Photo" loading="lazy"><div class="masonry-overlay"><div class="masonry-expand-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg></div></div></div></div>
+        <div class="masonry-item" data-category="exterior" data-full="gallery/asset_web/DSC09540.jpg"><div class="masonry-img-wrapper"><img src="gallery/asset_thumb/DSC09540.jpg" alt="RK Villa Gallery Photo" loading="lazy"><div class="masonry-overlay"><div class="masonry-expand-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg></div></div></div></div>
+        <div class="masonry-item" data-category="exterior" data-full="gallery/asset_web/DSC09544.jpg"><div class="masonry-img-wrapper"><img src="gallery/asset_thumb/DSC09544.jpg" alt="RK Villa Gallery Photo" loading="lazy"><div class="masonry-overlay"><div class="masonry-expand-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg></div></div></div></div>
+        <div class="masonry-item" data-category="exterior" data-full="gallery/asset_web/DSC09584.jpg"><div class="masonry-img-wrapper"><img src="gallery/asset_thumb/DSC09584.jpg" alt="RK Villa Gallery Photo" loading="lazy"><div class="masonry-overlay"><div class="masonry-expand-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg></div></div></div></div>
+        <div class="masonry-item" data-category="exterior" data-full="gallery/asset_web/DSC09679.jpg"><div class="masonry-img-wrapper"><img src="gallery/asset_thumb/DSC09679.jpg" alt="RK Villa Gallery Photo" loading="lazy"><div class="masonry-overlay"><div class="masonry-expand-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg></div></div></div></div>
+        <div class="masonry-item" data-category="exterior" data-full="gallery/asset_web/DSC09683.jpg"><div class="masonry-img-wrapper"><img src="gallery/asset_thumb/DSC09683.jpg" alt="RK Villa Gallery Photo" loading="lazy"><div class="masonry-overlay"><div class="masonry-expand-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg></div></div></div></div>
+        <div class="masonry-item" data-category="living" data-full="gallery/asset_web/barbeque.jpeg"><div class="masonry-img-wrapper"><img src="gallery/asset_thumb/barbeque.jpeg" alt="RK Villa Gallery Photo" loading="lazy"><div class="masonry-overlay"><div class="masonry-expand-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg></div></div></div></div>
+        <div class="masonry-item" data-category="rooms" data-full="gallery/asset_web/bathtub.png"><div class="masonry-img-wrapper"><img src="gallery/asset_thumb/bathtub.png" alt="RK Villa Gallery Photo" loading="lazy"><div class="masonry-overlay"><div class="masonry-expand-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg></div></div></div></div>
+        <div class="masonry-item" data-category="rooms" data-full="gallery/asset_web/bedroom_1.png"><div class="masonry-img-wrapper"><img src="gallery/asset_thumb/bedroom_1.png" alt="RK Villa Gallery Photo" loading="lazy"><div class="masonry-overlay"><div class="masonry-expand-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg></div></div></div></div>
+        <div class="masonry-item" data-category="rooms" data-full="gallery/asset_web/bedroom_2.png"><div class="masonry-img-wrapper"><img src="gallery/asset_thumb/bedroom_2.png" alt="RK Villa Gallery Photo" loading="lazy"><div class="masonry-overlay"><div class="masonry-expand-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg></div></div></div></div>
+        <div class="masonry-item" data-category="living" data-full="gallery/asset_web/dining_hall.png"><div class="masonry-img-wrapper"><img src="gallery/asset_thumb/dining_hall.png" alt="RK Villa Gallery Photo" loading="lazy"><div class="masonry-overlay"><div class="masonry-expand-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg></div></div></div></div>
+        <div class="masonry-item" data-category="pool" data-full="gallery/asset_web/drone_view.png"><div class="masonry-img-wrapper"><img src="gallery/asset_thumb/drone_view.png" alt="RK Villa Gallery Photo" loading="lazy"><div class="masonry-overlay"><div class="masonry-expand-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg></div></div></div></div>
+        <div class="masonry-item" data-category="pool" data-full="gallery/asset_web/floating_pool_breakfast.jpg"><div class="masonry-img-wrapper"><img src="gallery/asset_thumb/floating_pool_breakfast.jpg" alt="RK Villa Gallery Photo" loading="lazy"><div class="masonry-overlay"><div class="masonry-expand-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg></div></div></div></div>
+        <div class="masonry-item" data-category="exterior" data-full="gallery/asset_web/goa_guide_hero.png"><div class="masonry-img-wrapper"><img src="gallery/asset_thumb/goa_guide_hero.png" alt="RK Villa Gallery Photo" loading="lazy"><div class="masonry-overlay"><div class="masonry-expand-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg></div></div></div></div>
+        <div class="masonry-item" data-category="living" data-full="gallery/asset_web/kitchen.png"><div class="masonry-img-wrapper"><img src="gallery/asset_thumb/kitchen.png" alt="RK Villa Gallery Photo" loading="lazy"><div class="masonry-overlay"><div class="masonry-expand-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg></div></div></div></div>
+        <div class="masonry-item" data-category="living" data-full="gallery/asset_web/living_area.png"><div class="masonry-img-wrapper"><img src="gallery/asset_thumb/living_area.png" alt="RK Villa Gallery Photo" loading="lazy"><div class="masonry-overlay"><div class="masonry-expand-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg></div></div></div></div>
+        <div class="masonry-item" data-category="living" data-full="gallery/asset_web/living_area_2.png"><div class="masonry-img-wrapper"><img src="gallery/asset_thumb/living_area_2.png" alt="RK Villa Gallery Photo" loading="lazy"><div class="masonry-overlay"><div class="masonry-expand-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg></div></div></div></div>
+        <div class="masonry-item" data-category="rooms" data-full="gallery/asset_web/master_bedroom.png"><div class="masonry-img-wrapper"><img src="gallery/asset_thumb/master_bedroom.png" alt="RK Villa Gallery Photo" loading="lazy"><div class="masonry-overlay"><div class="masonry-expand-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg></div></div></div></div>
+        <div class="masonry-item" data-category="pool" data-full="gallery/asset_web/outer_part_of_villa.png"><div class="masonry-img-wrapper"><img src="gallery/asset_thumb/outer_part_of_villa.png" alt="RK Villa Gallery Photo" loading="lazy"><div class="masonry-overlay"><div class="masonry-expand-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg></div></div></div></div>
+        <div class="masonry-item" data-category="pool" data-full="gallery/asset_web/pool.png"><div class="masonry-img-wrapper"><img src="gallery/asset_thumb/pool.png" alt="RK Villa Gallery Photo" loading="lazy"><div class="masonry-overlay"><div class="masonry-expand-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg></div></div></div></div>
+        <div class="masonry-item" data-category="pool" data-full="gallery/asset_web/scene_of_lake.png"><div class="masonry-img-wrapper"><img src="gallery/asset_thumb/scene_of_lake.png" alt="RK Villa Gallery Photo" loading="lazy"><div class="masonry-overlay"><div class="masonry-expand-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg></div></div></div></div>
+        <div class="masonry-item" data-category="exterior" data-full="gallery/asset_web/wideImage_Sep_3_2026_at_02_25_45_AM.png"><div class="masonry-img-wrapper"><img src="gallery/asset_thumb/wideImage_Sep_3_2026_at_02_25_45_AM.png" alt="RK Villa Gallery Photo" loading="lazy"><div class="masonry-overlay"><div class="masonry-expand-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg></div></div></div></div>
+        <div class="masonry-item" data-category="exterior" data-full="gallery/asset_web/wideImage_Sep_3_2026_at_02_29_17_AM.png"><div class="masonry-img-wrapper"><img src="gallery/asset_thumb/wideImage_Sep_3_2026_at_02_29_17_AM.png" alt="RK Villa Gallery Photo" loading="lazy"><div class="masonry-overlay"><div class="masonry-expand-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg></div></div></div></div>
+        <div class="masonry-item" data-category="exterior" data-full="gallery/asset_web/wideImage_Sep_3_2026_at_02_32_02_AM.png"><div class="masonry-img-wrapper"><img src="gallery/asset_thumb/wideImage_Sep_3_2026_at_02_32_02_AM.png" alt="RK Villa Gallery Photo" loading="lazy"><div class="masonry-overlay"><div class="masonry-expand-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg></div></div></div></div>
+        <div class="masonry-item" data-category="exterior" data-full="gallery/asset_web/wideImage_Sep_3_2026_at_02_35_48_AM.png"><div class="masonry-img-wrapper"><img src="gallery/asset_thumb/wideImage_Sep_3_2026_at_02_35_48_AM.png" alt="RK Villa Gallery Photo" loading="lazy"><div class="masonry-overlay"><div class="masonry-expand-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg></div></div></div></div>
+        <div class="masonry-item" data-category="exterior" data-full="gallery/asset_web/wideImage_Sep_3_2026_at_02_37_51_AM_2.png"><div class="masonry-img-wrapper"><img src="gallery/asset_thumb/wideImage_Sep_3_2026_at_02_37_51_AM_2.png" alt="RK Villa Gallery Photo" loading="lazy"><div class="masonry-overlay"><div class="masonry-expand-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg></div></div></div></div>
+        <div class="masonry-item" data-category="exterior" data-full="gallery/asset_web/wideImage_Sep_3_2026_at_02_39_24_AM.png"><div class="masonry-img-wrapper"><img src="gallery/asset_thumb/wideImage_Sep_3_2026_at_02_39_24_AM.png" alt="RK Villa Gallery Photo" loading="lazy"><div class="masonry-overlay"><div class="masonry-expand-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg></div></div></div></div>
+        <div class="masonry-item" data-category="pool" data-full="gallery/web/drive_DSC09299-HDR.jpg"><div class="masonry-img-wrapper"><img src="gallery/thumb/drive_DSC09299-HDR.jpg" alt="RK Villa Gallery Photo" loading="lazy"><div class="masonry-overlay"><div class="masonry-expand-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg></div></div></div></div>
+        <div class="masonry-item" data-category="rooms" data-full="gallery/web/drive_DSC09305-HDR.jpg"><div class="masonry-img-wrapper"><img src="gallery/thumb/drive_DSC09305-HDR.jpg" alt="RK Villa Gallery Photo" loading="lazy"><div class="masonry-overlay"><div class="masonry-expand-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg></div></div></div></div>
+        <div class="masonry-item" data-category="living" data-full="gallery/web/drive_DSC09319-HDR.jpg"><div class="masonry-img-wrapper"><img src="gallery/thumb/drive_DSC09319-HDR.jpg" alt="RK Villa Gallery Photo" loading="lazy"><div class="masonry-overlay"><div class="masonry-expand-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg></div></div></div></div>
+        <div class="masonry-item" data-category="exterior" data-full="gallery/web/drive_DSC09332-HDR.jpg"><div class="masonry-img-wrapper"><img src="gallery/thumb/drive_DSC09332-HDR.jpg" alt="RK Villa Gallery Photo" loading="lazy"><div class="masonry-overlay"><div class="masonry-expand-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg></div></div></div></div>
+        <div class="masonry-item" data-category="pool" data-full="gallery/web/drive_DSC09341.jpg"><div class="masonry-img-wrapper"><img src="gallery/thumb/drive_DSC09341.jpg" alt="RK Villa Gallery Photo" loading="lazy"><div class="masonry-overlay"><div class="masonry-expand-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg></div></div></div></div>
+        <div class="masonry-item" data-category="rooms" data-full="gallery/web/drive_DSC09344.jpg"><div class="masonry-img-wrapper"><img src="gallery/thumb/drive_DSC09344.jpg" alt="RK Villa Gallery Photo" loading="lazy"><div class="masonry-overlay"><div class="masonry-expand-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg></div></div></div></div>
+        <div class="masonry-item" data-category="living" data-full="gallery/web/drive_DSC09345.jpg"><div class="masonry-img-wrapper"><img src="gallery/thumb/drive_DSC09345.jpg" alt="RK Villa Gallery Photo" loading="lazy"><div class="masonry-overlay"><div class="masonry-expand-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg></div></div></div></div>
+        <div class="masonry-item" data-category="exterior" data-full="gallery/web/drive_DSC09347.jpg"><div class="masonry-img-wrapper"><img src="gallery/thumb/drive_DSC09347.jpg" alt="RK Villa Gallery Photo" loading="lazy"><div class="masonry-overlay"><div class="masonry-expand-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg></div></div></div></div>
+        <div class="masonry-item" data-category="pool" data-full="gallery/web/drive_DSC09353.jpg"><div class="masonry-img-wrapper"><img src="gallery/thumb/drive_DSC09353.jpg" alt="RK Villa Gallery Photo" loading="lazy"><div class="masonry-overlay"><div class="masonry-expand-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg></div></div></div></div>
+        <div class="masonry-item" data-category="rooms" data-full="gallery/web/drive_DSC09360-HDR.jpg"><div class="masonry-img-wrapper"><img src="gallery/thumb/drive_DSC09360-HDR.jpg" alt="RK Villa Gallery Photo" loading="lazy"><div class="masonry-overlay"><div class="masonry-expand-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg></div></div></div></div>
+        <div class="masonry-item" data-category="living" data-full="gallery/web/drive_DSC09361.jpg"><div class="masonry-img-wrapper"><img src="gallery/thumb/drive_DSC09361.jpg" alt="RK Villa Gallery Photo" loading="lazy"><div class="masonry-overlay"><div class="masonry-expand-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg></div></div></div></div>
+        <div class="masonry-item" data-category="exterior" data-full="gallery/web/drive_DSC09365.jpg"><div class="masonry-img-wrapper"><img src="gallery/thumb/drive_DSC09365.jpg" alt="RK Villa Gallery Photo" loading="lazy"><div class="masonry-overlay"><div class="masonry-expand-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg></div></div></div></div>
+        <div class="masonry-item" data-category="pool" data-full="gallery/web/drive_DSC09366.jpg"><div class="masonry-img-wrapper"><img src="gallery/thumb/drive_DSC09366.jpg" alt="RK Villa Gallery Photo" loading="lazy"><div class="masonry-overlay"><div class="masonry-expand-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg></div></div></div></div>
+        <div class="masonry-item" data-category="rooms" data-full="gallery/web/drive_DSC09380-HDR.jpg"><div class="masonry-img-wrapper"><img src="gallery/thumb/drive_DSC09380-HDR.jpg" alt="RK Villa Gallery Photo" loading="lazy"><div class="masonry-overlay"><div class="masonry-expand-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg></div></div></div></div>
+        <div class="masonry-item" data-category="living" data-full="gallery/web/drive_DSC09388.jpg"><div class="masonry-img-wrapper"><img src="gallery/thumb/drive_DSC09388.jpg" alt="RK Villa Gallery Photo" loading="lazy"><div class="masonry-overlay"><div class="masonry-expand-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg></div></div></div></div>
+        <div class="masonry-item" data-category="exterior" data-full="gallery/web/drive_DSC09390.jpg"><div class="masonry-img-wrapper"><img src="gallery/thumb/drive_DSC09390.jpg" alt="RK Villa Gallery Photo" loading="lazy"><div class="masonry-overlay"><div class="masonry-expand-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg></div></div></div></div>
+        <div class="masonry-item" data-category="pool" data-full="gallery/web/drive_DSC09391.jpg"><div class="masonry-img-wrapper"><img src="gallery/thumb/drive_DSC09391.jpg" alt="RK Villa Gallery Photo" loading="lazy"><div class="masonry-overlay"><div class="masonry-expand-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg></div></div></div></div>
+        <div class="masonry-item" data-category="rooms" data-full="gallery/web/drive_DSC09392.jpg"><div class="masonry-img-wrapper"><img src="gallery/thumb/drive_DSC09392.jpg" alt="RK Villa Gallery Photo" loading="lazy"><div class="masonry-overlay"><div class="masonry-expand-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg></div></div></div></div>
+        <div class="masonry-item" data-category="living" data-full="gallery/web/drive_DSC09393.jpg"><div class="masonry-img-wrapper"><img src="gallery/thumb/drive_DSC09393.jpg" alt="RK Villa Gallery Photo" loading="lazy"><div class="masonry-overlay"><div class="masonry-expand-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg></div></div></div></div>
+        <div class="masonry-item" data-category="exterior" data-full="gallery/web/drive_DSC09396.jpg"><div class="masonry-img-wrapper"><img src="gallery/thumb/drive_DSC09396.jpg" alt="RK Villa Gallery Photo" loading="lazy"><div class="masonry-overlay"><div class="masonry-expand-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg></div></div></div></div>
+        <div class="masonry-item" data-category="pool" data-full="gallery/web/drive_DSC09398.jpg"><div class="masonry-img-wrapper"><img src="gallery/thumb/drive_DSC09398.jpg" alt="RK Villa Gallery Photo" loading="lazy"><div class="masonry-overlay"><div class="masonry-expand-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg></div></div></div></div>
+        <div class="masonry-item" data-category="rooms" data-full="gallery/web/drive_DSC09403.jpg"><div class="masonry-img-wrapper"><img src="gallery/thumb/drive_DSC09403.jpg" alt="RK Villa Gallery Photo" loading="lazy"><div class="masonry-overlay"><div class="masonry-expand-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg></div></div></div></div>
+        <div class="masonry-item" data-category="living" data-full="gallery/web/drive_DSC09404.jpg"><div class="masonry-img-wrapper"><img src="gallery/thumb/drive_DSC09404.jpg" alt="RK Villa Gallery Photo" loading="lazy"><div class="masonry-overlay"><div class="masonry-expand-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg></div></div></div></div>
+        <div class="masonry-item" data-category="exterior" data-full="gallery/web/drive_DSC09405.jpg"><div class="masonry-img-wrapper"><img src="gallery/thumb/drive_DSC09405.jpg" alt="RK Villa Gallery Photo" loading="lazy"><div class="masonry-overlay"><div class="masonry-expand-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg></div></div></div></div>
+        <div class="masonry-item" data-category="pool" data-full="gallery/web/drive_DSC09406.jpg"><div class="masonry-img-wrapper"><img src="gallery/thumb/drive_DSC09406.jpg" alt="RK Villa Gallery Photo" loading="lazy"><div class="masonry-overlay"><div class="masonry-expand-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg></div></div></div></div>
+        <div class="masonry-item" data-category="rooms" data-full="gallery/web/drive_DSC09407.jpg"><div class="masonry-img-wrapper"><img src="gallery/thumb/drive_DSC09407.jpg" alt="RK Villa Gallery Photo" loading="lazy"><div class="masonry-overlay"><div class="masonry-expand-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg></div></div></div></div>
+        <div class="masonry-item" data-category="living" data-full="gallery/web/drive_DSC09408.jpg"><div class="masonry-img-wrapper"><img src="gallery/thumb/drive_DSC09408.jpg" alt="RK Villa Gallery Photo" loading="lazy"><div class="masonry-overlay"><div class="masonry-expand-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg></div></div></div></div>
+        <div class="masonry-item" data-category="exterior" data-full="gallery/web/drive_DSC09411.jpg"><div class="masonry-img-wrapper"><img src="gallery/thumb/drive_DSC09411.jpg" alt="RK Villa Gallery Photo" loading="lazy"><div class="masonry-overlay"><div class="masonry-expand-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg></div></div></div></div>
+        <div class="masonry-item" data-category="pool" data-full="gallery/web/drive_DSC09412.jpg"><div class="masonry-img-wrapper"><img src="gallery/thumb/drive_DSC09412.jpg" alt="RK Villa Gallery Photo" loading="lazy"><div class="masonry-overlay"><div class="masonry-expand-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg></div></div></div></div>
+        <div class="masonry-item" data-category="rooms" data-full="gallery/web/drive_DSC09413.jpg"><div class="masonry-img-wrapper"><img src="gallery/thumb/drive_DSC09413.jpg" alt="RK Villa Gallery Photo" loading="lazy"><div class="masonry-overlay"><div class="masonry-expand-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg></div></div></div></div>
+        <div class="masonry-item" data-category="living" data-full="gallery/web/drive_DSC09415.jpg"><div class="masonry-img-wrapper"><img src="gallery/thumb/drive_DSC09415.jpg" alt="RK Villa Gallery Photo" loading="lazy"><div class="masonry-overlay"><div class="masonry-expand-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg></div></div></div></div>
+        <div class="masonry-item" data-category="exterior" data-full="gallery/web/drive_DSC09428-HDR.jpg"><div class="masonry-img-wrapper"><img src="gallery/thumb/drive_DSC09428-HDR.jpg" alt="RK Villa Gallery Photo" loading="lazy"><div class="masonry-overlay"><div class="masonry-expand-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg></div></div></div></div>
+        <div class="masonry-item" data-category="pool" data-full="gallery/web/drive_DSC09433.jpg"><div class="masonry-img-wrapper"><img src="gallery/thumb/drive_DSC09433.jpg" alt="RK Villa Gallery Photo" loading="lazy"><div class="masonry-overlay"><div class="masonry-expand-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg></div></div></div></div>
+        <div class="masonry-item" data-category="rooms" data-full="gallery/web/drive_DSC09439-HDR.jpg"><div class="masonry-img-wrapper"><img src="gallery/thumb/drive_DSC09439-HDR.jpg" alt="RK Villa Gallery Photo" loading="lazy"><div class="masonry-overlay"><div class="masonry-expand-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg></div></div></div></div>
+        <div class="masonry-item" data-category="living" data-full="gallery/web/drive_DSC09449-HDR.jpg"><div class="masonry-img-wrapper"><img src="gallery/thumb/drive_DSC09449-HDR.jpg" alt="RK Villa Gallery Photo" loading="lazy"><div class="masonry-overlay"><div class="masonry-expand-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg></div></div></div></div>
+        <div class="masonry-item" data-category="exterior" data-full="gallery/web/drive_DSC09450-HDR.jpg"><div class="masonry-img-wrapper"><img src="gallery/thumb/drive_DSC09450-HDR.jpg" alt="RK Villa Gallery Photo" loading="lazy"><div class="masonry-overlay"><div class="masonry-expand-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg></div></div></div></div>
+        <div class="masonry-item" data-category="pool" data-full="gallery/web/drive_DSC09466-HDR.jpg"><div class="masonry-img-wrapper"><img src="gallery/thumb/drive_DSC09466-HDR.jpg" alt="RK Villa Gallery Photo" loading="lazy"><div class="masonry-overlay"><div class="masonry-expand-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg></div></div></div></div>
+        <div class="masonry-item" data-category="rooms" data-full="gallery/web/drive_DSC09473.jpg"><div class="masonry-img-wrapper"><img src="gallery/thumb/drive_DSC09473.jpg" alt="RK Villa Gallery Photo" loading="lazy"><div class="masonry-overlay"><div class="masonry-expand-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg></div></div></div></div>
+        <div class="masonry-item" data-category="living" data-full="gallery/web/drive_DSC09474-HDR.jpg"><div class="masonry-img-wrapper"><img src="gallery/thumb/drive_DSC09474-HDR.jpg" alt="RK Villa Gallery Photo" loading="lazy"><div class="masonry-overlay"><div class="masonry-expand-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg></div></div></div></div>
+        <div class="masonry-item" data-category="exterior" data-full="gallery/web/drive_DSC09479.jpg"><div class="masonry-img-wrapper"><img src="gallery/thumb/drive_DSC09479.jpg" alt="RK Villa Gallery Photo" loading="lazy"><div class="masonry-overlay"><div class="masonry-expand-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg></div></div></div></div>
                 </div>
-
-                <!-- Item 3: Private Swimming Pool -->
-                <div class="masonry-item" data-category="pool" data-type="image" data-src="gallery/pool.png">
-                    <img src="gallery/pool.png" alt="Private Swimming Pool" loading="lazy">
-                    <div class="masonry-item-caption">
-                        <span class="label-mini" style="font-size: 0.65rem; margin-bottom: 2px;">Pool Sanctuary</span>
-                        <h4 class="masonry-item-title">4.5ft Private Swimming Pool</h4>
-                    </div>
-                </div>
-
-                <!-- Item 4: Pool Deck & Sun Loungers -->
-                <div class="masonry-item" data-category="pool" data-type="image" data-src="gallery/pool side.jpeg">
-                    <img src="gallery/pool side.jpeg" alt="Poolside Sun Deck & Loungers" loading="lazy">
-                    <div class="masonry-item-caption">
-                        <span class="label-mini" style="font-size: 0.65rem; margin-bottom: 2px;">Sun Deck</span>
-                        <h4 class="masonry-item-title">Poolside Sun Deck & Loungers</h4>
-                    </div>
-                </div>
-
-                <!-- Item 5: Master Bedroom Suite -->
-                <div class="masonry-item" data-category="rooms" data-type="image" data-src="gallery/master bedroom.png">
-                    <img src="gallery/master bedroom.png" alt="Master Bedroom Suite" loading="lazy">
-                    <div class="masonry-item-caption">
-                        <span class="label-mini" style="font-size: 0.65rem; margin-bottom: 2px;">Accommodations</span>
-                        <h4 class="masonry-item-title">Master Suite with Teak Wood Finishes</h4>
-                    </div>
-                </div>
-
-                <!-- Item 6: Master Bathtub Suite -->
-                <div class="masonry-item" data-category="rooms" data-type="image" data-src="gallery/bathtub.png">
-                    <img src="gallery/bathtub.png" alt="Master Suite Luxury Bathtub" loading="lazy">
-                    <div class="masonry-item-caption">
-                        <span class="label-mini" style="font-size: 0.65rem; margin-bottom: 2px;">Luxury Suite</span>
-                        <h4 class="masonry-item-title">Top Floor Master Bathtub Suite</h4>
-                    </div>
-                </div>
-
-                <!-- Item 7: Bedroom 1 Ensuite -->
-                <div class="masonry-item" data-category="rooms" data-type="image" data-src="gallery/bedroom 1.png">
-                    <img src="gallery/bedroom 1.png" alt="Ensuite Bedroom 1" loading="lazy">
-                    <div class="masonry-item-caption">
-                        <span class="label-mini" style="font-size: 0.65rem; margin-bottom: 2px;">Accommodations</span>
-                        <h4 class="masonry-item-title">Ensuite Bedroom 1</h4>
-                    </div>
-                </div>
-
-                <!-- Item 8: Bedroom 2 Ensuite -->
-                <div class="masonry-item" data-category="rooms" data-type="image" data-src="gallery/bedroom 2.png">
-                    <img src="gallery/bedroom 2.png" alt="Ensuite Bedroom 2" loading="lazy">
-                    <div class="masonry-item-caption">
-                        <span class="label-mini" style="font-size: 0.65rem; margin-bottom: 2px;">Accommodations</span>
-                        <h4 class="masonry-item-title">Ensuite Bedroom 2</h4>
-                    </div>
-                </div>
-
-                <!-- Item 9: Grand Living Lounge & Teak Bar -->
-                <div class="masonry-item" data-category="living" data-type="image" data-src="gallery/living area.png">
-                    <img src="gallery/living area.png" alt="Grand Living Lounge & Teak Bar" loading="lazy">
-                    <div class="masonry-item-caption">
-                        <span class="label-mini" style="font-size: 0.65rem; margin-bottom: 2px;">Living Lounge</span>
-                        <h4 class="masonry-item-title">Grand High-Ceiling Living Room & Teak Bar</h4>
-                    </div>
-                </div>
-
-                <!-- Item 10: Living Area Lounge Seating -->
-                <div class="masonry-item" data-category="living" data-type="image" data-src="gallery/living area 2.png">
-                    <img src="gallery/living area 2.png" alt="Living Room Seating & Entertainment" loading="lazy">
-                    <div class="masonry-item-caption">
-                        <span class="label-mini" style="font-size: 0.65rem; margin-bottom: 2px;">Living Lounge</span>
-                        <h4 class="masonry-item-title">Plush Living Room Seating & Karaoke Lounge</h4>
-                    </div>
-                </div>
-
-                <!-- Item 11: 8-Seater Teak Dining Area -->
-                <div class="masonry-item" data-category="living" data-type="image" data-src="gallery/dining.png">
-                    <img src="gallery/dining.png" alt="8-Seater Teak Dining Area" loading="lazy">
-                    <div class="masonry-item-caption">
-                        <span class="label-mini" style="font-size: 0.65rem; margin-bottom: 2px;">Dining</span>
-                        <h4 class="masonry-item-title">8-Seater Handcrafted Teak Dining Table</h4>
-                    </div>
-                </div>
-
-                <!-- Item 12: Gourmet Kitchen -->
-                <div class="masonry-item" data-category="living" data-type="image" data-src="gallery/kitchen.png">
-                    <img src="gallery/kitchen.png" alt="Chef's Modular Kitchen" loading="lazy">
-                    <div class="masonry-item-caption">
-                        <span class="label-mini" style="font-size: 0.65rem; margin-bottom: 2px;">Kitchen</span>
-                        <h4 class="masonry-item-title">Fully Appointed Chef's Modular Kitchen</h4>
-                    </div>
-                </div>
-
-                <!-- Item 13: Garden Gazebo & Pergola -->
-                <div class="masonry-item" data-category="exterior" data-type="image" data-src="gallery/chilling table.jpeg">
-                    <img src="gallery/chilling table.jpeg" alt="Tropical Garden Gazebo Pergola" loading="lazy">
-                    <div class="masonry-item-caption">
-                        <span class="label-mini" style="font-size: 0.65rem; margin-bottom: 2px;">Pergola Gazebo</span>
-                        <h4 class="masonry-item-title">Tropical Garden Gazebo & Pergola Seating</h4>
-                    </div>
-                </div>
-
-                <!-- Item 14: Tropical Palms & Siolim Surroundings -->
-                <div class="masonry-item" data-category="exterior" data-type="image" data-src="gallery/scene of goa.png">
-                    <img src="gallery/scene of goa.png" alt="Siolim Tropical Palms Surroundings" loading="lazy">
-                    <div class="masonry-item-caption">
-                        <span class="label-mini" style="font-size: 0.65rem; margin-bottom: 2px;">Tropical Vibe</span>
-                        <h4 class="masonry-item-title">Siolim Lush Palm Canopy Surroundings</h4>
-                    </div>
-                </div>
-
-                <!-- Item 15: Live Seafood BBQ Grill -->
-                <div class="masonry-item" data-category="pool" data-type="image" data-src="gallery/barbeque.jpeg">
-                    <img src="gallery/barbeque.jpeg" alt="Poolside Seafood BBQ Grill" loading="lazy">
-                    <div class="masonry-item-caption">
-                        <span class="label-mini" style="font-size: 0.65rem; margin-bottom: 2px;">Barbecue</span>
-                        <h4 class="masonry-item-title">Poolside Live Barbecue Setup</h4>
-                    </div>
-                </div>
-
-                <!-- Item 16: Ensuite Luxury Bathroom -->
-                <div class="masonry-item" data-category="rooms" data-type="image" data-src="gallery/bathroom.jpeg">
-                    <img src="gallery/bathroom.jpeg" alt="Ensuite Luxury Bathroom" loading="lazy">
-                    <div class="masonry-item-caption">
-                        <span class="label-mini" style="font-size: 0.65rem; margin-bottom: 2px;">Ensuite</span>
-                        <h4 class="masonry-item-title">Ensuite Marble Bathroom</h4>
-                    </div>
-                </div>
-
             </div>
-        </div>
-    </section>
-
-    <!-- DEDICATED VIRTUAL TOUR SECTION -->
-    <section class="section-py section-dark-alternate">
-        <div class="container">
-            <div style="text-align: center; margin-bottom: 35px;" class="reveal active">
-                <span class="label-mini">Motion Experience</span>
-                <h2 class="title-large">Full Video Tour</h2>
-                <p class="text-desc">Watch Ravi's 4-minute complete property walkthrough.</p>
-            </div>
-
-            <div class="full-video-wrapper reveal active" style="max-width: 950px; margin: 0 auto; border-radius: 6px; overflow: hidden; border: 1px solid var(--color-border);">
-                <video controls playsinline preload="none" poster="gallery/outer part of villa.png" style="width: 100%; display: block; background-color: #000;">
-                    <source src="videos/full-tour-opt.mp4" type="video/mp4">
-                    <source src="videos/full-tour.mp4" type="video/mp4">
-                </video>
-            </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
     <!-- LIGHTBOX MODAL -->
     <div id="lightbox-modal" class="lightbox-modal">
-        <button id="close-lightbox" style="position: absolute; top: 30px; right: 30px; color: white;">
-            <i data-lucide="x" style="width: 36px; height: 36px;"></i>
+        <button class="lightbox-close-btn" id="lightbox-close" aria-label="Close Lightbox">
+            <i data-lucide="x" style="width: 24px; height: 24px;"></i>
         </button>
-        <div class="lightbox-content-box" id="lightbox-target">
-            <!-- Injected via JavaScript -->
+
+        <button class="lightbox-nav-btn lightbox-prev" id="lightbox-prev" aria-label="Previous Photo">
+            <i data-lucide="chevron-left" style="width: 28px; height: 28px;"></i>
+        </button>
+
+        <button class="lightbox-nav-btn lightbox-next" id="lightbox-next" aria-label="Next Photo">
+            <i data-lucide="chevron-right" style="width: 28px; height: 28px;"></i>
+        </button>
+
+        <div class="lightbox-content">
+            <img src="" alt="RK's Villa Gallery Photo" id="lightbox-img" class="lightbox-img">
+            <div class="lightbox-counter" id="lightbox-counter">Photo 1 of 74</div>
         </div>
     </div>
-</main>
 
-<!-- FOOTER -->
-<footer class="site-footer">
-    <div class="container">
-        <div class="grid-4" style="gap: 40px; margin-bottom: 50px;">
-            <div class="footer-col">
-                <a href="index.html" class="logo-container" aria-label="RK's Villa Home">
-            <img src="gallery/logo.png" alt="RK's Villa - Luxury Living" class="site-logo-img site-logo-header">
-        </a>
-                <p class="text-muted" style="font-size: 0.85rem; line-height: 1.6;">
-                    An exclusive 4-BHK private pool sanctuary in Siolim, North Goa, catering to discerning travelers seeking high-end luxury.
-                </p>
+    <!-- FOOTER MATCHING MAIN SITE -->
+    <footer class="footer-wrapper">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <a href="index.html" class="logo-container" aria-label="RK's Villa Home">
+                        <img src="gallery/logo.png" alt="RK's Villa" class="site-logo-img site-logo-footer" style="margin-bottom: 20px;">
+                    </a>
+                    <p class="text-muted" style="font-size: 0.9rem; line-height: 1.6;">
+                        A private 4-BHK luxury pool sanctuary in Siolim, North Goa. Book direct with host Ravi for best guaranteed pricing.
+                    </p>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="villa.html">The Villa</a></li>
+                        <li><a href="experiences.html">Experiences</a></li>
+                        <li><a href="rates.html">Live Rates</a></li>
+                        <li><a href="gallery.html" class="active">Gallery</a></li>
+                        <li><a href="guide.html">Goa Guide</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact Us</h4>
+                    <ul class="footer-contact">
+                        <li>
+                            <i data-lucide="phone"></i>
+                            <a href="tel:+919970341234">+91 99703 41234</a>
+                        </li>
+                        <li>
+                            <i data-lucide="mail"></i>
+                            <span>rkvillagoa@gmail.com</span>
+                        </li>
+                        <li>
+                            <i data-lucide="map-pin"></i>
+                            <span>Siolim Marna Village, North Goa (7 mins from Mapusa)</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Secure Booking</h4>
+                    <p class="text-muted" style="font-size: 0.85rem; margin-bottom: 20px;">
+                        We process all reservations directly with the owner to secure custom packages.
+                    </p>
+                    <a href="contact.html" class="btn btn-primary" style="width: 100%;">Inquire Availability</a>
+                </div>
             </div>
 
-            <div class="footer-col">
-                <h4>Explore</h4>
-                <ul>
-                    <li><a href="villa.html">The Villa</a></li>
-                    <li><a href="experiences.html">Curated Experiences</a></li>
-                    <li><a href="rates.html">Live Rates</a></li>
-                    <li><a href="gallery.html">Visual Gallery</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-col">
-                <h4>Contact Host</h4>
-                <ul class="footer-contact-info">
-                    <li>
-                        <i data-lucide="user"></i>
-                        <span>Host & Reservations</span>
-                    </li>
-                    <li>
-                        <i data-lucide="phone"></i>
-                        <div>
-                            <a href="tel:+919970341234" style="display: block;">+91 99703 41234 (RK (Ravi) - Owner & Host)</a>
-                            <a href="tel:+918983041234" style="display: block; margin-top: 4px;">+91 89830 41234 (Suchita - Reservations)</a>
-                        </div>
-                    </li>
-                    <li>
-                        <i data-lucide="map-pin"></i>
-                        <span>Siolim Marna Village, North Goa (7 mins from Mapusa)</span>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="footer-col">
-                <h4>Secure Booking</h4>
-                <p class="text-muted" style="font-size: 0.85rem; margin-bottom: 20px;">
-                    We process all reservations directly with the owner to secure custom packages.
-                </p>
-                <a href="contact.html" class="btn btn-primary" style="width: 100%;">Inquire Availability</a>
+            <div class="footer-bottom flex-between">
+                <p>&copy; 2026 RK'S VILLA. All rights reserved.</p>
             </div>
         </div>
+    </footer>
 
-        <div class="footer-bottom flex-between">
-            <p>&copy; 2026 RK'S VILLA. All rights reserved.</p>
-            
-        </div>
-    </div>
-</footer>
-
-<script src="https://unpkg.com/lucide@latest"></script>
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        if (typeof lucide !== 'undefined') {
-            lucide.createIcons();
-        }
-
-        const header = document.getElementById('site-header');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
+    <!-- LUCIDE ICONS & GALLERY SCRIPT -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
             }
-        });
 
-        const filterBtns = document.querySelectorAll('.gallery-filter-btn');
-        const galleryItems = document.querySelectorAll('.masonry-item');
+            // Mobile Navigation Toggle
+            const mobileBtn = document.getElementById('mobile-menu-btn');
+            const mobClose = document.getElementById('close-menu-btn');
+            const mobileOverlay = document.getElementById('mobile-menu-overlay');
 
-        filterBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                filterBtns.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
+            if (mobileBtn && mobClose && mobileOverlay) {
+                mobileBtn.addEventListener('click', () => {
+                    mobileOverlay.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                });
+                const closeDrawer = () => {
+                    mobileOverlay.classList.remove('active');
+                    document.body.style.overflow = '';
+                };
+                mobClose.addEventListener('click', closeDrawer);
+            }
 
-                const filter = btn.dataset.filter;
-                galleryItems.forEach(item => {
-                    if (filter === 'all' || item.dataset.category === filter) {
-                        item.style.display = 'block';
-                    } else {
-                        item.style.display = 'none';
+            // Header Scroll Effect
+            const header = document.getElementById('site-header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+
+            // GALLERY FILTERING & LIGHTBOX LOGIC
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const galleryItems = document.querySelectorAll('.masonry-item');
+            const lightbox = document.getElementById('lightbox-modal');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const lightboxCounter = document.getElementById('lightbox-counter');
+            const closeBtn = document.getElementById('lightbox-close');
+            const prevBtn = document.getElementById('lightbox-prev');
+            const nextBtn = document.getElementById('lightbox-next');
+
+            let visibleItems = Array.from(galleryItems);
+            let currentIndex = 0;
+
+            // Category Filtering
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+
+                    const category = btn.dataset.filter;
+                    visibleItems = [];
+
+                    galleryItems.forEach(item => {
+                        const itemCat = item.dataset.category;
+                        if (category === 'all' || itemCat === category || (category === 'estate' && (itemCat === 'estate' || itemCat === 'exterior'))) {
+                            item.style.display = 'block';
+                            visibleItems.push(item);
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                });
+            });
+
+            // Open Lightbox
+            function openLightbox(index) {
+                if (visibleItems.length === 0) return;
+                currentIndex = index;
+                const activeItem = visibleItems[currentIndex];
+                const fullSrc = activeItem.dataset.full || activeItem.querySelector('img').src;
+
+                lightboxImg.style.opacity = '0';
+                lightboxImg.style.transform = 'scale(0.96)';
+
+                setTimeout(() => {
+                    lightboxImg.src = fullSrc;
+                    lightboxCounter.textContent = 'Photo ' + (currentIndex + 1) + ' of ' + visibleItems.length;
+                    lightboxImg.style.opacity = '1';
+                    lightboxImg.style.transform = 'scale(1)';
+                }, 150);
+
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+
+            // Close Lightbox
+            function closeLightbox() {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            // Next / Prev Lightbox
+            function showPrev() {
+                if (visibleItems.length === 0) return;
+                currentIndex = (currentIndex - 1 + visibleItems.length) % visibleItems.length;
+                openLightbox(currentIndex);
+            }
+
+            function showNext() {
+                if (visibleItems.length === 0) return;
+                currentIndex = (currentIndex + 1) % visibleItems.length;
+                openLightbox(currentIndex);
+            }
+
+            // Item Click Event
+            galleryItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    const idx = visibleItems.indexOf(item);
+                    if (idx !== -1) {
+                        openLightbox(idx);
                     }
                 });
             });
-        });
 
-        // Lightbox Modal
-        const modal = document.getElementById('lightbox-modal');
-        const target = document.getElementById('lightbox-target');
-        const closeBtn = document.getElementById('close-lightbox');
-
-        galleryItems.forEach(item => {
-            item.addEventListener('click', () => {
-                const src = item.dataset.src;
-                const type = item.dataset.type;
-
-                if (type === 'video') {
-                    target.innerHTML = `<video controls autoplay style="width: 100%; max-height: 80vh;"><source src="${src}" type="video/mp4"></video>`;
-                } else {
-                    target.innerHTML = `<img src="${src}" style="width: 100%; max-height: 80vh; object-fit: contain;">`;
+            closeBtn.addEventListener('click', closeLightbox);
+            prevBtn.addEventListener('click', (e) => { e.stopPropagation(); showPrev(); });
+            nextBtn.addEventListener('click', (e) => { e.stopPropagation(); showNext(); });
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox || e.target.classList.contains('lightbox-content')) {
+                    closeLightbox();
                 }
+            });
 
-                modal.classList.add('active');
-                document.body.style.overflow = 'hidden';
+            // Keyboard Navigation
+            document.addEventListener('keydown', (e) => {
+                if (!lightbox.classList.contains('active')) return;
+                if (e.key === 'Escape') closeLightbox();
+                if (e.key === 'ArrowLeft') showPrev();
+                if (e.key === 'ArrowRight') showNext();
             });
         });
-
-        if (closeBtn && modal) {
-            closeBtn.addEventListener('click', () => {
-                modal.classList.remove('active');
-                target.innerHTML = '';
-                document.body.style.overflow = '';
-            });
-        }
-
-        const mobileBtn = document.getElementById('mobile-menu-btn');
-        const mobClose = document.getElementById('close-menu-btn');
-        const mobileOverlay = document.getElementById('mobile-menu-overlay');
-
-        if (mobileBtn && mobClose && mobileOverlay) {
-            mobileBtn.addEventListener('click', () => {
-                mobileOverlay.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            });
-
-            const closeDrawer = () => {
-                mobileOverlay.classList.remove('active');
-                document.body.style.overflow = '';
-            };
-
-            mobClose.addEventListener('click', closeDrawer);
-            document.querySelectorAll('.mobile-nav-link').forEach(link => {
-                link.addEventListener('click', closeDrawer);
-            });
-        }
-    });
-</script>
+    </script>
 </body>
 </html>

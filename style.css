@@ -535,27 +535,27 @@ img, video {
 }
 
 .subpage-banner.banner-villa {
-    background-image: url('gallery/drone view.png');
+    background-image: url(../gallery/asset_web/wideImage_Sep_3_2026_at_02_25_45_AM.png);
 }
 
 .subpage-banner.banner-experiences {
-    background-image: url('gallery/outer part of villa.png');
+    background-image: url('gallery/asset_web/DSC09544.jpg');
 }
 
 .subpage-banner.banner-rates {
-    background-image: url('gallery/bathtub.png');
+    background-image: url(../gallery/asset_web/wideImage_Sep_3_2026_at_02_35_48_AM.png);
 }
 
 .subpage-banner.banner-gallery {
-    background-image: url('gallery/living area.png');
+    background-image: url(../gallery/asset_web/drone_view.png);
 }
 
 .subpage-banner.banner-guide {
-    background-image: url('gallery/scene of goa.png');
+    background-image: url('gallery/asset_web/scene_of_lake.png');
 }
 
 .subpage-banner.banner-contact {
-    background-image: url('gallery/living area 2.png');
+    background-image: url(../gallery/asset_web/outer_part_of_villa.png);
 }
 
 .hero-video-bg {
