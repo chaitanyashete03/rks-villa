@@ -2064,19 +2064,29 @@ img, video {
 }
 
 .luxury-service-card ul.features {
-    font-size: 0.8rem;
+    font-size: 0.82rem;
     color: var(--color-text);
     margin-bottom: 18px;
-    line-height: 1.8;
+    line-height: 1.6;
     list-style: none;
     padding: 0;
 }
 
 .luxury-service-card ul.features li {
-    margin-bottom: 6px;
-    display: flex;
-    align-items: flex-start;
-    gap: 8px;
+    margin-bottom: 8px;
+    position: relative;
+    padding-left: 22px;
+    display: block;
+}
+
+.luxury-service-card ul.features li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--color-gold);
+    font-weight: 700;
+    font-size: 0.85rem;
 }
 
 /* ---------------------------------------------------
