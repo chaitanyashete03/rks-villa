@@ -119,10 +119,10 @@ class AvailabilityCalendar {
                 <div class="calendar-header-bar flex-between">
                     <div>
                         <span class="hostex-sync-badge">
-                            <span class="sync-dot"></span> Hostex PMS Live Sync Active
+                            <span class="sync-dot"></span> Real-Time Calendar Sync
                         </span>
                         <p style="font-size: 0.8rem; color: var(--color-muted); margin-top: 4px;">
-                            Dates automatically updated across Airbnb, Booking.com & Direct Channels.
+                            Dates automatically updated in real time for direct bookings.
                         </p>
                     </div>
                     <div class="calendar-month-nav">
