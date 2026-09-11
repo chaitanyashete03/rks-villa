@@ -2407,7 +2407,11 @@ html, body {
     }
 }
 
-/* OPTIMIZED MOBILE NAVIGATION OVERLAY DRAWER */
+/* ==========================================================================
+   UNIVERSAL MOBILE RESPONSIVENESS & DYNAMIC VIEWPORT FITTING (ALL DEVICES)
+   ========================================================================== */
+
+/* Body Lock when Mobile Menu is Open */
 body.menu-open {
     overflow: hidden !important;
     position: fixed !important;
@@ -2417,26 +2421,40 @@ body.menu-open {
     left: 0 !important;
 }
 
+/* Hide floating WhatsApp button & bottom sticky bar when menu drawer is open */
+body.menu-open .whatsapp-float-btn,
+body.menu-open .mobile-sticky-cta-bar {
+    display: none !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
+/* UNIVERSAL FULLSCREEN MOBILE MENU DRAWER */
 .mobile-menu-drawer {
     position: fixed !important;
-    inset: 0 !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
     width: 100vw !important;
     height: 100vh !important;
     height: 100dvh !important;
     background-color: rgba(10, 10, 10, 0.98) !important;
-    backdrop-filter: blur(20px) !important;
+    backdrop-filter: blur(25px) !important;
+    -webkit-backdrop-filter: blur(25px) !important;
     z-index: 20000 !important;
     display: none !important;
     flex-direction: column !important;
     justify-content: flex-start !important;
     align-items: center !important;
-    padding: 75px 20px 50px 20px !important;
+    padding: clamp(50px, 8vh, 70px) clamp(16px, 4vw, 24px) clamp(30px, 5vh, 50px) clamp(16px, 4vw, 24px) !important;
     opacity: 0 !important;
     visibility: hidden !important;
     pointer-events: none !important;
     overflow-y: auto !important;
     -webkit-overflow-scrolling: touch !important;
     touch-action: pan-y !important;
+    box-sizing: border-box !important;
 }
 
 .mobile-menu-drawer.active {
@@ -2446,40 +2464,50 @@ body.menu-open {
     pointer-events: auto !important;
 }
 
+/* Close Button Fixed Top Right */
 .mobile-menu-drawer .close-btn {
     position: fixed !important;
-    top: 18px !important;
-    right: 20px !important;
-    color: var(--color-text) !important;
+    top: clamp(14px, 2.5vh, 22px) !important;
+    right: clamp(14px, 4vw, 22px) !important;
+    color: #ffffff !important;
     background: rgba(255, 255, 255, 0.08) !important;
     border: 1px solid rgba(255, 255, 255, 0.18) !important;
     border-radius: 50% !important;
-    width: 44px !important;
-    height: 44px !important;
+    width: 42px !important;
+    height: 42px !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
     z-index: 20001 !important;
     cursor: pointer !important;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5) !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6) !important;
+    transition: transform 0.2s ease, background-color 0.2s ease !important;
 }
 
+.mobile-menu-drawer .close-btn:active {
+    transform: scale(0.92) !important;
+    background: rgba(212, 175, 55, 0.2) !important;
+}
+
+/* Links Container with Fluid vh Spacing */
 .mobile-nav-links {
     display: flex !important;
     flex-direction: column !important;
-    gap: 14px !important;
+    gap: clamp(6px, 1.8vh, 14px) !important;
     text-align: center !important;
     width: 100% !important;
-    margin-top: 10px !important;
+    max-width: 340px !important;
+    margin-top: clamp(4px, 1.5vh, 14px) !important;
 }
 
 .mobile-nav-links a {
     font-family: var(--font-serif) !important;
-    font-size: 1.45rem !important;
+    font-size: clamp(1.1rem, 3.8vh, 1.45rem) !important;
     color: var(--color-text) !important;
-    padding: 4px 0 !important;
+    padding: clamp(2px, 0.6vh, 6px) 0 !important;
     transition: var(--transition-smooth) !important;
     text-decoration: none !important;
+    letter-spacing: 0.02em !important;
 }
 
 .mobile-nav-links a:hover,
@@ -2487,36 +2515,15 @@ body.menu-open {
     color: var(--color-gold) !important;
 }
 
+/* Two-Line CTA Buttons Container */
 .mobile-nav-ctas {
-    margin-top: 28px !important;
-    margin-bottom: 50px !important;
+    margin-top: clamp(14px, 3vh, 28px) !important;
+    margin-bottom: clamp(20px, 4vh, 40px) !important;
     display: flex !important;
     flex-direction: column !important;
-    gap: 12px !important;
+    gap: clamp(8px, 1.6vh, 12px) !important;
     width: 100% !important;
-    max-width: 320px !important;
-}
-
-.mobile-nav-ctas .btn {
-    width: 100% !important;
-    justify-content: center !important;
-    text-align: center !important;
-    white-space: nowrap !important;
-    font-size: 0.78rem !important;
-    padding: 12px 16px !important;
-    letter-spacing: 0.12em !important;
-    border-radius: 4px !important;
-}
-
-/* TWO-LINE MOBILE DRAWER CTA BUTTONS */
-.mobile-nav-ctas {
-    margin-top: 25px !important;
-    margin-bottom: 50px !important;
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 12px !important;
-    width: 100% !important;
-    max-width: 300px !important;
+    max-width: clamp(260px, 85vw, 310px) !important;
 }
 
 .mobile-cta-btn {
@@ -2524,13 +2531,14 @@ body.menu-open {
     flex-direction: row !important;
     align-items: center !important;
     justify-content: center !important;
-    gap: 12px !important;
-    padding: 12px 18px !important;
+    gap: 10px !important;
+    padding: clamp(8px, 1.5vh, 12px) 16px !important;
     text-align: center !important;
-    min-height: 56px !important;
+    min-height: clamp(46px, 6vh, 54px) !important;
     border-radius: 6px !important;
     width: 100% !important;
     text-decoration: none !important;
+    box-sizing: border-box !important;
 }
 
 .mobile-cta-btn .cta-text-wrapper {
@@ -2542,17 +2550,17 @@ body.menu-open {
 }
 
 .mobile-cta-btn .cta-title {
-    font-size: 0.85rem !important;
+    font-size: clamp(0.78rem, 2vh, 0.85rem) !important;
     font-weight: 700 !important;
     letter-spacing: 0.12em !important;
     text-transform: uppercase !important;
 }
 
 .mobile-cta-btn .cta-sub {
-    font-size: 0.78rem !important;
+    font-size: clamp(0.72rem, 1.8vh, 0.78rem) !important;
     font-weight: 500 !important;
     letter-spacing: 0.05em !important;
-    margin-top: 2px !important;
+    margin-top: 1px !important;
 }
 
 .btn-secondary .cta-title {
@@ -2572,4 +2580,40 @@ body.menu-open {
 .btn-primary .cta-sub {
     color: #222222 !important;
     font-weight: 600 !important;
+}
+
+/* Extra Small Screens (Width < 360px & Short Screens < 600px) */
+@media (max-width: 360px), (max-height: 600px) {
+    .mobile-menu-drawer {
+        padding-top: 50px !important;
+        padding-bottom: 25px !important;
+    }
+
+    .mobile-nav-links {
+        gap: 4px !important;
+    }
+
+    .mobile-nav-links a {
+        font-size: 1.05rem !important;
+        padding: 2px 0 !important;
+    }
+
+    .mobile-nav-ctas {
+        margin-top: 12px !important;
+        margin-bottom: 20px !important;
+        gap: 8px !important;
+    }
+
+    .mobile-cta-btn {
+        min-height: 44px !important;
+        padding: 6px 12px !important;
+    }
+
+    .mobile-cta-btn .cta-title {
+        font-size: 0.75rem !important;
+    }
+
+    .mobile-cta-btn .cta-sub {
+        font-size: 0.7rem !important;
+    }
 }
