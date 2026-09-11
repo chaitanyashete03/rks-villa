@@ -326,9 +326,7 @@
                                 <li>Large capacity drum & in-house laundry convenience</li>
                             </ul>
                         </div>
-                        <a href="https://wa.me/919970341234?text=Hi%20Ravi%2C%20I%20have%20a%20question%20about%20villa%20amenities" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="width: 100%; text-align: center; padding: 12px;">
-                            View Villa Amenities
-                        </a>
+                        <a href="villa.html#amenities" class="btn btn-secondary" style="width: 100%; text-align: center; padding: 12px;">View Villa Amenities</a>
                     </div>
                 </div>
             </div>
@@ -423,12 +421,12 @@
 
         if (mobileBtn && closeBtn && mobileOverlay) {
             mobileBtn.addEventListener('click', () => {
-                mobileOverlay.classList.add('active');
+                mobileOverlay.classList.add('active'); document.body.classList.add('menu-open');
                 document.body.style.overflow = 'hidden';
             });
 
             const closeDrawer = () => {
-                mobileOverlay.classList.remove('active');
+                mobileOverlay.classList.remove('active'); document.body.classList.remove('menu-open');
                 document.body.style.overflow = '';
             };
 

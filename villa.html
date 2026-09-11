@@ -161,7 +161,7 @@
     </section>
 
     <!-- SECTION 2: FULL APPLIANCES & AMENITIES GRID -->
-    <section class="section-py">
+    <section id="amenities" class="section-py">
         <div class="container">
             <div style="text-align: center; margin-bottom: 50px;" class="reveal active">
                 <span class="label-mini">Complete Inventory</span>
@@ -374,12 +374,12 @@
 
         if (mobileBtn && closeBtn && mobileOverlay) {
             mobileBtn.addEventListener('click', () => {
-                mobileOverlay.classList.add('active');
+                mobileOverlay.classList.add('active'); document.body.classList.add('menu-open');
                 document.body.style.overflow = 'hidden';
             });
 
             const closeDrawer = () => {
-                mobileOverlay.classList.remove('active');
+                mobileOverlay.classList.remove('active'); document.body.classList.remove('menu-open');
                 document.body.style.overflow = '';
             };
 

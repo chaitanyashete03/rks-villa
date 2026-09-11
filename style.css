@@ -2194,3 +2194,239 @@ img, video {
     color: var(--color-gold);
     border-bottom-style: solid;
 }
+
+
+/* ==========================================================================
+   MASTER MOBILE RESPONSIVENESS & PERFORMANCE OPTIMIZATIONS
+   ========================================================================== */
+
+/* Global Mobile Fixes */
+html, body {
+    overflow-x: hidden !important;
+    max-width: 100vw;
+    touch-action: manipulation;
+}
+
+@media (max-width: 768px) {
+    /* Container Padding */
+    .container {
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+    }
+
+    /* Header & Mobile Drawer */
+    .header-wrapper {
+        height: 64px !important;
+    }
+
+    .site-logo-header {
+        max-height: 38px !important;
+    }
+
+    .menu-toggle-btn {
+        width: 44px;
+        height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 50%;
+        border: 1px solid var(--color-border);
+    }
+
+    .mobile-menu-drawer {
+        padding: 70px 24px 120px 24px !important;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .mobile-nav-links a {
+        font-size: 1.25rem !important;
+        padding: 12px 0 !important;
+    }
+
+    /* Subpage Banners */
+    .subpage-banner {
+        min-height: 40vh !important;
+        padding-top: 100px !important;
+        padding-bottom: 35px !important;
+    }
+
+    .hero-title {
+        font-size: clamp(1.8rem, 7vw, 2.6rem) !important;
+        line-height: 1.25 !important;
+    }
+
+    .hero-subhead {
+        font-size: 0.95rem !important;
+        line-height: 1.5 !important;
+        padding: 0 8px;
+    }
+
+    /* Section Spacing */
+    .section-py {
+        padding-top: 45px !important;
+        padding-bottom: 45px !important;
+    }
+
+    /* Grid Layouts Stack */
+    .grid-3, .grid-2, .grid-4 {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+    }
+
+    /* Luxury Service Cards & Amenity Cards */
+    .luxury-service-card, .amenity-card, .guide-distance-card {
+        border-radius: 10px !important;
+    }
+
+    .luxury-service-card .img-wrapper {
+        height: 210px !important;
+    }
+
+    .luxury-service-card .content-area {
+        padding: 20px !important;
+    }
+
+    .luxury-service-card h3 {
+        font-size: 1.15rem !important;
+        margin-bottom: 8px !important;
+    }
+
+    .luxury-service-card .desc {
+        font-size: 0.88rem !important;
+        line-height: 1.55 !important;
+    }
+
+    .luxury-service-card ul.features {
+        font-size: 0.82rem !important;
+        margin-bottom: 18px !important;
+    }
+
+    .luxury-service-card ul.features li {
+        margin-bottom: 8px !important;
+        padding-left: 20px !important;
+    }
+
+    /* Filter Pills Horizontal Thumb Scroll */
+    .filter-container {
+        display: flex !important;
+        flex-wrap: nowrap !important;
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch;
+        justify-content: flex-start !important;
+        padding: 4px 4px 12px 4px !important;
+        gap: 8px !important;
+        margin: 20px 0 25px 0 !important;
+        scrollbar-width: none;
+    }
+
+    .filter-container::-webkit-scrollbar {
+        display: none;
+    }
+
+    .filter-btn {
+        flex-shrink: 0 !important;
+        white-space: nowrap !important;
+        padding: 8px 18px !important;
+        font-size: 0.8rem !important;
+    }
+
+    /* Masonry Grid Mobile */
+    .masonry-grid {
+        column-count: 1 !important;
+        column-gap: 0 !important;
+    }
+
+    .masonry-item {
+        margin-bottom: 16px !important;
+        border-radius: 10px !important;
+    }
+
+    /* Lightbox Modal Mobile */
+    .lightbox-img {
+        max-width: 95vw !important;
+        max-height: 75vh !important;
+    }
+
+    /* Form Elements Mobile (16px prevents iOS zoom on focus) */
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="date"],
+    select,
+    textarea {
+        font-size: 16px !important;
+        padding: 14px 16px !important;
+        border-radius: 8px !important;
+        min-height: 48px !important;
+    }
+
+    .btn {
+        min-height: 46px !important;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.88rem !important;
+    }
+
+    /* Floating WhatsApp Button & Sticky Bottom Bar Safe Areas */
+    .mobile-sticky-cta-bar {
+        height: calc(56px + env(safe-area-inset-bottom, 0px)) !important;
+        padding-bottom: env(safe-area-inset-bottom, 0px) !important;
+        z-index: 9998 !important;
+        background: rgba(10, 14, 20, 0.95) !important;
+        backdrop-filter: blur(12px) !important;
+        border-top: 1px solid var(--color-border) !important;
+    }
+
+    .sticky-cta-link {
+        height: 44px !important;
+        font-size: 0.85rem !important;
+        font-weight: 600 !important;
+    }
+
+    .whatsapp-float-btn {
+        bottom: calc(72px + env(safe-area-inset-bottom, 0px)) !important;
+        right: 16px !important;
+        width: 48px !important;
+        height: 48px !important;
+        z-index: 9997 !important;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4) !important;
+    }
+
+    /* Goa Guide Distance Links */
+    .dist-list .dist-item {
+        padding: 12px 0 !important;
+    }
+
+    .dist-link {
+        padding: 4px 0 !important;
+        font-size: 0.9rem !important;
+        color: var(--color-gold) !important;
+    }
+}
+
+
+/* Mobile Menu Scroll Isolation & Body Lock */
+body.menu-open {
+    overflow: hidden !important;
+    position: fixed !important;
+    width: 100% !important;
+    height: 100% !important;
+    top: 0 !important;
+    left: 0 !important;
+}
+
+.mobile-menu-drawer {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    height: 100dvh !important;
+    z-index: 10005 !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    touch-action: pan-y !important;
+}

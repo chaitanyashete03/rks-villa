@@ -278,12 +278,12 @@
 
         if (mobileBtn && closeBtn && mobileOverlay) {
             mobileBtn.addEventListener('click', () => {
-                mobileOverlay.classList.add('active');
+                mobileOverlay.classList.add('active'); document.body.classList.add('menu-open');
                 document.body.style.overflow = 'hidden';
             });
 
             const closeDrawer = () => {
-                mobileOverlay.classList.remove('active');
+                mobileOverlay.classList.remove('active'); document.body.classList.remove('menu-open');
                 document.body.style.overflow = '';
             };
 
