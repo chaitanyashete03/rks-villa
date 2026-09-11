@@ -585,8 +585,12 @@ img, video {
     position: relative;
     z-index: 2;
     text-align: center;
-    max-width: 800px;
-    padding: 0 20px;
+    width: 100% !important;
+    max-width: 860px !important;
+    padding-left: clamp(20px, 6vw, 48px) !important;
+    padding-right: clamp(20px, 6vw, 48px) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
     margin-top: 0;
     margin-bottom: 0;
     display: flex;
@@ -594,6 +598,7 @@ img, video {
     align-items: center;
     justify-content: center;
     flex-grow: 1;
+    box-sizing: border-box !important;
 }
 
 .subpage-banner .hero-content {
