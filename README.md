@@ -1,4 +1,4 @@
-# RK's Villa — Luxury 4-BHK Direct Booking Web Application
+# RK's Villa | Luxury 4-BHK Direct Booking Web Application
 **Siolim, North Goa | Host Direct Booking Engine**
 
 ## 🌴 Overview
@@ -25,7 +25,7 @@ This repository contains the complete direct booking website for **RK's Villa** 
    - **Publish directory**: `./` (Root directory)
    - **Build command**: Leave blank (Static site with pure HTML/CSS/JS)
 3. **Domain Setup**: Point custom domain (e.g. `rksvilla.com` or `rksvilla.in`) to Netlify DNS.
-4. **Web3Forms Key**: Optional — Replace `YOUR_WEB3FORMS_ACCESS_KEY` in `contact.html` with your free Web3Forms access key for direct email delivery.
+4. **Web3Forms Key**: Optional | Replace `YOUR_WEB3FORMS_ACCESS_KEY` in `contact.html` with your free Web3Forms access key for direct email delivery.
 
 ---
 
