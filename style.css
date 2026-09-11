@@ -434,21 +434,22 @@ img, video {
 /* 5. BUTTONS & BUTTON MICRO-ACTIONS */
 .btn {
     font-family: var(--font-sans);
-    font-size: 0.74rem;
-    font-weight: 600;
+    font-size: 0.76rem;
+    font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.18em;
-    padding: 12px 26px;
-    border-radius: 3px;
+    letter-spacing: 0.08em;
+    padding: 12px 20px;
+    border-radius: 4px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
     transition: var(--transition-smooth);
     border: 1px solid transparent;
-    min-height: 44px;
+    min-height: 46px;
     position: relative;
-    overflow: hidden;
+    overflow: visible;
+    box-sizing: border-box;
 }
 
 .btn-primary {
@@ -2620,5 +2621,44 @@ body.menu-open .mobile-sticky-cta-bar {
 
     .mobile-cta-btn .cta-sub {
         font-size: 0.7rem !important;
+    }
+}
+
+/* HERO CTAS & BUTTON CLIPPING PREVENTION (ALL DEVICES) */
+.btn {
+    letter-spacing: 0.08em !important;
+    box-sizing: border-box !important;
+}
+
+@media (max-width: 768px) {
+    .btn {
+        min-height: 46px !important;
+        font-size: 0.8rem !important;
+        letter-spacing: 0.06em !important;
+        padding-left: 14px !important;
+        padding-right: 14px !important;
+        box-sizing: border-box !important;
+    }
+
+    .hero-ctas {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        width: 100% !important;
+        max-width: 310px !important;
+        gap: 12px !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+
+    .hero-ctas .btn {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding-left: 14px !important;
+        padding-right: 14px !important;
+        font-size: 0.8rem !important;
+        letter-spacing: 0.06em !important;
+        white-space: nowrap !important;
+        box-sizing: border-box !important;
     }
 }
