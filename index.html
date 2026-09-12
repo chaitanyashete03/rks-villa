@@ -78,32 +78,76 @@
         }
     </style>
     <!-- JSON-LD Structured Data for SEO -->
+    <!-- Canonical & SEO Meta Tags -->
+    <link rel="canonical" href="https://rks-villa.vercel.app/">
+    <meta name="geo.region" content="IN-GA">
+    <meta name="geo.placename" content="Siolim, North Goa">
+    <meta name="geo.position" content="15.6159;73.7872">
+    <meta name="ICBM" content="15.6159, 73.7872">
+
+    <!-- Open Graph / Social Media Preview Cards -->
+    <meta property="og:site_name" content="RK's Villa | Siolim, North Goa">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="RK's Villa | Luxury 4-BHK Private Pool Villa in Siolim, Goa">
+    <meta property="og:description" content="Book direct with host Ravi at RK's Villa, a luxury 4-BHK private pool sanctuary in Siolim, North Goa. Save 15-20% compared to Airbnb. Live Hostex availability calendar.">
+    <meta property="og:url" content="https://rks-villa.vercel.app/">
+    <meta property="og:image" content="https://rks-villa.vercel.app/gallery/asset_web/rks-villa-aerial-drone-view-siolim-goa.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <!-- Twitter Card Preview -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="RK's Villa | Luxury 4-BHK Private Pool Villa in Siolim, Goa">
+    <meta name="twitter:description" content="Book direct with host Ravi at RK's Villa, a luxury 4-BHK private pool sanctuary in Siolim, North Goa. Save 15-20% compared to Airbnb. Live Hostex availability calendar.">
+    <meta name="twitter:image" content="https://rks-villa.vercel.app/gallery/asset_web/rks-villa-aerial-drone-view-siolim-goa.png">
+    <!-- JSON-LD Structured Data for Google Rich Snippets & Search Ranking -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "LodgingBusiness",
-      "name": "RK's Villa",
-      "image": "gallery/asset_web/drone_view.png",
-      "description": "Luxury 4-BHK private pool villa in Siolim, North Goa featuring soaking bathtub, private garden, chef on call, and Hostex PMS direct bookings.",
+      "@type": ["VacationRental", "LodgingBusiness"],
+      "name": "RK's Villa — Luxury 4-BHK Private Pool Villa",
+      "alternateName": "RK's Villa Siolim",
+      "url": "https://rks-villa.vercel.app/",
+      "image": [
+        "https://rks-villa.vercel.app/gallery/asset_web/rks-villa-aerial-drone-view-siolim-goa.png",
+        "https://rks-villa.vercel.app/gallery/asset_web/rks-villa-private-pool-deck-siolim-goa.png",
+        "https://rks-villa.vercel.app/gallery/asset_web/master-bedroom-soaking-bathtub-villa-goa.png"
+      ],
+      "description": "Exclusive 4-BHK private pool luxury villa in Siolim Marna, North Goa. Features master suite soaking bathtub, private 4.5ft swimming pool, chef on call for Goan seafood BBQs, and direct host booking.",
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "Siolim Marna Village",
+        "streetAddress": "Siolim Marna Village, near Kefi Kafe",
         "addressLocality": "Siolim",
         "addressRegion": "Goa",
+        "postalCode": "403517",
         "addressCountry": "IN"
       },
       "geo": {
         "@type": "GeoCoordinates",
-        "latitude": "15.6159",
-        "longitude": "73.7872"
+        "latitude": 15.6159,
+        "longitude": 73.7872
       },
       "telephone": "+919970341234",
       "priceRange": "₹₹₹",
+      "checkinTime": "14:00",
+      "checkoutTime": "11:00",
+      "numberOfRooms": 4,
+      "occupancy": {
+        "@type": "QuantitativeValue",
+        "maxValue": 12,
+        "unitCode": "C62"
+      },
       "amenityFeature": [
-        {"@type": "LocationFeatureSpecification", "name": "Private Swimming Pool"},
-        {"@type": "LocationFeatureSpecification", "name": "4 Ensuite Bedrooms"},
-        {"@type": "LocationFeatureSpecification", "name": "Soaking Bathtub Master Suite"},
-        {"@type": "LocationFeatureSpecification", "name": "Big Sound Box with Karaoke"}
+        {"@type": "LocationFeatureSpecification", "name": "Private 4.5ft Swimming Pool", "value": true},
+        {"@type": "LocationFeatureSpecification", "name": "4 Ensuite Master Bedrooms", "value": true},
+        {"@type": "LocationFeatureSpecification", "name": "Soaking Bathtub Master Suite", "value": true},
+        {"@type": "LocationFeatureSpecification", "name": "Chef on Call & Seafood BBQ", "value": true},
+        {"@type": "LocationFeatureSpecification", "name": "80W Bluetooth Karaoke Speaker", "value": true},
+        {"@type": "LocationFeatureSpecification", "name": "Floating Pool Breakfast", "value": true},
+        {"@type": "LocationFeatureSpecification", "name": "Cocoyaya Hookah Setup", "value": true},
+        {"@type": "LocationFeatureSpecification", "name": "In-Villa Spa Massage Services", "value": true},
+        {"@type": "LocationFeatureSpecification", "name": "Private Yacht Charter Access", "value": true},
+        {"@type": "LocationFeatureSpecification", "name": "LG Smart Laundry Machine", "value": true}
       ]
     }
     </script>
@@ -193,7 +237,7 @@
     <main>
         <!-- MINIMALIST HERO SECTION WITH FAST HERO LOOP VIDEO -->
         <section class="hero-wrapper">
-            <video id="hero-video" class="hero-video-bg" autoplay loop muted playsinline preload="auto" poster="gallery/asset_web/drone_view.png">
+            <video id="hero-video" class="hero-video-bg" autoplay loop muted playsinline preload="auto" poster="gallery/asset_web/rks-villa-aerial-drone-view-siolim-goa.png">
                 <source src="videos/hero-loop.webm" type="video/webm">
                 <source src="videos/hero-loop.mp4" type="video/mp4">
             </video>
@@ -259,10 +303,10 @@
                 <div class="grid-2" style="align-items: center;">
                     <div class="villa-images reveal active">
                         <div class="villa-img-large">
-                            <img src="gallery/asset_web/living_area.png" alt="Living Lounge & Teak Bar" loading="lazy">
+                            <img src="gallery/asset_web/spacious-living-room-teak-bar-villa-goa.png" alt="Living Lounge & Teak Bar" loading="lazy">
                         </div>
                         <div class="villa-img-small">
-                            <img src="gallery/asset_web/dining_hall.png" alt="8-Seater Dining Setup" loading="lazy">
+                            <img src="gallery/asset_web/villa-dining-hall-living-lounge-goa.png" alt="8-Seater Dining Setup" loading="lazy">
                         </div>
                         <div class="villa-img-small">
                             <img src="gallery/asset_web/pool.png" alt="Private Pool Deck & Garden" loading="lazy">
@@ -330,7 +374,7 @@
 
                 <div class="full-video-wrapper reveal active"
                     style="position: relative; border-radius: 6px; overflow: hidden; border: 1px solid var(--color-border);">
-                    <video id="theater-video-player" controls preload="metadata" poster="gallery/asset_web/drone_view.png"
+                    <video id="theater-video-player" controls preload="metadata" poster="gallery/asset_web/rks-villa-aerial-drone-view-siolim-goa.png"
                         style="width: 100%; border-radius: 4px; background-color: #000;">
                         <source src="videos/villa-tour-web.mp4" type="video/mp4">
                         <source src="videos/full-tour.mp4" type="video/mp4">
@@ -391,7 +435,7 @@
                     <!-- Amenity 2 -->
                     <div class="amenity-card-custom" style="background: var(--color-card); border-radius: 6px; border: 1px solid var(--color-border); overflow: hidden; display: flex; flex-direction: column;">
                         <div style="position: relative; width: 100%; height: 200px; overflow: hidden;">
-                            <img src="gallery/asset_web/bathtub.png" alt="Soaking Bathtub Suite at RK's Villa" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;" class="amenity-img">
+                            <img src="gallery/asset_web/master-bedroom-soaking-bathtub-villa-goa.png" alt="Soaking Bathtub Suite at RK's Villa" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;" class="amenity-img">
                             <div style="position: absolute; top: 12px; right: 12px; background: rgba(10, 10, 10, 0.8); backdrop-filter: blur(4px); border: 1px solid var(--color-gold); width: 42px; height: 42px; border-radius: 50%; color: var(--color-gold); display: flex; align-items: center; justify-content: center;">
                                 <i data-lucide="bath" style="width: 22px; height: 22px;"></i>
                             </div>
@@ -429,7 +473,7 @@
                     <!-- Amenity 4 -->
                     <div class="amenity-card-custom" style="background: var(--color-card); border-radius: 6px; border: 1px solid var(--color-border); overflow: hidden; display: flex; flex-direction: column;">
                         <div style="position: relative; width: 100%; height: 200px; overflow: hidden;">
-                            <img src="gallery/asset_web/living_area.png" alt="Karaoke Lounge at RK's Villa" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;" class="amenity-img">
+                            <img src="gallery/asset_web/spacious-living-room-teak-bar-villa-goa.png" alt="Karaoke Lounge at RK's Villa" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;" class="amenity-img">
                             <div style="position: absolute; top: 12px; right: 12px; background: rgba(10, 10, 10, 0.8); backdrop-filter: blur(4px); border: 1px solid var(--color-gold); width: 42px; height: 42px; border-radius: 50%; color: var(--color-gold); display: flex; align-items: center; justify-content: center;">
                                 <i data-lucide="music" style="width: 22px; height: 22px;"></i>
                             </div>
@@ -448,7 +492,7 @@
                     <!-- Amenity 5 -->
                     <div class="amenity-card-custom" style="background: var(--color-card); border-radius: 6px; border: 1px solid var(--color-border); overflow: hidden; display: flex; flex-direction: column;">
                         <div style="position: relative; width: 100%; height: 200px; overflow: hidden;">
-                            <img src="gallery/asset_web/floating_pool_breakfast.jpg" alt="Floating Pool Breakfast at RK's Villa" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;" class="amenity-img">
+                            <img src="gallery/asset_web/floating-pool-breakfast-rks-villa-goa.jpg" alt="Floating Pool Breakfast at RK's Villa" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;" class="amenity-img">
                             <div style="position: absolute; top: 12px; right: 12px; background: rgba(10, 10, 10, 0.8); backdrop-filter: blur(4px); border: 1px solid var(--color-gold); width: 42px; height: 42px; border-radius: 50%; color: var(--color-gold); display: flex; align-items: center; justify-content: center;">
                                 <i data-lucide="coffee" style="width: 22px; height: 22px;"></i>
                             </div>
@@ -467,7 +511,7 @@
                     <!-- Amenity 6 -->
                     <div class="amenity-card-custom" style="background: var(--color-card); border-radius: 6px; border: 1px solid var(--color-border); overflow: hidden; display: flex; flex-direction: column;">
                         <div style="position: relative; width: 100%; height: 200px; overflow: hidden;">
-                            <img src="gallery/asset_web/barbeque.jpeg" alt="Chef On Call & BBQ at RK's Villa" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;" class="amenity-img">
+                            <img src="gallery/asset_web/seafood-barbeque-chef-on-call-goa.jpeg" alt="Chef On Call & BBQ at RK's Villa" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;" class="amenity-img">
                             <div style="position: absolute; top: 12px; right: 12px; background: rgba(10, 10, 10, 0.8); backdrop-filter: blur(4px); border: 1px solid var(--color-gold); width: 42px; height: 42px; border-radius: 50%; color: var(--color-gold); display: flex; align-items: center; justify-content: center;">
                                 <i data-lucide="flame" style="width: 22px; height: 22px;"></i>
                             </div>

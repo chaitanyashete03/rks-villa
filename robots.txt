@@ -1,0 +1,6 @@
+# robots.txt for RK's Villa Direct Booking Website
+User-agent: *
+Allow: /
+
+# Direct Sitemap Location
+Sitemap: https://rks-villa.vercel.app/sitemap.xml
