@@ -269,6 +269,7 @@ img, video {
 .site-logo-img {
     width: auto;
     object-fit: contain;
+    border-radius: 50%;
     transition: var(--transition-smooth);
     filter: drop-shadow(0 2px 10px rgba(0, 0, 0, 0.6));
 }
