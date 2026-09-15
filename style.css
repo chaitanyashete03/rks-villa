@@ -240,35 +240,26 @@ img, video {
     width: 100%;
     height: var(--header-height);
     z-index: 100;
-    background: rgba(15, 17, 23, 0.45);
-    backdrop-filter: blur(18px) saturate(180%);
-    -webkit-backdrop-filter: blur(18px) saturate(180%);
-    border-bottom: 1px solid rgba(212, 175, 55, 0.18);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    background: rgba(12, 14, 20, 0.35);
+    backdrop-filter: blur(10px) saturate(160%);
+    -webkit-backdrop-filter: blur(10px) saturate(160%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.15);
     transition: var(--transition-smooth);
 }
 
 .header-wrapper.scrolled {
-    background: rgba(10, 12, 18, 0.75);
-    backdrop-filter: blur(24px) saturate(200%);
-    -webkit-backdrop-filter: blur(24px) saturate(200%);
-    border-bottom: 1px solid rgba(212, 175, 55, 0.32);
-    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.12);
-    height: 105px;
-}
-
-@media (max-width: 768px) {
-    .header-wrapper,
-    .header-wrapper.scrolled {
-        height: 115px !important;
-    }
+    background: rgba(10, 12, 18, 0.55);
+    backdrop-filter: blur(12px) saturate(175%);
+    -webkit-backdrop-filter: blur(12px) saturate(175%);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.25);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+    height: 75px;
 }
 
 .logo-container {
     display: flex;
     align-items: center;
-    justify-content: center;
-    padding: 4px 0;
 }
 
 .site-logo-img {
@@ -276,16 +267,16 @@ img, video {
     object-fit: contain;
     border-radius: 50%;
     transition: var(--transition-smooth);
-    filter: drop-shadow(0 2px 16px rgba(212, 175, 55, 0.40));
+    filter: drop-shadow(0 2px 14px rgba(212, 175, 55, 0.35));
 }
 
 .site-logo-header {
-    height: 96px;
-    max-height: 100px;
+    height: 64px;
+    max-height: 68px;
 }
 
 .header-wrapper.scrolled .site-logo-header {
-    height: 90px;
+    height: 56px;
 }
 
 .site-logo-footer {
@@ -2231,12 +2222,14 @@ html, body {
     }
 
     /* Header & Mobile Drawer */
-    .header-wrapper {
-        height: 64px !important;
+    .header-wrapper,
+    .header-wrapper.scrolled {
+        height: 110px !important;
     }
 
     .site-logo-header {
-        max-height: 38px !important;
+        height: 98px !important;
+        max-height: 100px !important;
     }
 
     .menu-toggle-btn {
