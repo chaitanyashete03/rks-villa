@@ -275,25 +275,25 @@ img, video {
 }
 
 .site-logo-header {
-    height: 64px;
-    max-height: 68px;
+    height: 72px;
+    max-height: 75px;
 }
 
 .header-wrapper.scrolled .site-logo-header {
-    height: 52px;
+    height: 60px;
 }
 
 .site-logo-footer {
-    height: 85px;
-    max-height: 95px;
+    height: 110px;
+    max-height: 125px;
 }
 
 @media (max-width: 768px) {
     .site-logo-header {
-        height: 48px !important;
+        height: 54px !important;
     }
     .site-logo-footer {
-        height: 65px !important;
+        height: 80px !important;
     }
 }
 
