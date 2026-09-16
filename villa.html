@@ -204,57 +204,181 @@
         </a>
     </section>
 
-    <!-- SECTION 1: 3-LEVEL ARCHITECTURAL BREAKDOWN -->
+        <!-- SECTION 1: 3-LEVEL ARCHITECTURAL BREAKDOWN -->
     <section id="architectural-overview" class="section-py section-dark-alternate">
         <div class="container">
-            <div style="text-align: center; margin-bottom: 50px;" class="reveal active">
-                <span class="label-mini">Floor-by-Floor Specifications</span>
-                <h2 class="title-large">Layout Across Three Levels</h2>
-                <p class="text-desc">Thoughtfully designed space for connection, privacy, and serene luxury.</p>
+            <div style="text-align: center; margin-bottom: 40px;" class="reveal active">
+                <span class="label-mini">Floor-by-Floor Interactive Explorer</span>
+                <h2 class="title-large">Architectural Layout & Master Suites</h2>
+                <p class="text-desc">Select a floor level to explore room distributions, suite specifications, and private amenities.</p>
             </div>
 
-            <div class="grid-3 reveal active" style="gap: 30px;">
-                <!-- Level 1: Ground Floor -->
-                <div style="background: var(--color-card); border: 1px solid var(--color-border); border-radius: 6px; overflow: hidden; display: flex; flex-direction: column;">
-                    <div style="height: 220px; overflow: hidden; position: relative;">
-                        <img src="gallery/asset_web/rks-villa-living-room-teak-bar.webp" alt="Ground Floor Living Lounge" style="width: 100%; height: 100%; object-fit: cover;">
-                        <span style="position: absolute; top: 15px; left: 15px; background: rgba(10,10,10,0.85); border: 1px solid var(--color-gold); color: var(--color-gold); padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; text-transform: uppercase; font-weight: 600;">Ground Floor</span>
+            <!-- FLOOR SELECTOR TABS -->
+            <div class="floor-tabs-wrapper reveal active" style="display: flex; justify-content: center; gap: 12px; margin-bottom: 40px; flex-wrap: wrap;">
+                <button class="floor-tab-btn active" onclick="switchFloor('ground')" id="tab-ground" style="padding: 12px 24px; border-radius: 30px; border: 1px solid var(--color-gold); background: var(--color-gold); color: #000; font-weight: 600; font-size: 0.9rem; cursor: pointer; transition: all 0.3s ease; display: flex; align-items: center; gap: 8px;">
+                    <i data-lucide="waves" style="width: 18px; height: 18px;"></i>
+                    Ground Floor (1 BHK & Pool Deck)
+                </button>
+                <button class="floor-tab-btn" onclick="switchFloor('first')" id="tab-first" style="padding: 12px 24px; border-radius: 30px; border: 1px solid var(--color-border); background: var(--color-card); color: var(--color-text); font-weight: 600; font-size: 0.9rem; cursor: pointer; transition: all 0.3s ease; display: flex; align-items: center; gap: 8px;">
+                    <i data-lucide="bed-double" style="width: 18px; height: 18px;"></i>
+                    1st Floor (2 Master Suites)
+                </button>
+                <button class="floor-tab-btn" onclick="switchFloor('second')" id="tab-second" style="padding: 12px 24px; border-radius: 30px; border: 1px solid var(--color-border); background: var(--color-card); color: var(--color-text); font-weight: 600; font-size: 0.9rem; cursor: pointer; transition: all 0.3s ease; display: flex; align-items: center; gap: 8px;">
+                    <i data-lucide="bath" style="width: 18px; height: 18px;"></i>
+                    2nd Floor (Penthouse & Bathtub)
+                </button>
+            </div>
+
+            <!-- FLOOR PANELS CONTAINER -->
+            <div class="floor-panels-container reveal active">
+
+                <!-- GROUND FLOOR PANEL -->
+                <div id="panel-ground" class="floor-panel active" style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; background: var(--color-card); border: 1px solid var(--color-border); border-radius: 12px; padding: 36px; align-items: center;">
+                    <div style="border-radius: 8px; overflow: hidden; position: relative; min-height: 380px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+                        <img src="gallery/asset_web/rks-villa-living-room-teak-bar.webp" alt="RK's Villa Ground Floor Living Lounge & Teak Bar" style="width: 100%; height: 100%; object-fit: cover; position: absolute; top:0; left:0;">
+                        <div style="position: absolute; top: 16px; left: 16px; background: rgba(10,10,10,0.85); border: 1px solid var(--color-gold); color: var(--color-gold); padding: 6px 14px; border-radius: 20px; font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;">
+                            Level 0 • Ground Floor
+                        </div>
                     </div>
-                    <div style="padding: 24px; flex-grow: 1;">
-                        <h3 style="font-family: var(--font-serif); font-size: 1.15rem; color: var(--color-text); margin-bottom: 10px;">Living Lounge & Garden Access</h3>
-                        <p style="font-size: 0.88rem; color: var(--color-muted); line-height: 1.6; margin-bottom: 15px;">
-                            High-ceiling open living room with sofa seating, 55-inch TV, 2 ACs, teak bar area with bar stools, 8-seater dining table, fully-equipped modular kitchen, Big Sound Box with karaoke, and direct sliding glass doors to the private pool and garden.
+
+                    <div>
+                        <div style="display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap;">
+                            <span style="background: rgba(240,184,39,0.12); color: var(--color-gold); border: 1px solid rgba(240,184,39,0.3); padding: 3px 10px; border-radius: 4px; font-size: 0.75rem; font-weight: 600;">1 BHK Layout</span>
+                            <span style="background: rgba(240,184,39,0.12); color: var(--color-gold); border: 1px solid rgba(240,184,39,0.3); padding: 3px 10px; border-radius: 4px; font-size: 0.75rem; font-weight: 600;">Direct Pool Deck Access</span>
+                            <span style="background: rgba(240,184,39,0.12); color: var(--color-gold); border: 1px solid rgba(240,184,39,0.3); padding: 3px 10px; border-radius: 4px; font-size: 0.75rem; font-weight: 600;">Teak Bar & Gourmet Kitchen</span>
+                        </div>
+
+                        <h3 style="font-family: var(--font-serif); font-size: 1.6rem; color: var(--color-text); margin-bottom: 16px;">
+                            Living Lounge, Teak Bar & Bedroom 1
+                        </h3>
+                        
+                        <p style="font-size: 0.92rem; color: var(--color-muted); line-height: 1.65; margin-bottom: 24px;">
+                            The social heart of RK's Villa. The ground floor opens seamlessly onto the private pool deck through floor-to-ceiling sliding glass doors, combining indoor luxury with outdoor poolside dining.
                         </p>
+
+                        <div style="display: flex; flex-direction: column; gap: 16px;">
+                            <div style="background: var(--color-card-light); padding: 14px 18px; border-radius: 8px; border-left: 3px solid var(--color-gold);">
+                                <h4 style="font-size: 0.95rem; color: var(--color-gold); font-weight: 600; margin-bottom: 4px; display: flex; align-items: center; gap: 8px;">
+                                    <i data-lucide="bed" style="width: 16px; height: 16px;"></i> Bedroom 1 (Ground Floor Pool View Suite)
+                                </h4>
+                                <p style="font-size: 0.85rem; color: var(--color-muted); margin: 0;">
+                                    Plush posturepedic king bed, individual AC, direct floor-to-ceiling pool deck view, and ensuite bathroom with rain shower & organic toiletries.
+                                </p>
+                            </div>
+
+                            <div style="background: var(--color-card-light); padding: 14px 18px; border-radius: 8px; border-left: 3px solid var(--color-gold);">
+                                <h4 style="font-size: 0.95rem; color: var(--color-gold); font-weight: 600; margin-bottom: 4px; display: flex; align-items: center; gap: 8px;">
+                                    <i data-lucide="tv" style="width: 16px; height: 16px;"></i> Living Lounge & Teak Bar Area
+                                </h4>
+                                <p style="font-size: 0.85rem; color: var(--color-muted); margin: 0;">
+                                    High-ceiling open lounge with plush sofa seating, 55" Smart TV, 2 ACs, teak bar counter with bar stools, and high-power JBL Party Speaker with karaoke mics.
+                                </p>
+                            </div>
+
+                            <div style="background: var(--color-card-light); padding: 14px 18px; border-radius: 8px; border-left: 3px solid var(--color-gold);">
+                                <h4 style="font-size: 0.95rem; color: var(--color-gold); font-weight: 600; margin-bottom: 4px; display: flex; align-items: center; gap: 8px;">
+                                    <i data-lucide="utensils" style="width: 16px; height: 16px;"></i> Chef's Kitchen & 8-Seater Dining
+                                </h4>
+                                <p style="font-size: 0.85rem; color: var(--color-muted); margin: 0;">
+                                    Fully equipped modular kitchen with gas stove, microwave, oven, air fryer, RO purifier, refrigerator, cookware, cutlery, and an 8-seater solid teak dining table.
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Level 2: First Floor -->
-                <div style="background: var(--color-card); border: 1px solid var(--color-border); border-radius: 6px; overflow: hidden; display: flex; flex-direction: column;">
-                    <div style="height: 220px; overflow: hidden; position: relative;">
-                        <img src="gallery/asset_web/rks-villa-master-bedroom-suite.webp" alt="First Floor Bedrooms 2, 3, 4" style="width: 100%; height: 100%; object-fit: cover;">
-                        <span style="position: absolute; top: 15px; left: 15px; background: rgba(10,10,10,0.85); border: 1px solid var(--color-gold); color: var(--color-gold); padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; text-transform: uppercase; font-weight: 600;">First Floor</span>
+                <!-- FIRST FLOOR PANEL -->
+                <div id="panel-first" class="floor-panel" style="display: none; grid-template-columns: 1fr 1fr; gap: 40px; background: var(--color-card); border: 1px solid var(--color-border); border-radius: 12px; padding: 36px; align-items: center;">
+                    <div style="border-radius: 8px; overflow: hidden; position: relative; min-height: 380px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+                        <img src="gallery/asset_web/rks-villa-master-bedroom-suite.webp" alt="RK's Villa First Floor Master Suites" style="width: 100%; height: 100%; object-fit: cover; position: absolute; top:0; left:0;">
+                        <div style="position: absolute; top: 16px; left: 16px; background: rgba(10,10,10,0.85); border: 1px solid var(--color-gold); color: var(--color-gold); padding: 6px 14px; border-radius: 20px; font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;">
+                            Level 1 • First Floor
+                        </div>
                     </div>
-                    <div style="padding: 24px; flex-grow: 1;">
-                        <h3 style="font-family: var(--font-serif); font-size: 1.15rem; color: var(--color-text); margin-bottom: 10px;">Bedrooms 2, 3, & 4 (Ensuite)</h3>
-                        <p style="font-size: 0.88rem; color: var(--color-muted); line-height: 1.6; margin-bottom: 15px;">
-                            Three spacious ensuite master bedrooms on the mid-level. Each bedroom features a plush posturepedic king bed, teak wardrobe, work desk, individual AC, hot water rain shower, hairdryer, organic toiletries, and a private attached balcony.
+
+                    <div>
+                        <div style="display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap;">
+                            <span style="background: rgba(240,184,39,0.12); color: var(--color-gold); border: 1px solid rgba(240,184,39,0.3); padding: 3px 10px; border-radius: 4px; font-size: 0.75rem; font-weight: 600;">2 Master Suites</span>
+                            <span style="background: rgba(240,184,39,0.12); color: var(--color-gold); border: 1px solid rgba(240,184,39,0.3); padding: 3px 10px; border-radius: 4px; font-size: 0.75rem; font-weight: 600;">Private Attached Balconies</span>
+                            <span style="background: rgba(240,184,39,0.12); color: var(--color-gold); border: 1px solid rgba(240,184,39,0.3); padding: 3px 10px; border-radius: 4px; font-size: 0.75rem; font-weight: 600;">Ensuite Rain Showers</span>
+                        </div>
+
+                        <h3 style="font-family: var(--font-serif); font-size: 1.6rem; color: var(--color-text); margin-bottom: 16px;">
+                            Bedrooms 2 & 3 (Dual Master Suites)
+                        </h3>
+                        
+                        <p style="font-size: 0.92rem; color: var(--color-muted); line-height: 1.65; margin-bottom: 24px;">
+                            The mid-level floor offers complete privacy with two expansive master suites. Each bedroom features its own private attached balcony overlooking Siolim's serene coconut groves.
                         </p>
+
+                        <div style="display: flex; flex-direction: column; gap: 16px;">
+                            <div style="background: var(--color-card-light); padding: 14px 18px; border-radius: 8px; border-left: 3px solid var(--color-gold);">
+                                <h4 style="font-size: 0.95rem; color: var(--color-gold); font-weight: 600; margin-bottom: 4px; display: flex; align-items: center; gap: 8px;">
+                                    <i data-lucide="bed-double" style="width: 16px; height: 16px;"></i> Bedroom 2 (West View Master Suite)
+                                </h4>
+                                <p style="font-size: 0.85rem; color: var(--color-muted); margin: 0;">
+                                    Posturepedic king bed, AC, teak wardrobe, study desk, private attached balcony with outdoor seating, and ensuite marble shower bathroom.
+                                </p>
+                            </div>
+
+                            <div style="background: var(--color-card-light); padding: 14px 18px; border-radius: 8px; border-left: 3px solid var(--color-gold);">
+                                <h4 style="font-size: 0.95rem; color: var(--color-gold); font-weight: 600; margin-bottom: 4px; display: flex; align-items: center; gap: 8px;">
+                                    <i data-lucide="trees" style="width: 16px; height: 16px;"></i> Bedroom 3 (Palm Canopy Master Suite)
+                                </h4>
+                                <p style="font-size: 0.85rem; color: var(--color-muted); margin: 0;">
+                                    Posturepedic king bed, AC, reading chair, teak wardrobe, private balcony facing green palms, and ensuite hot water shower bathroom.
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Level 3: Top Floor -->
-                <div style="background: var(--color-card); border: 1px solid var(--color-border); border-radius: 6px; overflow: hidden; display: flex; flex-direction: column;">
-                    <div style="height: 220px; overflow: hidden; position: relative;">
-                        <img src="gallery/asset_web/rks-villa-master-suite-soaking-bathtub.webp" alt="Top Floor Master Suite 1 with Bathtub" style="width: 100%; height: 100%; object-fit: cover;">
-                        <span style="position: absolute; top: 15px; left: 15px; background: rgba(10,10,10,0.85); border: 1px solid var(--color-gold); color: var(--color-gold); padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; text-transform: uppercase; font-weight: 600;">Top Floor</span>
+                <!-- SECOND FLOOR PANEL -->
+                <div id="panel-second" class="floor-panel" style="display: none; grid-template-columns: 1fr 1fr; gap: 40px; background: var(--color-card); border: 1px solid var(--color-border); border-radius: 12px; padding: 36px; align-items: center;">
+                    <div style="border-radius: 8px; overflow: hidden; position: relative; min-height: 380px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+                        <img src="gallery/asset_web/rks-villa-master-suite-soaking-bathtub.webp" alt="RK's Villa Top Floor Penthouse Suite with Soaking Bathtub" style="width: 100%; height: 100%; object-fit: cover; position: absolute; top:0; left:0;">
+                        <div style="position: absolute; top: 16px; left: 16px; background: rgba(10,10,10,0.85); border: 1px solid var(--color-gold); color: var(--color-gold); padding: 6px 14px; border-radius: 20px; font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;">
+                            Level 2 • Top Floor Penthouse
+                        </div>
                     </div>
-                    <div style="padding: 24px; flex-grow: 1;">
-                        <h3 style="font-family: var(--font-serif); font-size: 1.15rem; color: var(--color-text); margin-bottom: 10px;">Master Suite 1 (Soaking Bathtub)</h3>
-                        <p style="font-size: 0.88rem; color: var(--color-muted); line-height: 1.6; margin-bottom: 15px;">
-                            The flagship penthouse master suite. Highlights a luxurious soaking bathtub, walk-in rain shower, king bed, wardrobe, study desk, organic toiletries, and an expansive private terrace balcony with outdoor seating overlooking Goan palms.
+
+                    <div>
+                        <div style="display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap;">
+                            <span style="background: rgba(240,184,39,0.12); color: var(--color-gold); border: 1px solid rgba(240,184,39,0.3); padding: 3px 10px; border-radius: 4px; font-size: 0.75rem; font-weight: 600;">Penthouse Suite (Bedroom 4)</span>
+                            <span style="background: rgba(240,184,39,0.12); color: var(--color-gold); border: 1px solid rgba(240,184,39,0.3); padding: 3px 10px; border-radius: 4px; font-size: 0.75rem; font-weight: 600;">Deep Soaking Bathtub</span>
+                            <span style="background: rgba(240,184,39,0.12); color: var(--color-gold); border: 1px solid rgba(240,184,39,0.3); padding: 3px 10px; border-radius: 4px; font-size: 0.75rem; font-weight: 600;">Skyline Terrace Deck</span>
+                        </div>
+
+                        <h3 style="font-family: var(--font-serif); font-size: 1.6rem; color: var(--color-text); margin-bottom: 16px;">
+                            Flagship Penthouse Master Suite & Bathtub Sanctuary
+                        </h3>
+                        
+                        <p style="font-size: 0.92rem; color: var(--color-muted); line-height: 1.65; margin-bottom: 24px;">
+                            The flagship top-floor penthouse. Occupying the entire top level, this suite provides absolute privacy, high ceilings, a private deep soaking bathtub, and panoramic skyline views.
                         </p>
+
+                        <div style="display: flex; flex-direction: column; gap: 16px;">
+                            <div style="background: var(--color-card-light); padding: 14px 18px; border-radius: 8px; border-left: 3px solid var(--color-gold);">
+                                <h4 style="font-size: 0.95rem; color: var(--color-gold); font-weight: 600; margin-bottom: 4px; display: flex; align-items: center; gap: 8px;">
+                                    <i data-lucide="bath" style="width: 16px; height: 16px;"></i> Deep Soaking Bathtub & Spa Suite
+                                </h4>
+                                <p style="font-size: 0.85rem; color: var(--color-muted); margin: 0;">
+                                    Luxury deep soaking bathtub with hot water jetting, organic bath salts, hairdryer, walk-in rain shower, plush king bed, and study desk.
+                                </p>
+                            </div>
+
+                            <div style="background: var(--color-card-light); padding: 14px 18px; border-radius: 8px; border-left: 3px solid var(--color-gold);">
+                                <h4 style="font-size: 0.95rem; color: var(--color-gold); font-weight: 600; margin-bottom: 4px; display: flex; align-items: center; gap: 8px;">
+                                    <i data-lucide="sun" style="width: 16px; height: 16px;"></i> Private Skyline Terrace Balcony
+                                </h4>
+                                <p style="font-size: 0.85rem; color: var(--color-muted); margin: 0;">
+                                    Expansive private terrace deck with outdoor seating providing panoramic views of the Siolim skyline and sunset views over Goan palms.
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
@@ -460,6 +584,37 @@
 <script src="https://unpkg.com/lucide@latest"></script>
 <script>
     document.addEventListener('DOMContentLoaded', () => {
+        
+        window.switchFloor = function(floorKey) {
+            const floors = ['ground', 'first', 'second'];
+            floors.forEach(f => {
+                const btn = document.getElementById('tab-' + f);
+                const panel = document.getElementById('panel-' + f);
+                if (f === floorKey) {
+                    if (btn) {
+                        btn.style.background = 'var(--color-gold)';
+                        btn.style.color = '#000';
+                        btn.style.borderColor = 'var(--color-gold)';
+                    }
+                    if (panel) {
+                        panel.style.display = 'grid';
+                    }
+                } else {
+                    if (btn) {
+                        btn.style.background = 'var(--color-card)';
+                        btn.style.color = 'var(--color-text)';
+                        btn.style.borderColor = 'var(--color-border)';
+                    }
+                    if (panel) {
+                        panel.style.display = 'none';
+                    }
+                }
+            });
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+        };
+
         if (typeof lucide !== 'undefined') {
             lucide.createIcons();
         }

@@ -2673,3 +2673,36 @@ body.menu-open .mobile-sticky-cta-bar {
         box-sizing: border-box !important;
     }
 }
+
+
+/* INTERACTIVE FLOOR-BY-FLOOR EXPLORER STYLES */
+.floor-panel {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    background: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: 36px;
+    align-items: center;
+}
+
+@media (max-width: 992px) {
+    .floor-panel {
+        grid-template-columns: 1fr !important;
+        gap: 24px !important;
+        padding: 20px !important;
+    }
+
+    .floor-panel > div:first-child {
+        min-height: 250px !important;
+    }
+
+    .floor-tab-btn {
+        padding: 10px 16px !important;
+        font-size: 0.82rem !important;
+        width: 100% !important;
+        max-width: 340px !important;
+        justify-content: center !important;
+    }
+}
