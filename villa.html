@@ -217,7 +217,7 @@
             <div class="grid-3 reveal active" style="gap: 30px;">
 
                 <!-- CARD 1: GROUND FLOOR -->
-                <div class="floor-clickable-card" onclick="openFloorModal('ground')" style="background: var(--color-card); border: 1px solid var(--color-border); border-radius: 12px; overflow: hidden; cursor: pointer; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); display: flex; flex-direction: column; position: relative;">
+                <div class="floor-clickable-card" onclick="window.openFloorModal('ground')" data-floor="ground" style="background: var(--color-card); border: 1px solid var(--color-border); border-radius: 12px; overflow: hidden; cursor: pointer; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); display: flex; flex-direction: column; position: relative;">
                     <div style="height: 230px; overflow: hidden; position: relative;">
                         <img src="gallery/asset_web/rks-villa-living-room-teak-bar.webp" alt="Ground Floor Living Lounge & Teak Bar" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease;" class="card-img-hover">
                         <span style="position: absolute; top: 16px; left: 16px; background: rgba(10,10,10,0.85); border: 1px solid var(--color-gold); color: var(--color-gold); padding: 5px 14px; border-radius: 20px; font-size: 0.75rem; text-transform: uppercase; font-weight: 700; letter-spacing: 0.05em;">
@@ -245,7 +245,7 @@
                 </div>
 
                 <!-- CARD 2: FIRST FLOOR -->
-                <div class="floor-clickable-card" onclick="openFloorModal('first')" style="background: var(--color-card); border: 1px solid var(--color-border); border-radius: 12px; overflow: hidden; cursor: pointer; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); display: flex; flex-direction: column; position: relative;">
+                <div class="floor-clickable-card" onclick="window.openFloorModal('first')" data-floor="first" style="background: var(--color-card); border: 1px solid var(--color-border); border-radius: 12px; overflow: hidden; cursor: pointer; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); display: flex; flex-direction: column; position: relative;">
                     <div style="height: 230px; overflow: hidden; position: relative;">
                         <img src="gallery/asset_web/rks-villa-master-bedroom-suite.webp" alt="First Floor Master Suites" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease;" class="card-img-hover">
                         <span style="position: absolute; top: 16px; left: 16px; background: rgba(10,10,10,0.85); border: 1px solid var(--color-gold); color: var(--color-gold); padding: 5px 14px; border-radius: 20px; font-size: 0.75rem; text-transform: uppercase; font-weight: 700; letter-spacing: 0.05em;">
@@ -273,7 +273,7 @@
                 </div>
 
                 <!-- CARD 3: SECOND FLOOR -->
-                <div class="floor-clickable-card" onclick="openFloorModal('second')" style="background: var(--color-card); border: 1px solid var(--color-border); border-radius: 12px; overflow: hidden; cursor: pointer; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); display: flex; flex-direction: column; position: relative;">
+                <div class="floor-clickable-card" onclick="window.openFloorModal('second')" data-floor="second" style="background: var(--color-card); border: 1px solid var(--color-border); border-radius: 12px; overflow: hidden; cursor: pointer; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); display: flex; flex-direction: column; position: relative;">
                     <div style="height: 230px; overflow: hidden; position: relative;">
                         <img src="gallery/asset_web/rks-villa-master-suite-soaking-bathtub.webp" alt="Top Floor Master Suite 1 with Bathtub" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease;" class="card-img-hover">
                         <span style="position: absolute; top: 16px; left: 16px; background: rgba(10,10,10,0.85); border: 1px solid var(--color-gold); color: var(--color-gold); padding: 5px 14px; border-radius: 20px; font-size: 0.75rem; text-transform: uppercase; font-weight: 700; letter-spacing: 0.05em;">
@@ -657,6 +657,17 @@
         if (typeof lucide !== 'undefined') {
             lucide.createIcons();
         }
+
+        // Attach explicit click listeners to all floor cards
+        document.querySelectorAll('.floor-clickable-card').forEach(card => {
+            card.addEventListener('click', function(e) {
+                const floorKey = this.getAttribute('data-floor') || 'ground';
+                if (typeof window.openFloorModal === 'function') {
+                    window.openFloorModal(floorKey);
+                }
+            });
+        });
+
     };
 
     window.closeFloorModal = function() {
@@ -679,6 +690,17 @@
         if (typeof lucide !== 'undefined') {
             lucide.createIcons();
         }
+
+        // Attach explicit click listeners to all floor cards
+        document.querySelectorAll('.floor-clickable-card').forEach(card => {
+            card.addEventListener('click', function(e) {
+                const floorKey = this.getAttribute('data-floor') || 'ground';
+                if (typeof window.openFloorModal === 'function') {
+                    window.openFloorModal(floorKey);
+                }
+            });
+        });
+
 
         const header = document.getElementById('site-header');
         window.addEventListener('scroll', () => {

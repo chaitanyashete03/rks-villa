@@ -2733,3 +2733,56 @@ body.menu-open .mobile-sticky-cta-bar {
         transform: scale(1);
     }
 }
+
+
+/* ==========================================================================
+   CUSTOM DARK LUXURY SCROLLBAR STYLING
+   ========================================================================== */
+
+/* Webkit Browsers (Chrome, Edge, Safari) */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: #0B0C10;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(240, 184, 39, 0.30);
+    border-radius: 10px;
+    transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--color-gold);
+}
+
+/* Firefox Scrollbar Support */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(240, 184, 39, 0.30) #0B0C10;
+}
+
+/* SLEEK MODAL DIALOG SCROLLBAR */
+#floor-modal > div::-webkit-scrollbar,
+#floor-modal::-webkit-scrollbar {
+    width: 4px;
+}
+
+#floor-modal > div::-webkit-scrollbar-track,
+#floor-modal::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+#floor-modal > div::-webkit-scrollbar-thumb,
+#floor-modal::-webkit-scrollbar-thumb {
+    background: rgba(240, 184, 39, 0.35);
+    border-radius: 10px;
+}
+
+#floor-modal > div::-webkit-scrollbar-thumb:hover,
+#floor-modal::-webkit-scrollbar-thumb:hover {
+    background: var(--color-gold);
+}
