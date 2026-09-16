@@ -540,310 +540,142 @@
 
 <script src="https://unpkg.com/lucide@latest"></script>
 <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        
-        window.switchFloor = function(floorKey) {
-            const floors = ['ground', 'first', 'second'];
-            floors.forEach(f => {
-                const btn = document.getElementById('tab-' + f);
-                const panel = document.getElementById('panel-' + f);
-                if (f === floorKey) {
-                    if (btn) {
-                        btn.style.background = 'var(--color-gold)';
-                        btn.style.color = '#000';
-                        btn.style.borderColor = 'var(--color-gold)';
-                    }
-                    if (panel) {
-                        panel.style.display = 'grid';
-                    }
-                } else {
-                    if (btn) {
-                        btn.style.background = 'var(--color-card)';
-                        btn.style.color = 'var(--color-text)';
-                        btn.style.borderColor = 'var(--color-border)';
-                    }
-                    if (panel) {
-                        panel.style.display = 'none';
-                    }
+    // FLOOR MODAL DATA & CONTROLLER
+    const floorDetails = {
+        ground: {
+            badge: "Level 0 • Ground Floor",
+            title: "Ground Floor Lounge, Teak Bar & Pool Deck Specs",
+            img: "gallery/asset_web/rks-villa-living-room-teak-bar.webp",
+            tags: ["1 BHK Layout", "Direct Pool Deck Access", "Teak Bar Lounge", "Gourmet Kitchen", "8-Seater Dining"],
+            intro: "The social hub of RK's Villa. Opens directly onto the private pool deck through floor-to-ceiling glass sliding doors.",
+            rooms: [
+                {
+                    title: "Bedroom 1 (Ground Floor Pool View Suite)",
+                    icon: "bed",
+                    desc: "Plush posturepedic king bed, individual AC, direct floor-to-ceiling pool deck view, and ensuite marble shower bathroom with rain shower & organic toiletries."
+                },
+                {
+                    title: "Grand Living Lounge & Teak Bar Area",
+                    icon: "tv",
+                    desc: "High-ceiling open lounge with plush sofa seating, 55-inch Smart TV, 2 ACs, teak bar counter with bar stools, and high-power JBL Party Speaker with dual karaoke mics."
+                },
+                {
+                    title: "Chef's Modular Kitchen & 8-Seater Dining",
+                    icon: "utensils",
+                    desc: "Fully stocked modular kitchen with gas stove, microwave, oven, air fryer, RO purifier, refrigerator, cookware, cutlery, and an 8-seater solid teak dining table."
+                },
+                {
+                    title: "Private Outdoor Swimming Pool & Gazebo",
+                    icon: "waves",
+                    desc: "4.5ft deep swimming pool with waterfall cascade, poolside sun loungers, floaters, and outdoor timber gazebo for evening drinks."
                 }
-            });
-            
-        // FLOOR MODAL DATA & CONTROLLER
-        const floorDetails = {
-            ground: {
-                badge: 'Level 0 • Ground Floor',
-                title: 'Ground Floor Lounge, Teak Bar & Pool Deck Specs',
-                img: 'gallery/asset_web/rks-villa-living-room-teak-bar.webp',
-                tags: ['1 BHK Layout', 'Direct Pool Deck Access', 'Teak Bar Lounge', 'Gourmet Kitchen', '8-Seater Dining'],
-                intro: 'The social hub of RK's Villa. Opens directly onto the private pool deck through floor-to-ceiling glass sliding doors.',
-                rooms: [
-                    {
-                        title: 'Bedroom 1 (Ground Floor Pool View Suite)',
-                        icon: 'bed',
-                        desc: 'Plush posturepedic king bed, individual AC, direct floor-to-ceiling pool deck view, and ensuite marble shower bathroom with rain shower & organic toiletries.'
-                    },
-                    {
-                        title: 'Grand Living Lounge & Teak Bar Area',
-                        icon: 'tv',
-                        desc: 'High-ceiling open lounge with plush sofa seating, 55" Smart TV, 2 ACs, teak bar counter with bar stools, and high-power JBL Party Speaker with dual karaoke mics.'
-                    },
-                    {
-                        title: 'Chef's Modular Kitchen & 8-Seater Dining',
-                        icon: 'utensils',
-                        desc: 'Fully stocked modular kitchen with gas stove, microwave, oven, air fryer, RO purifier, refrigerator, cookware, cutlery, and an 8-seater solid teak dining table.'
-                    },
-                    {
-                        title: 'Private Outdoor Swimming Pool & Gazebo',
-                        icon: 'waves',
-                        desc: '4.5ft deep swimming pool with waterfall cascade, poolside sun loungers, floaters, and outdoor timber gazebo for evening drinks.'
-                    }
-                ]
-            },
-            first: {
-                badge: 'Level 1 • First Floor',
-                title: 'First Floor Dual Master Suites Specs',
-                img: 'gallery/asset_web/rks-villa-master-bedroom-suite.webp',
-                tags: ['2 Master Suites', 'Private Attached Balconies', 'Ensuite Rain Showers', 'Posturepedic King Beds'],
-                intro: 'The mid-level floor offers complete privacy with two expansive master suites. Each bedroom features its own private attached balcony.',
-                rooms: [
-                    {
-                        title: 'Bedroom 2 (West View Master Suite)',
-                        icon: 'bed-double',
-                        desc: 'Posturepedic king bed, AC, teak wardrobe, study/work desk, private attached balcony with outdoor seating, and ensuite marble shower bathroom with 24/7 hot water rain shower.'
-                    },
-                    {
-                        title: 'Bedroom 3 (Palm Canopy Master Suite)',
-                        icon: 'trees',
-                        desc: 'Posturepedic king bed, AC, reading chair, teak wardrobe, private balcony facing green coconut palms, hairdryer, and ensuite hot water shower bathroom.'
-                    },
-                    {
-                        title: 'Central Staircase Landing & Storage',
-                        icon: 'layers',
-                        desc: 'Elegant teak-wood staircase landing linking both suites with central guest storage and linen cupboards.'
-                    }
-                ]
-            },
-            second: {
-                badge: 'Level 2 • Top Floor Penthouse',
-                title: 'Penthouse Suite & Soaking Bathtub Sanctuary Specs',
-                img: 'gallery/asset_web/rks-villa-master-suite-soaking-bathtub.webp',
-                tags: ['Penthouse Suite (Bedroom 4)', 'Deep Soaking Bathtub', 'Private Skyline Terrace', 'Hilltop Sunset Views'],
-                intro: 'The crown jewel of RK's Villa. Occupying the entire top floor, this suite provides absolute privacy, high ceilings, a private deep soaking bathtub, and panoramic skyline views.',
-                rooms: [
-                    {
-                        title: 'Bedroom 4 (Flagship Penthouse Master Suite)',
-                        icon: 'bed',
-                        desc: 'Luxury penthouse suite occupying the entire top level with high ceilings, plush king bed, individual AC, walk-in wardrobe, and study desk.'
-                    },
-                    {
-                        title: 'Deep Soaking Bathtub & Spa Suite',
-                        icon: 'bath',
-                        desc: 'Stand-alone luxury soaking bathtub with hot water jetting, organic bath salts, hairdryer, walk-in rain shower, and premium guest robes.'
-                    },
-                    {
-                        title: 'Private Skyline Terrace Balcony',
-                        icon: 'sun',
-                        desc: 'Expansive private terrace deck with outdoor seating providing panoramic views of the Siolim skyline and golden sunset vistas over Goan palms.'
-                    }
-                ]
-            }
-        };
+            ]
+        },
+        first: {
+            badge: "Level 1 • First Floor",
+            title: "First Floor Dual Master Suites Specs",
+            img: "gallery/asset_web/rks-villa-master-bedroom-suite.webp",
+            tags: ["2 Master Suites", "Private Attached Balconies", "Ensuite Rain Showers", "Posturepedic King Beds"],
+            intro: "The mid-level floor offers complete privacy with two expansive master suites. Each bedroom features its own private attached balcony.",
+            rooms: [
+                {
+                    title: "Bedroom 2 (West View Master Suite)",
+                    icon: "bed-double",
+                    desc: "Posturepedic king bed, AC, teak wardrobe, study/work desk, private attached balcony with outdoor seating, and ensuite marble shower bathroom with 24/7 hot water rain shower."
+                },
+                {
+                    title: "Bedroom 3 (Palm Canopy Master Suite)",
+                    icon: "trees",
+                    desc: "Posturepedic king bed, AC, reading chair, teak wardrobe, private balcony facing green coconut palms, hairdryer, and ensuite hot water shower bathroom."
+                },
+                {
+                    title: "Central Staircase Landing & Storage",
+                    icon: "layers",
+                    desc: "Elegant teak-wood staircase landing linking both suites with central guest storage and linen cupboards."
+                }
+            ]
+        },
+        second: {
+            badge: "Level 2 • Top Floor Penthouse",
+            title: "Penthouse Suite & Soaking Bathtub Sanctuary Specs",
+            img: "gallery/asset_web/rks-villa-master-suite-soaking-bathtub.webp",
+            tags: ["Penthouse Suite (Bedroom 4)", "Deep Soaking Bathtub", "Private Skyline Terrace", "Hilltop Sunset Views"],
+            intro: "The crown jewel of RK's Villa. Occupying the entire top floor, this suite provides absolute privacy, high ceilings, a private deep soaking bathtub, and panoramic skyline views.",
+            rooms: [
+                {
+                    title: "Bedroom 4 (Flagship Penthouse Master Suite)",
+                    icon: "bed",
+                    desc: "Luxury penthouse suite occupying the entire top level with high ceilings, plush king bed, individual AC, walk-in wardrobe, and study desk."
+                },
+                {
+                    title: "Deep Soaking Bathtub & Spa Suite",
+                    icon: "bath",
+                    desc: "Stand-alone luxury soaking bathtub with hot water jetting, organic bath salts, hairdryer, walk-in rain shower, and premium guest robes."
+                },
+                {
+                    title: "Private Skyline Terrace Balcony",
+                    icon: "sun",
+                    desc: "Expansive private terrace deck with outdoor seating providing panoramic views of the Siolim skyline and golden sunset vistas over Goan palms."
+                }
+            ]
+        }
+    };
 
-        window.openFloorModal = function(floorKey) {
-            const data = floorDetails[floorKey];
-            if (!data) return;
+    window.openFloorModal = function(floorKey) {
+        const data = floorDetails[floorKey];
+        if (!data) return;
 
-            document.getElementById('modal-floor-badge').innerText = data.badge;
-            document.getElementById('modal-floor-title').innerText = data.title;
+        document.getElementById('modal-floor-badge').innerText = data.badge;
+        document.getElementById('modal-floor-title').innerText = data.title;
 
-            let tagsHtml = data.tags.map(t => `<span style="background: rgba(240,184,39,0.12); color: var(--color-gold); border: 1px solid rgba(240,184,39,0.3); padding: 4px 12px; border-radius: 4px; font-size: 0.78rem; font-weight: 600;">${t}</span>`).join('');
-            
-            let roomsHtml = data.rooms.map(r => `
-                <div style="background: var(--color-card-light); padding: 18px 20px; border-radius: 10px; border-left: 4px solid var(--color-gold); margin-bottom: 14px;">
-                    <h4 style="font-size: 1.05rem; color: var(--color-gold); font-weight: 600; margin-bottom: 6px; display: flex; align-items: center; gap: 10px;">
-                        <i data-lucide="${r.icon}" style="width: 20px; height: 20px;"></i> ${r.title}
-                    </h4>
-                    <p style="font-size: 0.9rem; color: var(--color-muted); line-height: 1.6; margin: 0;">${r.desc}</p>
-                </div>
-            `).join('');
+        let tagsHtml = data.tags.map(t => `<span style="background: rgba(240,184,39,0.12); color: var(--color-gold); border: 1px solid rgba(240,184,39,0.3); padding: 4px 12px; border-radius: 4px; font-size: 0.78rem; font-weight: 600;">${t}</span>`).join('');
+        
+        let roomsHtml = data.rooms.map(r => `
+            <div style="background: var(--color-card-light); padding: 18px 20px; border-radius: 10px; border-left: 4px solid var(--color-gold); margin-bottom: 14px;">
+                <h4 style="font-size: 1.05rem; color: var(--color-gold); font-weight: 600; margin-bottom: 6px; display: flex; align-items: center; gap: 10px;">
+                    <i data-lucide="${r.icon}" style="width: 20px; height: 20px;"></i> ${r.title}
+                </h4>
+                <p style="font-size: 0.9rem; color: var(--color-muted); line-height: 1.6; margin: 0;">${r.desc}</p>
+            </div>
+        `).join('');
 
-            const bodyHtml = `
-                <div style="border-radius: 10px; overflow: hidden; height: 280px; margin-bottom: 24px; box-shadow: 0 10px 25px rgba(0,0,0,0.5);">
-                    <img src="${data.img}" alt="${data.title}" style="width: 100%; height: 100%; object-fit: cover;">
-                </div>
-                <p style="font-size: 0.95rem; color: var(--color-text); line-height: 1.6; margin-bottom: 20px;">${data.intro}</p>
-                <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px;">${tagsHtml}</div>
-                <h4 style="font-family: var(--font-serif); font-size: 1.2rem; color: var(--color-text); margin-bottom: 16px;">Room & Feature Specifications</h4>
-                <div>${roomsHtml}</div>
-            `;
+        const bodyHtml = `
+            <div style="border-radius: 10px; overflow: hidden; height: 280px; margin-bottom: 24px; box-shadow: 0 10px 25px rgba(0,0,0,0.5);">
+                <img src="${data.img}" alt="${data.title}" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+            <p style="font-size: 0.95rem; color: var(--color-text); line-height: 1.6; margin-bottom: 20px;">${data.intro}</p>
+            <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px;">${tagsHtml}</div>
+            <h4 style="font-family: var(--font-serif); font-size: 1.2rem; color: var(--color-text); margin-bottom: 16px;">Room & Feature Specifications</h4>
+            <div>${roomsHtml}</div>
+        `;
 
-            document.getElementById('modal-floor-body').innerHTML = bodyHtml;
-            const modal = document.getElementById('floor-modal');
-            modal.style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-
-            if (typeof lucide !== 'undefined') {
-                lucide.createIcons();
-            }
-        };
-
-        window.closeFloorModal = function() {
-            const modal = document.getElementById('floor-modal');
-            if (modal) {
-                modal.style.display = 'none';
-                document.body.style.overflow = '';
-            }
-        };
-
-        // Close on ESC key or backdrop click
-        window.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') closeFloorModal();
-        });
-        document.getElementById('floor-modal')?.addEventListener('click', (e) => {
-            if (e.target.id === 'floor-modal') closeFloorModal();
-        });
+        document.getElementById('modal-floor-body').innerHTML = bodyHtml;
+        const modal = document.getElementById('floor-modal');
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
 
         if (typeof lucide !== 'undefined') {
-                lucide.createIcons();
-            }
-        };
+            lucide.createIcons();
+        }
+    };
 
-        
-        // FLOOR MODAL DATA & CONTROLLER
-        const floorDetails = {
-            ground: {
-                badge: 'Level 0 • Ground Floor',
-                title: 'Ground Floor Lounge, Teak Bar & Pool Deck Specs',
-                img: 'gallery/asset_web/rks-villa-living-room-teak-bar.webp',
-                tags: ['1 BHK Layout', 'Direct Pool Deck Access', 'Teak Bar Lounge', 'Gourmet Kitchen', '8-Seater Dining'],
-                intro: 'The social hub of RK's Villa. Opens directly onto the private pool deck through floor-to-ceiling glass sliding doors.',
-                rooms: [
-                    {
-                        title: 'Bedroom 1 (Ground Floor Pool View Suite)',
-                        icon: 'bed',
-                        desc: 'Plush posturepedic king bed, individual AC, direct floor-to-ceiling pool deck view, and ensuite marble shower bathroom with rain shower & organic toiletries.'
-                    },
-                    {
-                        title: 'Grand Living Lounge & Teak Bar Area',
-                        icon: 'tv',
-                        desc: 'High-ceiling open lounge with plush sofa seating, 55" Smart TV, 2 ACs, teak bar counter with bar stools, and high-power JBL Party Speaker with dual karaoke mics.'
-                    },
-                    {
-                        title: 'Chef's Modular Kitchen & 8-Seater Dining',
-                        icon: 'utensils',
-                        desc: 'Fully stocked modular kitchen with gas stove, microwave, oven, air fryer, RO purifier, refrigerator, cookware, cutlery, and an 8-seater solid teak dining table.'
-                    },
-                    {
-                        title: 'Private Outdoor Swimming Pool & Gazebo',
-                        icon: 'waves',
-                        desc: '4.5ft deep swimming pool with waterfall cascade, poolside sun loungers, floaters, and outdoor timber gazebo for evening drinks.'
-                    }
-                ]
-            },
-            first: {
-                badge: 'Level 1 • First Floor',
-                title: 'First Floor Dual Master Suites Specs',
-                img: 'gallery/asset_web/rks-villa-master-bedroom-suite.webp',
-                tags: ['2 Master Suites', 'Private Attached Balconies', 'Ensuite Rain Showers', 'Posturepedic King Beds'],
-                intro: 'The mid-level floor offers complete privacy with two expansive master suites. Each bedroom features its own private attached balcony.',
-                rooms: [
-                    {
-                        title: 'Bedroom 2 (West View Master Suite)',
-                        icon: 'bed-double',
-                        desc: 'Posturepedic king bed, AC, teak wardrobe, study/work desk, private attached balcony with outdoor seating, and ensuite marble shower bathroom with 24/7 hot water rain shower.'
-                    },
-                    {
-                        title: 'Bedroom 3 (Palm Canopy Master Suite)',
-                        icon: 'trees',
-                        desc: 'Posturepedic king bed, AC, reading chair, teak wardrobe, private balcony facing green coconut palms, hairdryer, and ensuite hot water shower bathroom.'
-                    },
-                    {
-                        title: 'Central Staircase Landing & Storage',
-                        icon: 'layers',
-                        desc: 'Elegant teak-wood staircase landing linking both suites with central guest storage and linen cupboards.'
-                    }
-                ]
-            },
-            second: {
-                badge: 'Level 2 • Top Floor Penthouse',
-                title: 'Penthouse Suite & Soaking Bathtub Sanctuary Specs',
-                img: 'gallery/asset_web/rks-villa-master-suite-soaking-bathtub.webp',
-                tags: ['Penthouse Suite (Bedroom 4)', 'Deep Soaking Bathtub', 'Private Skyline Terrace', 'Hilltop Sunset Views'],
-                intro: 'The crown jewel of RK's Villa. Occupying the entire top floor, this suite provides absolute privacy, high ceilings, a private deep soaking bathtub, and panoramic skyline views.',
-                rooms: [
-                    {
-                        title: 'Bedroom 4 (Flagship Penthouse Master Suite)',
-                        icon: 'bed',
-                        desc: 'Luxury penthouse suite occupying the entire top level with high ceilings, plush king bed, individual AC, walk-in wardrobe, and study desk.'
-                    },
-                    {
-                        title: 'Deep Soaking Bathtub & Spa Suite',
-                        icon: 'bath',
-                        desc: 'Stand-alone luxury soaking bathtub with hot water jetting, organic bath salts, hairdryer, walk-in rain shower, and premium guest robes.'
-                    },
-                    {
-                        title: 'Private Skyline Terrace Balcony',
-                        icon: 'sun',
-                        desc: 'Expansive private terrace deck with outdoor seating providing panoramic views of the Siolim skyline and golden sunset vistas over Goan palms.'
-                    }
-                ]
-            }
-        };
+    window.closeFloorModal = function() {
+        const modal = document.getElementById('floor-modal');
+        if (modal) {
+            modal.style.display = 'none';
+            document.body.style.overflow = '';
+        }
+    };
 
-        window.openFloorModal = function(floorKey) {
-            const data = floorDetails[floorKey];
-            if (!data) return;
+    // Close on ESC key or backdrop click
+    window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeFloorModal();
+    });
+    document.getElementById('floor-modal')?.addEventListener('click', (e) => {
+        if (e.target.id === 'floor-modal') closeFloorModal();
+    });
 
-            document.getElementById('modal-floor-badge').innerText = data.badge;
-            document.getElementById('modal-floor-title').innerText = data.title;
-
-            let tagsHtml = data.tags.map(t => `<span style="background: rgba(240,184,39,0.12); color: var(--color-gold); border: 1px solid rgba(240,184,39,0.3); padding: 4px 12px; border-radius: 4px; font-size: 0.78rem; font-weight: 600;">${t}</span>`).join('');
-            
-            let roomsHtml = data.rooms.map(r => `
-                <div style="background: var(--color-card-light); padding: 18px 20px; border-radius: 10px; border-left: 4px solid var(--color-gold); margin-bottom: 14px;">
-                    <h4 style="font-size: 1.05rem; color: var(--color-gold); font-weight: 600; margin-bottom: 6px; display: flex; align-items: center; gap: 10px;">
-                        <i data-lucide="${r.icon}" style="width: 20px; height: 20px;"></i> ${r.title}
-                    </h4>
-                    <p style="font-size: 0.9rem; color: var(--color-muted); line-height: 1.6; margin: 0;">${r.desc}</p>
-                </div>
-            `).join('');
-
-            const bodyHtml = `
-                <div style="border-radius: 10px; overflow: hidden; height: 280px; margin-bottom: 24px; box-shadow: 0 10px 25px rgba(0,0,0,0.5);">
-                    <img src="${data.img}" alt="${data.title}" style="width: 100%; height: 100%; object-fit: cover;">
-                </div>
-                <p style="font-size: 0.95rem; color: var(--color-text); line-height: 1.6; margin-bottom: 20px;">${data.intro}</p>
-                <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px;">${tagsHtml}</div>
-                <h4 style="font-family: var(--font-serif); font-size: 1.2rem; color: var(--color-text); margin-bottom: 16px;">Room & Feature Specifications</h4>
-                <div>${roomsHtml}</div>
-            `;
-
-            document.getElementById('modal-floor-body').innerHTML = bodyHtml;
-            const modal = document.getElementById('floor-modal');
-            modal.style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-
-            if (typeof lucide !== 'undefined') {
-                lucide.createIcons();
-            }
-        };
-
-        window.closeFloorModal = function() {
-            const modal = document.getElementById('floor-modal');
-            if (modal) {
-                modal.style.display = 'none';
-                document.body.style.overflow = '';
-            }
-        };
-
-        // Close on ESC key or backdrop click
-        window.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') closeFloorModal();
-        });
-        document.getElementById('floor-modal')?.addEventListener('click', (e) => {
-            if (e.target.id === 'floor-modal') closeFloorModal();
-        });
-
+    document.addEventListener('DOMContentLoaded', () => {
         if (typeof lucide !== 'undefined') {
             lucide.createIcons();
         }
@@ -864,12 +696,14 @@
 
         if (mobileBtn && closeBtn && mobileOverlay) {
             mobileBtn.addEventListener('click', () => {
-                mobileOverlay.classList.add('active'); document.body.classList.add('menu-open');
+                mobileOverlay.classList.add('active'); 
+                document.body.classList.add('menu-open');
                 document.body.style.overflow = 'hidden';
             });
 
             const closeDrawer = () => {
-                mobileOverlay.classList.remove('active'); document.body.classList.remove('menu-open');
+                mobileOverlay.classList.remove('active'); 
+                document.body.classList.remove('menu-open');
                 document.body.style.overflow = '';
             };
 
