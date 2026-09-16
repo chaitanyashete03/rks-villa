@@ -12,7 +12,7 @@ const VILLA_NIGHTLY_RATE = 18000; // Base rate per night in INR
 const OTA_MARKUP_PERCENT = 0.18;   // 18% OTA platform markup savings
 
 // Hostex PMS iCal Live Integration (RK's Villa)
-const HOSTEX_ICAL_URL = "https://hostex.io/web/ical/12775375.ics?t=f4e552e719ec0cbf51f1d8f0fc5456b8";
+const HOSTEX_ICAL_URL = "https://hostex.io/web/ical/12794987.ics?t=58abb7dda177e75d420a0508407c1808";
 let BOOKED_DATES = new Set();
 
 class AvailabilityCalendar {
