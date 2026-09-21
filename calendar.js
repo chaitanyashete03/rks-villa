@@ -16,6 +16,28 @@ const HOSTEX_ICAL_URL = "https://hostex.io/web/ical/12794987.ics?t=58abb7dda177e
 let BOOKED_DATES = new Set();
 
 class AvailabilityCalendar {
+    
+    hasBookedDateInRange(startDate, endDate) {
+        if (!startDate || !endDate) return false;
+        let tempDate = new Date(startDate.getTime());
+        tempDate.setHours(0, 0, 0, 0);
+        const end = new Date(endDate.getTime());
+        end.setHours(0, 0, 0, 0);
+
+        while (tempDate < end) {
+            const yyyy = tempDate.getFullYear();
+            const mm = String(tempDate.getMonth() + 1).padStart(2, '0');
+            const dd = String(tempDate.getDate()).padStart(2, '0');
+            const dateStr = `${yyyy}-${mm}-${dd}`;
+
+            if (BOOKED_DATES.has(dateStr)) {
+                return true;
+            }
+            tempDate.setDate(tempDate.getDate() + 1);
+        }
+        return false;
+    }
+
     constructor(containerId) {
         this.container = document.getElementById(containerId);
         if (!this.container) return;
@@ -300,12 +322,24 @@ class AvailabilityCalendar {
                     // Start new selection
                     this.checkInDate = clickedDate;
                     this.checkOutDate = null;
+                    this.rangeErrorMessage = null;
                 } else if (this.checkInDate && !this.checkOutDate) {
                     if (clickedDate > this.checkInDate) {
-                        this.checkOutDate = clickedDate;
+                        // Check if intermediate nights contain booked dates
+                        if (this.hasBookedDateInRange(this.checkInDate, clickedDate)) {
+                            const prevCheckInStr = this.checkInDate.toLocaleDateString('en-IN', { day: 'numeric', month: 'short' });
+                            const newCheckInStr = clickedDate.toLocaleDateString('en-IN', { day: 'numeric', month: 'short' });
+                            this.checkInDate = clickedDate;
+                            this.checkOutDate = null;
+                            this.rangeErrorMessage = `Selected range contained booked dates after ${prevCheckInStr}. Check-in reset to ${newCheckInStr}. Now select check-out.`;
+                        } else {
+                            this.checkOutDate = clickedDate;
+                            this.rangeErrorMessage = null;
+                        }
                     } else {
                         this.checkInDate = clickedDate;
                         this.checkOutDate = null;
+                        this.rangeErrorMessage = null;
                     }
                 }
 
@@ -318,6 +352,19 @@ class AvailabilityCalendar {
     updateCalculator() {
         const initialMsg = this.container.querySelector('.calc-initial-msg');
         const calcContent = this.container.querySelector('.calc-details-content');
+
+        // Remove old warning message if present
+        const oldWarn = this.container.querySelector('.calc-warning-msg');
+        if (oldWarn) oldWarn.remove();
+
+        if (this.rangeErrorMessage) {
+            const warnDiv = document.createElement('div');
+            warnDiv.className = 'calc-warning-msg';
+            warnDiv.style.cssText = 'background: rgba(220, 53, 69, 0.15); border: 1px solid rgba(220, 53, 69, 0.4); color: #ff6b6b; padding: 10px 14px; border-radius: 8px; margin-bottom: 12px; font-size: 0.85rem; font-weight: 500; display: flex; align-items: center; gap: 8px;';
+            warnDiv.innerHTML = `<i data-lucide="alert-triangle" style="width: 18px; height: 18px; flex-shrink: 0;"></i> <span>${this.rangeErrorMessage}</span>`;
+            const calcBox = this.container.querySelector('.booking-calc-box');
+            if (calcBox) calcBox.prepend(warnDiv);
+        }
 
         if (this.checkInDate && this.checkOutDate) {
             const nights = Math.round((this.checkOutDate - this.checkInDate) / (1000 * 60 * 60 * 24));
