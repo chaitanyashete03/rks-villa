@@ -1,4 +1,4 @@
-/* ==========================================================================
+﻿/* ==========================================================================
    RK'S VILLA - CUSTOM STYLESHEET
    Theme: Dark & Dramatic Minimalist Luxury (60-30-10 Color Ratio)
    60% (#0A0A0A) | 30% (#121212 / #1A1A1A) | 10% (#C9A96E)
@@ -2796,77 +2796,11 @@ body.menu-open .mobile-sticky-cta-bar {
 }
 
 
+
 /* ==========================================================================
-   PREMIUM UX FEATURES — Added by theme.js system
-   1. Light Theme (Warm Cream)  2. Scroll Animations  3. Page Transitions
-   4. Header Progress Bar  5. Theme Toggle Button
+   PREMIUM UX FEATURES
+   1. Scroll Animations  2. Page Transitions  3. Header Progress Bar
    ========================================================================== */
-
-/* ── 1. LIGHT THEME VARIABLES ─────────────────────────────────────────── */
-[data-theme="light"] {
-    --color-bg:           #FAF7F2;   /* Warm ivory base */
-    --color-card:         #FFFFFF;   /* Pure white cards */
-    --color-card-light:   #F2EDE4;   /* Soft cream tier-2 */
-    --color-text:         #1A1208;   /* Deep warm black */
-    --color-muted:        #6B5E4A;   /* Warm brown-grey */
-    --color-gold:         #C8931F;   /* Richer gold on light bg */
-    --color-gold-hover:   #E5A820;
-    --color-border:       rgba(180, 140, 40, 0.25);
-    --color-border-hover: rgba(180, 140, 40, 0.55);
-    --color-text-on-gold: #FFFFFF;
-}
-
-/* Light mode: force scrollbar to match cream theme */
-[data-theme="light"] ::-webkit-scrollbar-track { background: #F2EDE4; }
-[data-theme="light"] ::-webkit-scrollbar-thumb { background: rgba(180, 140, 40, 0.35); }
-[data-theme="light"] * { scrollbar-color: rgba(180, 140, 40, 0.35) #F2EDE4; }
-
-/* Light mode: header scroll state */
-[data-theme="light"] .header-wrapper.scrolled {
-    background: rgba(250, 247, 242, 0.92);
-    border-bottom: 1px solid rgba(180, 140, 40, 0.2);
-    box-shadow: 0 8px 30px rgba(0,0,0,0.1), inset 0 -1px 0 rgba(200,147,31,0.18);
-}
-
-/* Light mode: nav links */
-[data-theme="light"] .nav-links a {
-    color: rgba(26, 18, 8, 0.85);
-    text-shadow: none;
-}
-[data-theme="light"] .header-wrapper.scrolled .nav-links a { color: #1A1208; }
-[data-theme="light"] .nav-links a:hover,
-[data-theme="light"] .nav-links a.active,
-[data-theme="light"] .header-wrapper.scrolled .nav-links a:hover,
-[data-theme="light"] .header-wrapper.scrolled .nav-links a.active {
-    color: var(--color-gold);
-}
-
-/* Light mode: mobile menu drawer */
-[data-theme="light"] .mobile-menu-drawer { background-color: rgba(250, 247, 242, 0.99); }
-[data-theme="light"] .mobile-nav-link { color: #1A1208; }
-[data-theme="light"] .mobile-nav-link.active,
-[data-theme="light"] .mobile-nav-link:hover { color: var(--color-gold); }
-
-/* Light mode: hero overlay to stay readable */
-[data-theme="light"] .hero-overlay { background: linear-gradient(to bottom, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.55) 100%); }
-
-/* Light mode: footer contrast */
-[data-theme="light"] footer { background: #1A1208; }
-[data-theme="light"] footer, [data-theme="light"] footer * { color: #FAF7F2; }
-
-/* Light mode: form inputs */
-[data-theme="light"] input,
-[data-theme="light"] textarea,
-[data-theme="light"] select {
-    background: #F2EDE4;
-    color: #1A1208;
-    border-color: rgba(180,140,40,0.3);
-}
-[data-theme="light"] input::placeholder,
-[data-theme="light"] textarea::placeholder { color: #9A8A74; }
-
-/* Light mode: subpage banner text should remain readable */
-[data-theme="light"] .subpage-banner { background-color: #1A1208; }
 
 /* ── 2. SCROLL-TRIGGERED ANIMATIONS ───────────────────────────────────── */
 .scroll-reveal {
@@ -2914,39 +2848,6 @@ html.page-loaded body {
     z-index: 101;
     border-radius: 0 2px 2px 0;
     box-shadow: 0 0 8px rgba(240, 184, 39, 0.6);
-}
-
-/* ── 5. THEME TOGGLE BUTTON ──────────────────────────────────────────── */
-#theme-toggle-btn,
-#theme-toggle-btn-mobile {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    border: 1px solid var(--color-border);
-    background: transparent;
-    color: var(--color-gold);
-    cursor: pointer;
-    transition: var(--transition-smooth);
-    flex-shrink: 0;
-}
-
-#theme-toggle-btn:hover,
-#theme-toggle-btn-mobile:hover {
-    background: var(--color-gold);
-    color: var(--color-text-on-gold);
-    border-color: var(--color-gold);
-    box-shadow: 0 0 14px rgba(240, 184, 39, 0.4);
-    transform: rotate(20deg) scale(1.08);
-}
-
-/* Hide toggle button on very small screens in header, show only in drawer */
-@media (max-width: 1024px) {
-    #theme-toggle-btn {
-        display: inline-flex; /* still show beside hamburger */
-    }
 }
 
 /* ── 6. ENHANCED HEADER GLASSMORPHISM (upgrade existing .scrolled) ────── */
