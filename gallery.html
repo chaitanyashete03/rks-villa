@@ -61,6 +61,50 @@
             box-shadow: 0 6px 20px rgba(201, 169, 110, 0.3);
         }
 
+        .filter-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.12);
+            color: var(--color-gold);
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 2px 9px;
+            border-radius: 12px;
+            margin-left: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover .filter-badge {
+            background: rgba(201, 169, 110, 0.25);
+            color: #fff;
+        }
+
+        .filter-btn.active .filter-badge {
+            background: rgba(10, 14, 20, 0.25);
+            color: #0a0e14;
+            font-weight: 700;
+        }
+
+        .masonry-item {
+            break-inside: avoid;
+            margin-bottom: 24px;
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            background: var(--color-card);
+            border: 1px solid var(--color-border);
+            cursor: pointer;
+            transition: opacity 0.35s ease, transform 0.35s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .masonry-item.filtering-out {
+            opacity: 0;
+            transform: scale(0.94);
+        }
+
         .masonry-grid {
             column-count: 3;
             column-gap: 24px;
@@ -629,9 +673,26 @@
             let visibleItems = Array.from(galleryItems);
             let currentIndex = 0;
 
-            // Category Filtering
+            // Dynamic Category Photo Counts & Smooth Filtering
+            const categoryCounts = { all: galleryItems.length, pool: 0, bedrooms: 0, living: 0, exterior: 0 };
+            galleryItems.forEach(item => {
+                const cat = item.dataset.category;
+                if (cat === 'pool') categoryCounts.pool++;
+                else if (cat === 'bedrooms' || cat === 'rooms') categoryCounts.bedrooms++;
+                else if (cat === 'living') categoryCounts.living++;
+                else if (cat === 'exterior' || cat === 'estate') categoryCounts.exterior++;
+            });
+
+            filterBtns.forEach(btn => {
+                const filterKey = btn.dataset.filter;
+                const count = categoryCounts[filterKey] || 0;
+                const baseLabel = btn.textContent.replace(/\(\d+\)/g, '').trim();
+                btn.innerHTML = baseLabel + ' <span class="filter-badge">' + count + '</span>';
+            });
+
             filterBtns.forEach(btn => {
                 btn.addEventListener('click', () => {
+                    if (btn.classList.contains('active')) return;
                     filterBtns.forEach(b => b.classList.remove('active'));
                     btn.classList.add('active');
 
@@ -640,11 +701,23 @@
 
                     galleryItems.forEach(item => {
                         const itemCat = item.dataset.category;
-                        if (category === 'all' || itemCat === category || (category === 'exterior' && (itemCat === 'exterior' || itemCat === 'estate')) || (category === 'bedrooms' && (itemCat === 'bedrooms' || itemCat === 'rooms'))) {
+                        const isMatch = (category === 'all' || itemCat === category || 
+                                        (category === 'exterior' && (itemCat === 'exterior' || itemCat === 'estate')) || 
+                                        (category === 'bedrooms' && (itemCat === 'bedrooms' || itemCat === 'rooms')));
+
+                        if (isMatch) {
                             item.style.display = 'block';
                             visibleItems.push(item);
+                            requestAnimationFrame(() => {
+                                item.classList.remove('filtering-out');
+                            });
                         } else {
-                            item.style.display = 'none';
+                            item.classList.add('filtering-out');
+                            setTimeout(() => {
+                                if (item.classList.contains('filtering-out')) {
+                                    item.style.display = 'none';
+                                }
+                            }, 300);
                         }
                     });
                 });
