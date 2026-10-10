@@ -623,6 +623,14 @@ img, video {
 .subpage-banner .hero-content {
     margin-top: 0;
     margin-bottom: 0;
+    width: 92% !important;
+    padding: clamp(24px, 4vw, 36px) clamp(20px, 6vw, 48px) !important;
+    background: rgba(255, 255, 255, 0.04) !important;
+    backdrop-filter: blur(4px) saturate(140%) !important;
+    -webkit-backdrop-filter: blur(4px) saturate(140%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.14) !important;
+    border-radius: 28px !important;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25), inset 0 1px 1px rgba(255, 255, 255, 0.25) !important;
 }
 
 .hero-title {
