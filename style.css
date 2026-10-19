@@ -1,4 +1,4 @@
-﻿/* ==========================================================================
+/* ==========================================================================
    RK'S VILLA - CUSTOM STYLESHEET
    Theme: Dark & Dramatic Minimalist Luxury (60-30-10 Color Ratio)
    60% (#0A0A0A) | 30% (#121212 / #1A1A1A) | 10% (#C9A96E)
@@ -1805,7 +1805,8 @@ video {
 .masonry-item-caption {
     position: absolute;
     bottom: 0;
-    inset-x: 0;
+    left: 0;
+    right: 0;
     background: linear-gradient(360deg, rgba(10, 10, 10, 0.9) 0%, rgba(10, 10, 10, 0) 100%);
     padding: 16px;
     opacity: 0;
