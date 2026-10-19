@@ -313,9 +313,11 @@
                                     placeholder="e.g. Floating breakfast preference, chef BBQ request..."></textarea>
                             </div>
 
-                            <button type="submit" class="btn btn-primary" style="width: 100%; padding: 15px;">
-                                Request Bespoke Reservation & Rates <i data-lucide="send" class="btn-icon"></i>
+                            <button type="submit" id="submit-inquiry-btn" class="btn btn-primary" style="width: 100%; padding: 15px;">
+                                <span>Request Bespoke Reservation & Rates</span> <i data-lucide="send" class="btn-icon"></i>
                             </button>
+
+                            <div id="form-feedback" style="display: none; margin-top: 18px; padding: 16px; border-radius: 8px; font-size: 0.9rem; text-align: center; line-height: 1.5;"></div>
                         </form>
                     </div>
 
@@ -504,19 +506,91 @@
             });
 
             const form = document.getElementById('booking-inquiry-form');
+            const submitBtn = document.getElementById('submit-inquiry-btn');
+            const feedback = document.getElementById('form-feedback');
+
             if (form) {
-                form.addEventListener('submit', (e) => {
-                    const name = form.querySelector('[name="name"]').value;
-                    const phone = form.querySelector('[name="phone"]').value;
+                form.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+
+                    const name = form.querySelector('[name="name"]').value.trim();
+                    const phone = form.querySelector('[name="phone"]').value.trim();
+                    const email = form.querySelector('[name="email"]').value.trim();
                     const checkin = form.querySelector('[name="checkin"]').value;
                     const checkout = form.querySelector('[name="checkout"]').value;
                     const guests = form.querySelector('[name="guests"]').value;
-                    const message = form.querySelector('[name="message"]').value;
+                    const message = form.querySelector('[name="message"]').value.trim();
 
-                    const waText = encodeURIComponent(`Hi Ravi, I'm ${name} (${phone}). I submitted an inquiry for RK's Villa for ${guests} from ${checkin} to ${checkout}. ${message ? 'Note: ' + message : ''}`);
+                    // Basic Date Validation
+                    if (new Date(checkout) <= new Date(checkin)) {
+                        feedback.style.display = 'block';
+                        feedback.style.background = 'rgba(239, 68, 68, 0.15)';
+                        feedback.style.border = '1px solid rgba(239, 68, 68, 0.4)';
+                        feedback.style.color = '#fca5a5';
+                        feedback.innerHTML = '⚠️ Check-out date must be after check-in date.';
+                        return;
+                    }
+
+                    // Format Clean WhatsApp message
+                    const waLines = [
+                        `*New Booking Inquiry - RK\'s Villa Siolim*`,
+                        `👤 *Guest:* ${name}`,
+                        `📞 *Phone:* ${phone}`,
+                        email ? `✉️ *Email:* ${email}` : null,
+                        `📅 *Check-in:* ${checkin}`,
+                        `📅 *Check-out:* ${checkout}`,
+                        `👥 *Party:* ${guests}`,
+                        message ? `💬 *Special Note:* ${message}` : null,
+                        ``,
+                        `_Please confirm availability and share best direct direct rates._`
+                    ].filter(Boolean).join('\n');
+
+                    const waUrl = `https://wa.me/919970341234?text=${encodeURIComponent(waLines)}`;
+
+                    // UI Loading State
+                    if (submitBtn) {
+                        submitBtn.disabled = true;
+                        submitBtn.style.opacity = '0.75';
+                        submitBtn.innerHTML = '<span>Sending Inquiry...</span> <i data-lucide="loader-2" class="btn-icon" style="animation: spin 1s linear infinite;"></i>';
+                        if (typeof lucide !== 'undefined') lucide.createIcons();
+                    }
+
+                    feedback.style.display = 'block';
+                    feedback.style.background = 'rgba(240, 184, 39, 0.1)';
+                    feedback.style.border = '1px solid rgba(240, 184, 39, 0.3)';
+                    feedback.style.color = '#F0B827';
+                    feedback.innerHTML = '🔄 Processing your inquiry & preparing instant WhatsApp chat...';
+
+                    // Try Web3Forms submission in the background if key is provided
+                    const formData = new FormData(form);
+                    const accessKey = formData.get('access_key');
+                    if (accessKey && accessKey !== 'YOUR_WEB3FORMS_ACCESS_KEY') {
+                        try {
+                            await fetch('https://api.web3forms.com/submit', {
+                                method: 'POST',
+                                body: formData
+                            });
+                        } catch (err) {
+                            // Non-blocking: WhatsApp is the primary direct connection
+                        }
+                    }
+
+                    // Success Feedback + WhatsApp Redirect
+                    feedback.style.background = 'rgba(34, 197, 94, 0.15)';
+                    feedback.style.border = '1px solid rgba(34, 197, 94, 0.4)';
+                    feedback.style.color = '#86efac';
+                    feedback.innerHTML = `✅ <strong>Inquiry prepared!</strong> Opening WhatsApp to connect directly with Host Ravi...<br><a href="${waUrl}" target="_blank" style="display: inline-block; margin-top: 10px; color: #25D366; font-weight: 600; text-decoration: underline;">Click here if WhatsApp didn't open automatically</a>`;
+
+                    // Trigger WhatsApp popup/new tab
                     setTimeout(() => {
-                        window.open(`https://wa.me/919970341234?text=${waText}`, '_blank');
-                    }, 500);
+                        window.open(waUrl, '_blank');
+                        if (submitBtn) {
+                            submitBtn.disabled = false;
+                            submitBtn.style.opacity = '1';
+                            submitBtn.innerHTML = '<span>Request Bespoke Reservation & Rates</span> <i data-lucide="send" class="btn-icon"></i>';
+                            if (typeof lucide !== 'undefined') lucide.createIcons();
+                        }
+                    }, 400);
                 });
             }
 
