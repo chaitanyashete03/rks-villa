@@ -7,41 +7,47 @@
 /* 1. CSS VARIABLES & SYSTEM PRESETS */
 :root {
     /* Base Backgrounds (60%) */
-    --color-bg: #0B0C10;
-    /* Main layout background */
-    --color-card: #15181F;
-    /* Tier 1 elements (Amenity grid items, floor plan cards) */
-    --color-card-light: #1E212A;
-    /* Tier 2 elements (Form inputs, dark headers, active tabs) */
+    --color-bg: #0B0C10;          /* Main layout background */
+    --color-card: #15181F;        /* Tier 1 elements (Amenity grid items, floor plan cards) */
+    --color-card-light: #1E212A;  /* Tier 2 elements (Form inputs, dark headers, active tabs) */
 
     /* Typography & Layout (30%) */
-    --color-text: #F7F7F7;
-    /* Headings, pricing figures, main menus */
-    --color-muted: #B5B8C0;
-    /* Paragraph text, villa specs (sq ft, BHK subtexts) */
+    --color-text: #F7F7F7;        /* Headings, pricing figures, main menus */
+    --color-muted: #B5B8C0;       /* Paragraph text, villa specs (sq ft, BHK subtexts) */
 
     /* Accents & Interactions (10%) */
-    --color-gold: #F0B827;
-    /* Primary CTAs, high-priority icons, badges */
-    --color-gold-hover: #F8CB4F;
-    /* Smooth transition color for hover states */
-
+    --color-gold: #F0B827;        /* Primary CTAs, high-priority icons, badges */
+    --color-gold-hover: #F8CB4F;  /* Smooth transition color for hover states */
+    
     /* Borders & Accents */
-    --color-border: rgba(240, 184, 39, 0.22);
+    --color-border: rgba(240, 184, 39, 0.22); 
     --color-border-hover: rgba(240, 184, 39, 0.60);
 
     /* Text on Accent (Accessibility Safeguard) */
-    --color-text-on-gold: #000000;
-    /* Dark text for crisp legibility inside gold CTAs */
+    --color-text-on-gold: #000000; /* Dark text for crisp legibility inside gold CTAs */
 
     /* Fonts */
     --font-serif: 'Playfair Display', serif;
-    v --font-sans: 'Inter', sans-serif;
-
+    --font-sans: 'Inter', sans-serif;
+    
     /* Layout & Spacing */
     --container-width: 1240px;
     --header-height: 110px;
     --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+
+/* LUXURY GOLD TEXT SELECTION (Replaces ugly browser default blue) */
+::selection {
+    background-color: #F0B827 !important;
+    color: #0B0C10 !important;
+    text-shadow: none !important;
+}
+
+::-moz-selection {
+    background-color: #F0B827 !important;
+    color: #0B0C10 !important;
+    text-shadow: none !important;
 }
 
 /* 2. BASE RESET & ACCESSIBILITY */
@@ -67,12 +73,7 @@ body {
     overflow-x: hidden;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-serif);
     font-weight: 400;
     letter-spacing: 0.03em;
@@ -93,8 +94,7 @@ button {
     transition: var(--transition-smooth);
 }
 
-img,
-video {
+img, video {
     max-width: 100%;
     height: auto;
     display: block;
@@ -117,7 +117,6 @@ video {
     .container {
         width: 92%;
     }
-
     .section-py {
         padding-top: 60px;
         padding-bottom: 60px;
@@ -161,20 +160,16 @@ video {
         grid-template-columns: repeat(2, 1fr);
         gap: 25px;
     }
-
     .grid-3 {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
 @media (max-width: 768px) {
-
-    .grid-2,
-    .grid-3 {
+    .grid-2, .grid-3 {
         grid-template-columns: 1fr;
         gap: 28px;
     }
-
     .grid-4 {
         grid-template-columns: 1fr;
         gap: 20px;
@@ -273,7 +268,7 @@ video {
     backdrop-filter: blur(14px) saturate(160%);
     -webkit-backdrop-filter: blur(14px) saturate(160%);
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow:
+    box-shadow: 
         0 10px 30px rgba(0, 0, 0, 0.45),
         inset 0 -1px 0 rgba(240, 184, 39, 0.12);
     height: 72px;
@@ -311,11 +306,9 @@ video {
         height: 58px !important;
         max-height: 62px !important;
     }
-
     .site-logo-footer {
         height: 90px !important;
     }
-
     .subpage-banner {
         padding-top: 100px !important;
     }
@@ -384,12 +377,9 @@ video {
 }
 
 @media (max-width: 1024px) {
-
-    .nav-links,
-    .nav-ctas {
+    .nav-links, .nav-ctas {
         display: none;
     }
-
     .menu-toggle-btn {
         display: block;
     }
@@ -423,7 +413,6 @@ video {
 }
 
 @media (min-width: 1025px) {
-
     .mobile-menu-drawer,
     .mobile-menu-drawer.active {
         display: none !important;
@@ -564,11 +553,13 @@ video {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(to bottom,
-            rgba(10, 10, 10, 0.2) 0%,
-            rgba(10, 10, 10, 0.05) 40%,
-            rgba(10, 10, 10, 0.3) 85%,
-            rgba(10, 10, 10, 0.65) 100%);
+    background: linear-gradient(
+        to bottom,
+        rgba(10, 10, 10, 0.2) 0%,
+        rgba(10, 10, 10, 0.05) 40%,
+        rgba(10, 10, 10, 0.3) 85%,
+        rgba(10, 10, 10, 0.65) 100%
+    );
     z-index: 1;
 }
 
@@ -609,11 +600,13 @@ video {
 .hero-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to bottom,
-            rgba(10, 10, 10, 0.2) 0%,
-            rgba(10, 10, 10, 0.05) 35%,
-            rgba(10, 10, 10, 0.35) 75%,
-            rgba(10, 10, 10, 0.65) 100%);
+    background: linear-gradient(
+        to bottom,
+        rgba(10, 10, 10, 0.2) 0%,
+        rgba(10, 10, 10, 0.05) 35%,
+        rgba(10, 10, 10, 0.35) 75%,
+        rgba(10, 10, 10, 0.65) 100%
+    );
     z-index: 1;
 }
 
@@ -661,7 +654,7 @@ video {
     line-height: 1.18;
     letter-spacing: 0.04em;
     font-weight: 500;
-    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.95), 0 6px 20px rgba(0, 0, 0, 0.9);
+    text-shadow: 0 2px 6px rgba(0,0,0,0.95), 0 6px 20px rgba(0,0,0,0.9);
 }
 
 .subpage-banner .hero-title {
@@ -670,7 +663,7 @@ video {
     color: #FFFFFF;
     letter-spacing: 0.04em;
     font-weight: 500;
-    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.95), 0 6px 20px rgba(0, 0, 0, 0.9);
+    text-shadow: 0 2px 6px rgba(0,0,0,0.95), 0 6px 20px rgba(0,0,0,0.9);
 }
 
 .hero-subhead {
@@ -680,7 +673,7 @@ video {
     line-height: 1.8;
     max-width: 620px;
     margin: 0 auto 28px auto;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
+    text-shadow: 0 2px 8px rgba(0,0,0,0.9);
 }
 
 .subpage-banner .hero-subhead {
@@ -688,7 +681,7 @@ video {
     color: #F5F0E8;
     margin-bottom: 0;
     font-weight: 400;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
+    text-shadow: 0 2px 8px rgba(0,0,0,0.9);
 }
 
 .hero-ctas {
@@ -703,7 +696,6 @@ video {
         align-items: center;
         gap: 12px;
     }
-
     .hero-ctas .btn {
         width: 100%;
         max-width: 280px;
@@ -723,22 +715,9 @@ video {
 }
 
 @keyframes bounce-scroll {
-
-    0%,
-    20%,
-    50%,
-    80%,
-    100% {
-        transform: translate(-50%, 0);
-    }
-
-    40% {
-        transform: translate(-50%, -10px);
-    }
-
-    60% {
-        transform: translate(-50%, -5px);
-    }
+    0%, 20%, 50%, 80%, 100% { transform: translate(-50%, 0); }
+    40% { transform: translate(-50%, -10px); }
+    60% { transform: translate(-50%, -5px); }
 }
 
 /* ULTRA-PREMIUM HERO FEATURE HIGHLIGHT BAR */
@@ -889,7 +868,7 @@ video {
     border: 1px solid var(--color-border);
     border-radius: 2px;
     padding: 30px 20px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
 }
 
 @media (max-width: 768px) {
@@ -928,17 +907,9 @@ video {
 }
 
 @keyframes pulse-dot {
-    0% {
-        opacity: 0.4;
-    }
-
-    50% {
-        opacity: 1;
-    }
-
-    100% {
-        opacity: 0.4;
-    }
+    0% { opacity: 0.4; }
+    50% { opacity: 1; }
+    100% { opacity: 0.4; }
 }
 
 .calendar-month-nav {
@@ -1001,14 +972,30 @@ video {
 }
 
 .day-cell {
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 48px;
     font-size: 0.85rem;
     font-weight: 500;
-    border-radius: 2px;
+    border-radius: 4px;
     transition: var(--transition-smooth);
     cursor: pointer;
     vertical-align: middle;
+    padding: 4px 2px;
+}
+
+.day-cell .day-num {
+    display: block;
+    line-height: 1.1;
+}
+
+.day-cell .day-rate {
+    display: block;
+    font-size: 0.62rem;
+    font-weight: 600;
+    color: var(--color-gold);
+    opacity: 0.85;
+    margin-top: 2px;
+    letter-spacing: -0.02em;
 }
 
 .day-cell.available {
@@ -1018,6 +1005,10 @@ video {
 
 .day-cell.available:hover {
     background-color: var(--color-gold);
+    color: var(--color-bg);
+}
+
+.day-cell.available:hover .day-rate {
     color: var(--color-bg);
 }
 
@@ -1047,6 +1038,12 @@ video {
     font-weight: 700;
 }
 
+.day-cell.selected-checkin .day-rate,
+.day-cell.selected-checkout .day-rate {
+    color: var(--color-bg) !important;
+    opacity: 0.9;
+}
+
 .calendar-legend {
     border-top: 1px solid var(--color-border);
     padding-top: 18px;
@@ -1073,18 +1070,9 @@ video {
     border-radius: 2px;
 }
 
-.legend-box.available {
-    background-color: var(--color-card-light);
-    border: 1px solid var(--color-border);
-}
-
-.legend-box.booked {
-    background-color: #ef4444;
-}
-
-.legend-box.selected {
-    background-color: var(--color-gold);
-}
+.legend-box.available { background-color: var(--color-card-light); border: 1px solid var(--color-border); }
+.legend-box.booked { background-color: #ef4444; }
+.legend-box.selected { background-color: var(--color-gold); }
 
 /* Booking Calculator Box */
 .booking-calc-box {
@@ -1162,14 +1150,12 @@ video {
     .villa-img-large {
         height: 230px;
     }
-
     .villa-img-small {
         height: 140px;
     }
 }
 
-.villa-images img,
-.villa-images video {
+.villa-images img, .villa-images video {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -1178,8 +1164,7 @@ video {
     transition: var(--transition-smooth);
 }
 
-.villa-images img:hover,
-.villa-images video:hover {
+.villa-images img:hover, .villa-images video:hover {
     border-color: var(--color-gold);
 }
 
@@ -1248,16 +1233,14 @@ video {
     position: relative;
 }
 
-.room-img-wrapper img,
-.room-img-wrapper video {
+.room-img-wrapper img, .room-img-wrapper video {
     width: 100%;
     height: 100%;
     object-fit: cover;
     transition: var(--transition-smooth);
 }
 
-.room-card:hover .room-img-wrapper img,
-.room-card:hover .room-img-wrapper video {
+.room-card:hover .room-img-wrapper img, .room-card:hover .room-img-wrapper video {
     transform: scale(1.06);
 }
 
@@ -1313,16 +1296,14 @@ video {
     overflow: hidden;
 }
 
-.exp-img-wrapper img,
-.exp-img-wrapper video {
+.exp-img-wrapper img, .exp-img-wrapper video {
     width: 100%;
     height: 100%;
     object-fit: cover;
     transition: var(--transition-smooth);
 }
 
-.exp-card:hover .exp-img-wrapper img,
-.exp-card:hover .exp-img-wrapper video {
+.exp-card:hover .exp-img-wrapper img, .exp-card:hover .exp-img-wrapper video {
     transform: scale(1.04);
 }
 
@@ -1518,17 +1499,9 @@ video {
 }
 
 @keyframes pulse-whatsapp {
-    0% {
-        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
-    }
-
-    70% {
-        box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
-    }
-
-    100% {
-        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
-    }
+    0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+    70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
 }
 
 .mobile-sticky-cta-bar {
@@ -1571,7 +1544,6 @@ video {
     .mobile-sticky-cta-bar {
         display: flex;
     }
-
     .whatsapp-float-btn {
         bottom: 74px;
         right: 20px;
@@ -1805,8 +1777,7 @@ video {
 .masonry-item-caption {
     position: absolute;
     bottom: 0;
-    left: 0;
-    right: 0;
+    inset-x: 0;
     background: linear-gradient(360deg, rgba(10, 10, 10, 0.9) 0%, rgba(10, 10, 10, 0) 100%);
     padding: 16px;
     opacity: 0;
@@ -1936,9 +1907,7 @@ video {
     }
 
     /* Grid Layouts Stacked on Mobile */
-    .grid-2,
-    .grid-3,
-    .grid-4 {
+    .grid-2, .grid-3, .grid-4 {
         grid-template-columns: 1fr;
         gap: 25px;
     }
@@ -1999,8 +1968,7 @@ video {
     input[type="date"],
     select,
     textarea {
-        font-size: 16px !important;
-        /* Prevents iOS auto-zoom */
+        font-size: 16px !important; /* Prevents iOS auto-zoom */
         padding: 14px 16px;
     }
 }
@@ -2031,7 +1999,7 @@ video {
         grid-template-columns: repeat(2, 1fr) !important;
         gap: 6px !important;
     }
-
+    
     .hero-highlight-card {
         padding: 6px 8px !important;
         gap: 6px !important;
@@ -2055,9 +2023,8 @@ video {
     .card-sub-text {
         font-size: 0.6rem !important;
     }
-
-    .label-mini,
-    .scarcity-banner {
+    
+    .label-mini, .scarcity-banner {
         font-size: 0.65rem;
         padding: 5px 14px;
         letter-spacing: 0.15em;
@@ -2070,11 +2037,9 @@ video {
 .amenity-card-custom:hover .amenity-img {
     transform: scale(1.08) !important;
 }
-
 .amenity-card-custom {
     transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
-
 .amenity-card-custom:hover {
     border-color: var(--color-gold) !important;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
@@ -2091,7 +2056,7 @@ video {
     display: flex;
     flex-direction: column;
     transition: var(--transition-smooth);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
 
 .luxury-service-card:hover {
@@ -2121,7 +2086,7 @@ video {
     position: absolute;
     top: 15px;
     left: 15px;
-    background: rgba(10, 10, 10, 0.85);
+    background: rgba(10,10,10,0.85);
     border: 1px solid var(--color-gold);
     color: var(--color-gold);
     padding: 4px 12px;
@@ -2210,7 +2175,7 @@ video {
     border-radius: 6px;
     position: relative;
     transition: var(--transition-smooth);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
 
 .guide-distance-card.highlight {
@@ -2246,7 +2211,7 @@ video {
     display: flex;
     align-items: center;
     gap: 10px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
     padding-bottom: 12px;
 }
 
@@ -2267,7 +2232,7 @@ video {
     justify-content: space-between;
     align-items: center;
     padding: 10px 0;
-    border-bottom: 1px dashed rgba(255, 255, 255, 0.05);
+    border-bottom: 1px dashed rgba(255,255,255,0.05);
 }
 
 .dist-list .dist-item:last-child {
@@ -2283,7 +2248,7 @@ video {
     font-size: 0.82rem;
     color: var(--color-muted);
     font-weight: 500;
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255,255,255,0.05);
     padding: 4px 10px;
     border-radius: 4px;
 }
@@ -2301,7 +2266,6 @@ video {
     border-bottom: 1px dotted var(--color-gold);
     transition: var(--transition-smooth);
 }
-
 .dist-link:hover {
     color: var(--color-gold);
     border-bottom-style: solid;
@@ -2313,15 +2277,13 @@ video {
    ========================================================================== */
 
 /* Global Mobile Fixes */
-html,
-body {
+html, body {
     overflow-x: hidden !important;
     max-width: 100vw;
     touch-action: manipulation;
 }
 
 @media (max-width: 768px) {
-
     /* Container Padding */
     .container {
         padding-left: 16px !important;
@@ -2389,17 +2351,13 @@ body {
     }
 
     /* Grid Layouts Stack */
-    .grid-3,
-    .grid-2,
-    .grid-4 {
+    .grid-3, .grid-2, .grid-4 {
         grid-template-columns: 1fr !important;
         gap: 20px !important;
     }
 
     /* Luxury Service Cards & Amenity Cards */
-    .luxury-service-card,
-    .amenity-card,
-    .guide-distance-card {
+    .luxury-service-card, .amenity-card, .guide-distance-card {
         border-radius: 10px !important;
     }
 
@@ -2706,8 +2664,7 @@ body.menu-open .mobile-sticky-cta-bar {
 }
 
 /* Extra Small Screens (Width < 360px & Short Screens < 600px) */
-@media (max-width: 360px),
-(max-height: 600px) {
+@media (max-width: 360px), (max-height: 600px) {
     .mobile-menu-drawer {
         padding-top: 50px !important;
         padding-bottom: 25px !important;
@@ -2801,7 +2758,7 @@ body.menu-open .mobile-sticky-cta-bar {
         padding: 20px !important;
     }
 
-    .floor-panel>div:first-child {
+    .floor-panel > div:first-child {
         min-height: 250px !important;
     }
 
@@ -2835,7 +2792,6 @@ body.menu-open .mobile-sticky-cta-bar {
         opacity: 0;
         transform: scale(0.96);
     }
-
     to {
         opacity: 1;
         transform: scale(1);
@@ -2874,23 +2830,23 @@ body.menu-open .mobile-sticky-cta-bar {
 }
 
 /* SLEEK MODAL DIALOG SCROLLBAR */
-#floor-modal>div::-webkit-scrollbar,
+#floor-modal > div::-webkit-scrollbar,
 #floor-modal::-webkit-scrollbar {
     width: 4px;
 }
 
-#floor-modal>div::-webkit-scrollbar-track,
+#floor-modal > div::-webkit-scrollbar-track,
 #floor-modal::-webkit-scrollbar-track {
     background: transparent;
 }
 
-#floor-modal>div::-webkit-scrollbar-thumb,
+#floor-modal > div::-webkit-scrollbar-thumb,
 #floor-modal::-webkit-scrollbar-thumb {
     background: rgba(240, 184, 39, 0.35);
     border-radius: 10px;
 }
 
-#floor-modal>div::-webkit-scrollbar-thumb:hover,
+#floor-modal > div::-webkit-scrollbar-thumb:hover,
 #floor-modal::-webkit-scrollbar-thumb:hover {
     background: var(--color-gold);
 }
@@ -2907,7 +2863,7 @@ body.menu-open .mobile-sticky-cta-bar {
     opacity: 0;
     transform: translateY(28px);
     transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
-        transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+                transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
     will-change: opacity, transform;
 }
 
@@ -2957,81 +2913,4 @@ html.page-loaded body {
         0 10px 30px rgba(0, 0, 0, 0.45),
         inset 0 -1px 0 rgba(240, 184, 39, 0.22),
         0 1px 0 rgba(240, 184, 39, 0.12);
-}
-
-/* ── 7. BREEZE OF MONACO: ULTRA-LUXURY SIGNATURE GOLD AURA CURSOR ───── */
-@media (pointer: fine) {
-    body {
-        cursor: default;
-    }
-
-    #luxury-cursor {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        pointer-events: none;
-        z-index: 9999999;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-    }
-
-    .cursor-dot {
-        position: fixed;
-        top: -3px;
-        left: -3px;
-        width: 6px;
-        height: 6px;
-        background: #F0B827;
-        border-radius: 50%;
-        box-shadow: 0 0 10px #F0B827, 0 0 20px rgba(240, 184, 39, 0.8);
-        will-change: transform;
-        transition: transform 0.05s linear;
-    }
-
-    .cursor-ring {
-        position: fixed;
-        top: -20px;
-        left: -20px;
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        border: 1px solid rgba(240, 184, 39, 0.65);
-        background: radial-gradient(circle, rgba(240, 184, 39, 0.12) 0%, rgba(240, 184, 39, 0.03) 60%, transparent 100%);
-        backdrop-filter: blur(1.5px);
-        -webkit-backdrop-filter: blur(1.5px);
-        box-shadow: 0 0 20px rgba(240, 184, 39, 0.25), inset 0 0 10px rgba(240, 184, 39, 0.15);
-        will-change: transform;
-        transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-            height 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-            top 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-            left 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-            border-color 0.3s ease,
-            background 0.3s ease,
-            box-shadow 0.3s ease;
-    }
-
-    /* Over buttons, links & interactive cards: blooms into an expansive royal gold aura */
-    #luxury-cursor.cursor-hover-active .cursor-ring {
-        top: -30px;
-        left: -30px;
-        width: 60px;
-        height: 60px;
-        border-color: rgba(240, 184, 39, 0.95);
-        background: radial-gradient(circle, rgba(240, 184, 39, 0.22) 0%, rgba(240, 184, 39, 0.06) 70%, transparent 100%);
-        box-shadow: 0 0 35px rgba(240, 184, 39, 0.45), inset 0 0 15px rgba(240, 184, 39, 0.25);
-    }
-
-    #luxury-cursor.cursor-hover-active .cursor-dot {
-        transform: scale(1.4);
-        background: #FFFFFF;
-        box-shadow: 0 0 15px #FFFFFF, 0 0 25px #F0B827;
-    }
-
-    /* Micro-action: subtle tactile pulse on click */
-    #luxury-cursor.cursor-click .cursor-ring {
-        transform: scale(0.85);
-        border-color: #F8CB4F;
-    }
 }
