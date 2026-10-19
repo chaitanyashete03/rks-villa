@@ -1,4 +1,4 @@
-﻿/* ==========================================================================
+/* ==========================================================================
    RK'S VILLA - CUSTOM STYLESHEET
    Theme: Dark & Dramatic Minimalist Luxury (60-30-10 Color Ratio)
    60% (#0A0A0A) | 30% (#121212 / #1A1A1A) | 10% (#C9A96E)
@@ -34,6 +34,20 @@
     --container-width: 1240px;
     --header-height: 110px;
     --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+
+/* LUXURY GOLD TEXT SELECTION (Replaces ugly browser default blue) */
+::selection {
+    background-color: #F0B827 !important;
+    color: #0B0C10 !important;
+    text-shadow: none !important;
+}
+
+::-moz-selection {
+    background-color: #F0B827 !important;
+    color: #0B0C10 !important;
+    text-shadow: none !important;
 }
 
 /* 2. BASE RESET & ACCESSIBILITY */
@@ -958,14 +972,30 @@ img, video {
 }
 
 .day-cell {
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 48px;
     font-size: 0.85rem;
     font-weight: 500;
-    border-radius: 2px;
+    border-radius: 4px;
     transition: var(--transition-smooth);
     cursor: pointer;
     vertical-align: middle;
+    padding: 4px 2px;
+}
+
+.day-cell .day-num {
+    display: block;
+    line-height: 1.1;
+}
+
+.day-cell .day-rate {
+    display: block;
+    font-size: 0.62rem;
+    font-weight: 600;
+    color: var(--color-gold);
+    opacity: 0.85;
+    margin-top: 2px;
+    letter-spacing: -0.02em;
 }
 
 .day-cell.available {
@@ -975,6 +1005,10 @@ img, video {
 
 .day-cell.available:hover {
     background-color: var(--color-gold);
+    color: var(--color-bg);
+}
+
+.day-cell.available:hover .day-rate {
     color: var(--color-bg);
 }
 
@@ -1002,6 +1036,12 @@ img, video {
     background-color: var(--color-gold) !important;
     color: var(--color-bg) !important;
     font-weight: 700;
+}
+
+.day-cell.selected-checkin .day-rate,
+.day-cell.selected-checkout .day-rate {
+    color: var(--color-bg) !important;
+    opacity: 0.9;
 }
 
 .calendar-legend {
@@ -2874,4 +2914,3 @@ html.page-loaded body {
         inset 0 -1px 0 rgba(240, 184, 39, 0.22),
         0 1px 0 rgba(240, 184, 39, 0.12);
 }
-

@@ -8,8 +8,28 @@
    - Hostex iCal / API sync placeholder
    ========================================================================== */
 
-const VILLA_NIGHTLY_RATE = 18000; // Base rate per night in INR
+// Dynamic Rate Matrix matching official RK's Villa pricing breakdown (gallery/asset_web/pricing.jpeg)
+// August: Weekdays ₹20,000 / Weekends ₹25,000
+// September & October: Weekdays ₹25,000 / Weekends ₹30,000
+// Default / Peak Season: Weekdays ₹25,000 / Weekends ₹30,000
+// Weekends include Friday, Saturday, and Sunday nights.
+function getNightlyRateForDate(date) {
+    const m = date.getMonth(); // 0 = Jan ... 7 = Aug, 8 = Sep, 9 = Oct
+    const d = date.getDay();   // 0 = Sun, 5 = Fri, 6 = Sat
+    const isWeekend = (d === 0 || d === 5 || d === 6);
+
+    if (m === 7) {
+        // August
+        return isWeekend ? 25000 : 20000;
+    } else {
+        // September, October & standard high season
+        return isWeekend ? 30000 : 25000;
+    }
+}
+
 const OTA_MARKUP_PERCENT = 0.18;   // 18% OTA platform markup savings
+const BASE_OCCUPANCY_PAX = 10;     // Standard rates are for 10 PAX occupancy
+const EXTRA_PAX_RATE = 2000;       // Increase in PAX above 12 years: ₹2,000 / person
 
 // Hostex PMS iCal Live Integration (RK's Villa)
 const HOSTEX_ICAL_URL = "https://hostex.io/web/ical/12794987.ics?t=58abb7dda177e75d420a0508407c1808";
@@ -168,9 +188,12 @@ class AvailabilityCalendar {
                 <!-- Legend & Status Indicators -->
                 <div class="calendar-legend flex-between">
                     <div class="legend-items">
-                        <span class="legend-item"><span class="legend-box available"></span> Available (₹18k/n)</span>
+                        <span class="legend-item"><span class="legend-box available"></span> Available (From ₹20,000/n)</span>
                         <span class="legend-item"><span class="legend-box booked"></span> Booked</span>
                         <span class="legend-item"><span class="legend-box selected"></span> Your Stay</span>
+                    </div>
+                    <div style="font-size: 0.78rem; color: var(--color-gold); font-weight: 500;">
+                        <span>Standard 10 PAX • Extra guest ₹2,000/n</span>
                     </div>
                 </div>
 
@@ -186,8 +209,32 @@ class AvailabilityCalendar {
                             <strong id="calc-date-range" class="text-gold">--</strong>
                         </div>
                         <div class="calc-row flex-between">
-                            <span>Duration:</span>
+                            <span>Duration & Split:</span>
                             <span id="calc-nights">-- nights</span>
+                        </div>
+                        <div class="calc-row flex-between">
+                            <span style="display: flex; align-items: center; gap: 8px;">
+                                Total Guests:
+                                <span style="font-size: 0.75rem; color: var(--color-muted);">(10 included)</span>
+                            </span>
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                                <select id="calc-guests-select" style="background: var(--color-card-light); color: var(--color-text); border: 1px solid var(--color-border); border-radius: 4px; padding: 4px 10px; font-size: 0.88rem; outline: none; cursor: pointer;">
+                                    <option value="1">1 Guest</option>
+                                    <option value="2">2 Guests</option>
+                                    <option value="4">4 Guests</option>
+                                    <option value="6">6 Guests</option>
+                                    <option value="8">8 Guests</option>
+                                    <option value="10" selected>10 Guests (Standard)</option>
+                                    <option value="11">11 Guests (+₹2,000/n)</option>
+                                    <option value="12">12 Guests (+₹4,000/n)</option>
+                                    <option value="13">13 Guests (+₹6,000/n)</option>
+                                    <option value="14">14 Guests (+₹8,000/n)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div id="calc-extra-guest-row" class="calc-row flex-between" style="display: none; color: #f59e0b; font-size: 0.82rem;">
+                            <span>Extra Guest Fee (>10 PAX):</span>
+                            <span id="calc-extra-guest-amt">₹0</span>
                         </div>
                         <div class="calc-row flex-between">
                             <span>OTA Platform Rate (Airbnb/Booking):</span>
@@ -195,7 +242,10 @@ class AvailabilityCalendar {
                         </div>
                         <div class="calc-row flex-between calc-highlight">
                             <span>Direct Host Price (RK (Ravi)):</span>
-                            <strong id="calc-direct-price" style="font-size: 1.3rem; color: var(--color-gold);">₹0</strong>
+                            <div style="text-align: right;">
+                                <strong id="calc-direct-price" style="font-size: 1.3rem; color: var(--color-gold);">₹0</strong>
+                                <div style="font-size: 0.72rem; color: var(--color-muted); margin-top: 2px;">Taxes applicable at checkout</div>
+                            </div>
                         </div>
                         <div class="calc-row flex-between calc-savings">
                             <span>✨ Your Direct Booking Savings:</span>
@@ -280,7 +330,8 @@ class AvailabilityCalendar {
                 cellClass += " selected-checkout";
             }
 
-            html += `<td class="${cellClass}" ${isClickable ? `data-date="${dateStr}"` : ''}>${day}</td>`;
+            const rateBadge = isClickable ? `<span class="day-rate">₹${(getNightlyRateForDate(currentCellDate)/1000)}k</span>` : '';
+            html += `<td class="${cellClass}" ${isClickable ? `data-date="${dateStr}"` : ''}><span class="day-num">${day}</span>${rateBadge}</td>`;
             dayCount++;
         }
 
@@ -308,6 +359,14 @@ class AvailabilityCalendar {
             nextBtn.addEventListener('click', () => {
                 this.currentMonth.setMonth(this.currentMonth.getMonth() + 1);
                 this.render();
+            });
+        }
+
+        // Guest selector change listener
+        const guestSelect = this.container.querySelector('#calc-guests-select');
+        if (guestSelect) {
+            guestSelect.addEventListener('change', () => {
+                this.updateCalculator();
             });
         }
 
@@ -367,8 +426,44 @@ class AvailabilityCalendar {
         }
 
         if (this.checkInDate && this.checkOutDate) {
-            const nights = Math.round((this.checkOutDate - this.checkInDate) / (1000 * 60 * 60 * 24));
-            const directTotal = nights * VILLA_NIGHTLY_RATE;
+            // Calculate nights and dynamic night-by-night rates
+            let nights = 0;
+            let weekdayNights = 0;
+            let weekendNights = 0;
+            let baseDirectTotal = 0;
+
+            const temp = new Date(this.checkInDate.getTime());
+            while (temp < this.checkOutDate) {
+                const nightlyRate = getNightlyRateForDate(temp);
+                baseDirectTotal += nightlyRate;
+                const d = temp.getDay();
+                if (d === 0 || d === 5 || d === 6) {
+                    weekendNights++;
+                } else {
+                    weekdayNights++;
+                }
+                nights++;
+                temp.setDate(temp.getDate() + 1);
+            }
+
+            // Guest Count & Extra Pax calculation (above 10 PAX is ₹2,000/person/night)
+            const guestSelect = document.getElementById('calc-guests-select');
+            const totalGuests = guestSelect ? parseInt(guestSelect.value, 10) : 10;
+            const extraPax = Math.max(0, totalGuests - BASE_OCCUPANCY_PAX);
+            const extraPaxFee = extraPax * EXTRA_PAX_RATE * nights;
+
+            const extraGuestRow = document.getElementById('calc-extra-guest-row');
+            const extraGuestAmt = document.getElementById('calc-extra-guest-amt');
+            if (extraGuestRow && extraGuestAmt) {
+                if (extraPax > 0) {
+                    extraGuestRow.style.display = 'flex';
+                    extraGuestAmt.textContent = `+₹${extraPaxFee.toLocaleString('en-IN')} (${extraPax} extra guest${extraPax > 1 ? 's' : ''} × ${nights}n)`;
+                } else {
+                    extraGuestRow.style.display = 'none';
+                }
+            }
+
+            const directTotal = baseDirectTotal + extraPaxFee;
             const otaTotal = Math.round(directTotal * (1 + OTA_MARKUP_PERCENT));
             const savings = otaTotal - directTotal;
 
@@ -376,13 +471,25 @@ class AvailabilityCalendar {
             const checkOutStr = this.checkOutDate.toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
 
             document.getElementById('calc-date-range').textContent = `${checkInStr} - ${checkOutStr}`;
-            document.getElementById('calc-nights').textContent = `${nights} night${nights > 1 ? 's' : ''}`;
+            
+            // Helpful breakdown text
+            let nightsBreakdown = `${nights} night${nights > 1 ? 's' : ''}`;
+            if (weekdayNights > 0 && weekendNights > 0) {
+                nightsBreakdown += ` (${weekdayNights} weekday, ${weekendNights} weekend)`;
+            } else if (weekendNights > 0) {
+                nightsBreakdown += ` (Weekend stay)`;
+            } else if (weekdayNights > 0) {
+                nightsBreakdown += ` (Weekday stay)`;
+            }
+            document.getElementById('calc-nights').textContent = nightsBreakdown;
+
             document.getElementById('calc-ota-price').textContent = `₹${otaTotal.toLocaleString('en-IN')}`;
             document.getElementById('calc-direct-price').textContent = `₹${directTotal.toLocaleString('en-IN')}`;
             document.getElementById('calc-savings-amount').textContent = `₹${savings.toLocaleString('en-IN')} Saved!`;
 
             // Pre-fill clean, natural WhatsApp booking inquiry
-            const waMsg = encodeURIComponent(`Hi Ravi, I want to book RK's Villa for ${nights} night(s) from ${checkInStr} to ${checkOutStr}. Direct Rate: ₹${directTotal.toLocaleString('en-IN')}. Please confirm availability and share payment details.`);
+            const guestText = totalGuests > 10 ? ` (${totalGuests} guests including ${extraPax} extra PAX)` : ` (${totalGuests} guests)`;
+            const waMsg = encodeURIComponent(`Hi Ravi, I want to book RK's Villa for ${nights} night(s) from ${checkInStr} to ${checkOutStr}${guestText}. Direct Rate: ₹${directTotal.toLocaleString('en-IN')}. Please confirm availability and share payment details.`);
             document.getElementById('whatsapp-direct-link').href = `https://wa.me/919970341234?text=${waMsg}`;
 
             initialMsg.style.display = 'none';
