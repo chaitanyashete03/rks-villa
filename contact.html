@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 
 <head>
@@ -300,10 +300,15 @@
                             <div class="form-group">
                                 <label class="form-label">Number of Guests *</label>
                                 <select name="guests" class="form-input" required style="cursor: pointer;">
-                                    <option value="2 Guests">2 Guests (1 Bedroom)</option>
-                                    <option value="4 Guests">4 Guests (2 Bedrooms)</option>
-                                    <option value="6 Guests">6 Guests (3 Bedrooms)</option>
-                                    <option value="8 Guests" selected>8 Guests (Full 4-BHK Villa)</option>
+                                    <option value="2 Guests">2 Guests</option>
+                                    <option value="4 Guests">4 Guests</option>
+                                    <option value="6 Guests">6 Guests</option>
+                                    <option value="8 Guests">8 Guests</option>
+                                    <option value="10 Guests" selected>10 Guests (Standard Tariff)</option>
+                                    <option value="11 Guests">11 Guests (1 Extra PAX)</option>
+                                    <option value="12 Guests">12 Guests (2 Extra PAX)</option>
+                                    <option value="13 Guests">13 Guests (3 Extra PAX)</option>
+                                    <option value="14 Guests">14 Guests (4 Extra PAX)</option>
                                 </select>
                             </div>
 
@@ -509,7 +514,42 @@
             const submitBtn = document.getElementById('submit-inquiry-btn');
             const feedback = document.getElementById('form-feedback');
 
+            // Auto-populate from Rates Calculator URL parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            const paramCheckin = urlParams.get('checkin');
+            const paramCheckout = urlParams.get('checkout');
+            const paramGuests = urlParams.get('guests');
+            const paramRate = urlParams.get('rate');
+
             if (form) {
+                if (paramCheckin) {
+                    const ciInput = form.querySelector('[name="checkin"]');
+                    if (ciInput) ciInput.value = paramCheckin;
+                }
+                if (paramCheckout) {
+                    const coInput = form.querySelector('[name="checkout"]');
+                    if (coInput) coInput.value = paramCheckout;
+                }
+                if (paramGuests) {
+                    const gSelect = form.querySelector('[name="guests"]');
+                    if (gSelect) {
+                        const targetText = `${paramGuests} Guest`;
+                        for (let opt of gSelect.options) {
+                            if (opt.value.startsWith(targetText)) {
+                                opt.selected = true;
+                                break;
+                            }
+                        }
+                    }
+                }
+                if (paramRate) {
+                    const msgArea = form.querySelector('[name="message"]');
+                    if (msgArea && !msgArea.value) {
+                        const formattedRate = parseInt(paramRate, 10).toLocaleString('en-IN');
+                        msgArea.value = `Quoted Direct Host Rate from calculator: ₹${formattedRate}`;
+                    }
+                }
+
                 form.addEventListener('submit', async (e) => {
                     e.preventDefault();
 

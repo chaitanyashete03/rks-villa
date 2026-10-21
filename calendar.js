@@ -88,8 +88,23 @@ class AvailabilityCalendar {
             if (apiRes.ok) {
                 const apiData = await apiRes.json();
                 if (apiData && apiData.success && Array.isArray(apiData.bookedDates)) {
-                    BOOKED_DATES = new Set(apiData.bookedDates);
-                    this.render();
+                    const freshSet = new Set(apiData.bookedDates);
+                    let changed = false;
+                    if (freshSet.size !== BOOKED_DATES.size) {
+                        changed = true;
+                    } else {
+                        for (const d of freshSet) {
+                            if (!BOOKED_DATES.has(d)) {
+                                changed = true;
+                                break;
+                            }
+                        }
+                    }
+                    if (changed) {
+                        BOOKED_DATES = freshSet;
+                        this.render();
+                        this.updateCalculator();
+                    }
                     return;
                 }
             }
@@ -144,8 +159,24 @@ class AvailabilityCalendar {
                 }
             }
 
-            BOOKED_DATES = freshBookedSet;
-            this.render();
+            // Only re-render if booked dates actually changed, and preserve active selection
+            let hasChanged = false;
+            if (freshBookedSet.size !== BOOKED_DATES.size) {
+                hasChanged = true;
+            } else {
+                for (const d of freshBookedSet) {
+                    if (!BOOKED_DATES.has(d)) {
+                        hasChanged = true;
+                        break;
+                    }
+                }
+            }
+
+            if (hasChanged) {
+                BOOKED_DATES = freshBookedSet;
+                this.render();
+                this.updateCalculator();
+            }
         } catch (e) {
             console.log("Hostex iCal sync completed.");
         }
@@ -255,8 +286,8 @@ class AvailabilityCalendar {
                             <a id="whatsapp-direct-link" href="#" target="_blank" class="btn btn-primary" style="flex: 1; padding: 14px;">
                                 <i data-lucide="message-circle" class="btn-icon"></i> Reserve via WhatsApp
                             </a>
-                            <a href="contact.html" class="btn btn-secondary" style="flex: 1; padding: 14px;">
-                                Send Booking Form
+                            <a id="calc-contact-form-link" href="contact.html" class="btn btn-secondary" style="flex: 1; padding: 14px;">
+                                <i data-lucide="mail" class="btn-icon"></i> Send Booking Form
                             </a>
                         </div>
                     </div>
@@ -491,6 +522,21 @@ class AvailabilityCalendar {
             const guestText = totalGuests > 10 ? ` (${totalGuests} guests including ${extraPax} extra PAX)` : ` (${totalGuests} guests)`;
             const waMsg = encodeURIComponent(`Hi Ravi, I want to book RK's Villa for ${nights} night(s) from ${checkInStr} to ${checkOutStr}${guestText}. Direct Rate: ₹${directTotal.toLocaleString('en-IN')}. Please confirm availability and share payment details.`);
             document.getElementById('whatsapp-direct-link').href = `https://wa.me/919970341234?text=${waMsg}`;
+
+            // Pre-fill Send Booking Form link with query parameters
+            const ciY = this.checkInDate.getFullYear();
+            const ciM = String(this.checkInDate.getMonth() + 1).padStart(2, '0');
+            const ciD = String(this.checkInDate.getDate()).padStart(2, '0');
+            const coY = this.checkOutDate.getFullYear();
+            const coM = String(this.checkOutDate.getMonth() + 1).padStart(2, '0');
+            const coD = String(this.checkOutDate.getDate()).padStart(2, '0');
+            const formUrl = `contact.html?checkin=${ciY}-${ciM}-${ciD}&checkout=${coY}-${coM}-${coD}&guests=${totalGuests}&rate=${directTotal}`;
+            const contactBtn = document.getElementById('calc-contact-form-link');
+            if (contactBtn) {
+                contactBtn.href = formUrl;
+            }
+
+            if (typeof lucide !== 'undefined') lucide.createIcons();
 
             initialMsg.style.display = 'none';
             calcContent.style.display = 'block';
