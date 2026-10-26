@@ -809,13 +809,13 @@
             const heroVideo = document.getElementById('hero-video');
             const highlightCards = document.querySelectorAll('.hero-highlight-card');
 
-            // Autoplay hero video on all devices (mobile + desktop) right after initial frame paints
+            // Autoplay hero video on all devices: 597KB high-efficiency stream for mobile, 1080p for desktop
             if (heroVideo) {
-                var canWebm = heroVideo.canPlayType('video/webm; codecs="vp8, vorbis"');
-                var vSrc = canWebm ? 'videos/hero-loop.webm' : 'videos/hero-loop.mp4';
+                var isMobile = window.innerWidth <= 768;
+                var vSrc = isMobile ? 'videos/hero-loop-mobile.mp4' : 'videos/hero-loop-optimized.mp4';
                 
                 // Allow browser main thread to finish initial layout and achieve green TBT
-                var delay = window.innerWidth <= 768 ? 1400 : 800;
+                var delay = isMobile ? 1200 : 600;
                 setTimeout(function() {
                     heroVideo.src = vSrc;
                     heroVideo.muted = true;
