@@ -3,4 +3,4 @@ User-agent: *
 Allow: /
 
 # Direct Sitemap Location
-Sitemap: https://rks-villa.vercel.app/sitemap.xml
+Sitemap: https://www.rksvillagoa.com/sitemap.xml
