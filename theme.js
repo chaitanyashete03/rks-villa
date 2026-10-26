@@ -1,4 +1,4 @@
-﻿/* ==========================================================================
+/* ==========================================================================
    RK s VILLA — PREMIUM UX ENGINE (theme.js)
    Features:
      1. Scroll-Triggered Section Animations (IntersectionObserver)
@@ -108,10 +108,18 @@
     initHeaderEnhancements();
   }
 
+  function scheduleInit() {
+    if ("requestIdleCallback" in window) {
+      requestIdleCallback(init, { timeout: 1200 });
+    } else {
+      setTimeout(init, 50);
+    }
+  }
+
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", init);
+    document.addEventListener("DOMContentLoaded", scheduleInit);
   } else {
-    init();
+    scheduleInit();
   }
 
 })();

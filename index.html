@@ -789,9 +789,12 @@
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            if (typeof lucide !== 'undefined') {
-                lucide.createIcons();
-            }
+            // Render Lucide icons in non-blocking animation frame
+            requestAnimationFrame(() => {
+                if (typeof lucide !== 'undefined') {
+                    lucide.createIcons();
+                }
+            });
 
             const header = document.getElementById('site-header');
             window.addEventListener('scroll', () => {
@@ -800,7 +803,7 @@
                 } else {
                     header.classList.remove('scrolled');
                 }
-            });
+            }, { passive: true });
 
             // Hero Feature Highlight Reel Controller & Smart Progressive Video Loader (Mobile + Desktop)
             const heroVideo = document.getElementById('hero-video');
