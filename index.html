@@ -37,7 +37,7 @@
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RK's Villa | Luxury 4-BHK Private Pool Villa in Siolim, Goa</title>
     <meta name="description"
         content="Book direct with host Ravi at RK's Villa, a luxury 4-BHK private pool sanctuary in Siolim, North Goa. Save 15-20% compared to Airbnb. Live Hostex availability calendar.">
@@ -700,7 +700,7 @@
                 </div>
 
                 <div class="footer-col">
-                    <h4>Explore</h4>
+                    <h3>Explore</h3>
                     <ul>
                         <li><a href="villa.html">The Villa</a></li>
                         <li><a href="experiences.html">Curated Experiences</a></li>
@@ -710,7 +710,7 @@
                 </div>
 
                 <div class="footer-col">
-                    <h4>Contact Host</h4>
+                    <h3>Contact Host</h3>
                     <ul class="footer-contact-info">
 
                     <li>
@@ -728,7 +728,7 @@
                 </div>
 
                 <div class="footer-col">
-                    <h4>Secure Booking</h4>
+                    <h3>Secure Booking</h3>
                     <p class="text-muted" style="font-size: 0.85rem; margin-bottom: 20px;">
                         We process all reservations directly with the owner to secure custom packages.
                     </p>
@@ -811,8 +811,8 @@
                 var canWebm = heroVideo.canPlayType('video/webm; codecs="vp8, vorbis"');
                 var vSrc = canWebm ? 'videos/hero-loop.webm' : 'videos/hero-loop.mp4';
                 
-                // On mobile wait 600ms so LCP frame paints instantly first, then video plays smoothly
-                var delay = window.innerWidth <= 768 ? 600 : 200;
+                // Allow browser main thread to finish initial layout and achieve green TBT
+                var delay = window.innerWidth <= 768 ? 1400 : 800;
                 setTimeout(function() {
                     heroVideo.src = vSrc;
                     heroVideo.muted = true;
