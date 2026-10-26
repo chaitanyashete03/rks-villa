@@ -802,18 +802,23 @@
                 }
             });
 
-            // Hero Feature Highlight Reel Controller & Desktop Progressive Video Loader
+            // Hero Feature Highlight Reel Controller & Smart Progressive Video Loader (Mobile + Desktop)
             const heroVideo = document.getElementById('hero-video');
             const highlightCards = document.querySelectorAll('.hero-highlight-card');
 
-            // Load hero video loop only on desktop/fast devices after the initial paint
-            if (heroVideo && window.innerWidth > 768) {
+            // Autoplay hero video on all devices (mobile + desktop) right after initial frame paints
+            if (heroVideo) {
                 var canWebm = heroVideo.canPlayType('video/webm; codecs="vp8, vorbis"');
                 var vSrc = canWebm ? 'videos/hero-loop.webm' : 'videos/hero-loop.mp4';
+                
+                // On mobile wait 600ms so LCP frame paints instantly first, then video plays smoothly
+                var delay = window.innerWidth <= 768 ? 600 : 200;
                 setTimeout(function() {
                     heroVideo.src = vSrc;
+                    heroVideo.muted = true;
+                    heroVideo.setAttribute('playsinline', '');
                     heroVideo.play().catch(function() {});
-                }, 400);
+                }, delay);
             }
 
             highlightCards.forEach(card => {
