@@ -2884,13 +2884,12 @@ body.menu-open .mobile-sticky-cta-bar {
 
 /* ── 3. PAGE TRANSITIONS ──────────────────────────────────────────────── */
 html.page-loading body {
-    opacity: 0;
-    transition: none;
+    /* Kept opacity 1 so Lighthouse and search engines detect LCP elements immediately */
+    opacity: 1;
 }
 
 html.page-loaded body {
     opacity: 1;
-    transition: opacity 0.32s ease;
 }
 
 /* ── 4. HEADER SCROLL PROGRESS BAR ───────────────────────────────────── */
