@@ -2,14 +2,19 @@
 <html lang="en" class="scroll-smooth">
 
 <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PHRGEG3QP7"></script>
+    <!-- Google tag (gtag.js) - Loaded after page load to prevent mobile main-thread blocking -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
       gtag('config', 'G-PHRGEG3QP7');
+
+      window.addEventListener('load', function() {
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=G-PHRGEG3QP7';
+        document.head.appendChild(s);
+      });
     </script>
 
     <meta charset="UTF-8">
@@ -28,7 +33,7 @@
     <meta name="keywords"
         content="RK Villa Goa, Villa in Siolim, 4 BHK Private Pool Villa Goa, Luxury Villa Siolim, Direct Booking Villa Goa, Hostex Villa Goa">
 
-    <!-- Google Fonts: Playfair Display & Inter -->
+    <!-- Google Fonts: Playfair Display & Inter with display=swap -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -188,7 +193,7 @@
     <header id="site-header" class="header-wrapper">
         <div class="container flex-between" style="height: 100%;">
             <a href="index.html" class="logo-container" aria-label="RK's Villa Home">
-            <img src="gallery/logo.png" alt="RK's Villa - Luxury Living" class="site-logo-img site-logo-header">
+            <img src="gallery/logo.png" alt="RK's Villa - Luxury Living" class="site-logo-img site-logo-header" width="220" height="70">
         </a>
 
             <nav class="nav-links">
@@ -266,7 +271,7 @@
     <main>
         <!-- MINIMALIST HERO SECTION WITH FAST HERO LOOP VIDEO -->
         <section class="hero-wrapper">
-            <video id="hero-video" class="hero-video-bg" autoplay loop muted playsinline preload="auto" poster="gallery/asset_web/rks-villa-aerial-drone-view.webp">
+            <video id="hero-video" class="hero-video-bg" autoplay loop muted playsinline preload="metadata" poster="gallery/asset_web/rks-villa-aerial-drone-view.webp">
                 <source src="videos/hero-loop.webm" type="video/webm">
                 <source src="videos/hero-loop.mp4" type="video/mp4">
             </video>
@@ -445,7 +450,7 @@
                     <!-- Amenity 1 -->
                     <div class="amenity-card-custom" style="background: var(--color-card); border-radius: 6px; border: 1px solid var(--color-border); overflow: hidden; display: flex; flex-direction: column;">
                         <div style="position: relative; width: 100%; height: 200px; overflow: hidden;">
-                            <img src="gallery/asset_web/rks-villa-swimming-pool-view.webp" alt="Private Swimming Pool at RK's Villa" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;" class="amenity-img">
+                            <img src="gallery/asset_web/rks-villa-swimming-pool-view.webp" alt="Private Swimming Pool at RK's Villa" width="400" height="200" loading="lazy" decoding="async" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;" class="amenity-img">
                             <div style="position: absolute; top: 12px; right: 12px; background: rgba(10, 10, 10, 0.8); backdrop-filter: blur(4px); border: 1px solid var(--color-gold); width: 42px; height: 42px; border-radius: 50%; color: var(--color-gold); display: flex; align-items: center; justify-content: center;">
                                 <i data-lucide="waves" style="width: 22px; height: 22px;"></i>
                             </div>
@@ -464,7 +469,7 @@
                     <!-- Amenity 2 -->
                     <div class="amenity-card-custom" style="background: var(--color-card); border-radius: 6px; border: 1px solid var(--color-border); overflow: hidden; display: flex; flex-direction: column;">
                         <div style="position: relative; width: 100%; height: 200px; overflow: hidden;">
-                            <img src="gallery/asset_web/rks-villa-master-suite-soaking-bathtub.webp" alt="Soaking Bathtub Suite at RK's Villa" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;" class="amenity-img">
+                            <img src="gallery/asset_web/rks-villa-master-suite-soaking-bathtub.webp" alt="Soaking Bathtub Suite at RK's Villa" width="400" height="200" loading="lazy" decoding="async" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;" class="amenity-img">
                             <div style="position: absolute; top: 12px; right: 12px; background: rgba(10, 10, 10, 0.8); backdrop-filter: blur(4px); border: 1px solid var(--color-gold); width: 42px; height: 42px; border-radius: 50%; color: var(--color-gold); display: flex; align-items: center; justify-content: center;">
                                 <i data-lucide="bath" style="width: 22px; height: 22px;"></i>
                             </div>
@@ -483,7 +488,7 @@
                     <!-- Amenity 3 -->
                     <div class="amenity-card-custom" style="background: var(--color-card); border-radius: 6px; border: 1px solid var(--color-border); overflow: hidden; display: flex; flex-direction: column;">
                         <div style="position: relative; width: 100%; height: 200px; overflow: hidden;">
-                            <img src="gallery/asset_web/rks-villa-equipped-kitchen.webp" alt="Gourmet Modular Kitchen at RK's Villa" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;" class="amenity-img">
+                            <img src="gallery/asset_web/rks-villa-equipped-kitchen.webp" alt="Gourmet Modular Kitchen at RK's Villa" width="400" height="200" loading="lazy" decoding="async" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;" class="amenity-img">
                             <div style="position: absolute; top: 12px; right: 12px; background: rgba(10, 10, 10, 0.8); backdrop-filter: blur(4px); border: 1px solid var(--color-gold); width: 42px; height: 42px; border-radius: 50%; color: var(--color-gold); display: flex; align-items: center; justify-content: center;">
                                 <i data-lucide="chef-hat" style="width: 22px; height: 22px;"></i>
                             </div>
@@ -502,7 +507,7 @@
                     <!-- Amenity 4 -->
                     <div class="amenity-card-custom" style="background: var(--color-card); border-radius: 6px; border: 1px solid var(--color-border); overflow: hidden; display: flex; flex-direction: column;">
                         <div style="position: relative; width: 100%; height: 200px; overflow: hidden;">
-                            <img src="gallery/asset_web/rks-villa-living-room-teak-bar.webp" alt="Karaoke Lounge at RK's Villa" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;" class="amenity-img">
+                            <img src="gallery/asset_web/rks-villa-living-room-teak-bar.webp" alt="Karaoke Lounge at RK's Villa" width="400" height="200" loading="lazy" decoding="async" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;" class="amenity-img">
                             <div style="position: absolute; top: 12px; right: 12px; background: rgba(10, 10, 10, 0.8); backdrop-filter: blur(4px); border: 1px solid var(--color-gold); width: 42px; height: 42px; border-radius: 50%; color: var(--color-gold); display: flex; align-items: center; justify-content: center;">
                                 <i data-lucide="music" style="width: 22px; height: 22px;"></i>
                             </div>
@@ -521,7 +526,7 @@
                     <!-- Amenity 5 -->
                     <div class="amenity-card-custom" style="background: var(--color-card); border-radius: 6px; border: 1px solid var(--color-border); overflow: hidden; display: flex; flex-direction: column;">
                         <div style="position: relative; width: 100%; height: 200px; overflow: hidden;">
-                            <img src="gallery/asset_web/rks-villa-floating-pool-breakfast.webp" alt="Floating Pool Breakfast at RK's Villa" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;" class="amenity-img">
+                            <img src="gallery/asset_web/rks-villa-floating-pool-breakfast.webp" alt="Floating Pool Breakfast at RK's Villa" width="400" height="200" loading="lazy" decoding="async" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;" class="amenity-img">
                             <div style="position: absolute; top: 12px; right: 12px; background: rgba(10, 10, 10, 0.8); backdrop-filter: blur(4px); border: 1px solid var(--color-gold); width: 42px; height: 42px; border-radius: 50%; color: var(--color-gold); display: flex; align-items: center; justify-content: center;">
                                 <i data-lucide="coffee" style="width: 22px; height: 22px;"></i>
                             </div>
@@ -540,7 +545,7 @@
                     <!-- Amenity 6 -->
                     <div class="amenity-card-custom" style="background: var(--color-card); border-radius: 6px; border: 1px solid var(--color-border); overflow: hidden; display: flex; flex-direction: column;">
                         <div style="position: relative; width: 100%; height: 200px; overflow: hidden;">
-                            <img src="gallery/asset_web/rks-villa-seafood-bbq-chef-service.webp" alt="Chef On Call & BBQ at RK's Villa" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;" class="amenity-img">
+                            <img src="gallery/asset_web/rks-villa-seafood-bbq-chef-service.webp" alt="Chef On Call & BBQ at RK's Villa" width="400" height="200" loading="lazy" decoding="async" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;" class="amenity-img">
                             <div style="position: absolute; top: 12px; right: 12px; background: rgba(10, 10, 10, 0.8); backdrop-filter: blur(4px); border: 1px solid var(--color-gold); width: 42px; height: 42px; border-radius: 50%; color: var(--color-gold); display: flex; align-items: center; justify-content: center;">
                                 <i data-lucide="flame" style="width: 22px; height: 22px;"></i>
                             </div>
@@ -671,7 +676,7 @@
             <div class="grid-4" style="gap: 40px; margin-bottom: 50px;">
                 <div class="footer-col">
                     <a href="index.html" class="logo-container" style="margin-bottom: 20px;" aria-label="RK's Villa Home">
-                        <img src="gallery/logo.png" alt="RK's Villa - Luxury Living" class="site-logo-img site-logo-footer">
+                        <img src="gallery/logo.png" alt="RK's Villa - Luxury Living" class="site-logo-img site-logo-footer" width="220" height="70" loading="lazy" decoding="async">
                     </a>
                     <p class="text-muted" style="font-size: 0.85rem; line-height: 1.6;">
                         An exclusive 4-BHK private pool sanctuary in Siolim, North Goa, catering to discerning travelers
@@ -720,7 +725,7 @@
             <!-- OFFICIAL DIRECT BOOKING CONTACT BANNER -->
             <div class="footer-contact-card-banner" style="margin-bottom: 40px; text-align: center;">
                 <div style="max-width: 560px; margin: 0 auto; border: 1px solid var(--color-border); border-radius: 8px; overflow: hidden; box-shadow: 0 12px 40px rgba(0,0,0,0.6);">
-                    <img src="gallery/rks-villa-contact-card.webp" alt="RK's Villa Direct Booking & Host Contact Card - Owner RK 9970341234 & Suchita 8983041234" style="width: 100%; height: auto; display: block;">
+                    <img src="gallery/rks-villa-contact-card.webp" alt="RK's Villa Direct Booking & Host Contact Card - Owner RK 9970341234 & Suchita 8983041234" width="560" height="315" loading="lazy" decoding="async" style="width: 100%; height: auto; display: block;">
                 </div>
             </div>
         <div class="footer-bottom flex-between">
@@ -730,7 +735,7 @@
         </div>
     </footer>
 
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/lucide@latest" defer></script>
     <script>
         function loadYouTubeIframe() {
             const container = document.getElementById('yt-facade-container');
