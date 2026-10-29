@@ -155,6 +155,78 @@ img, video {
     gap: 25px;
 }
 
+/* ── TOUR CHAPTER SHORTCUTS (SINGLE LINE ONLY ACROSS ALL DEVICES: DESKTOP, LAPTOP, TABLET, MOBILE) ── */
+.tour-chapters-wrapper {
+    margin-top: 22px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.tour-chapters-scroll {
+    display: flex;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    justify-content: flex-start;
+    gap: 10px;
+    padding: 6px 16px 12px 16px;
+    width: 100%;
+    max-width: 100%;
+    scrollbar-width: none; /* Clean luxury aesthetic */
+}
+.tour-chapters-scroll::-webkit-scrollbar {
+    display: none;
+}
+.tour-chapter-btn {
+    flex-shrink: 0;
+    white-space: nowrap;
+    padding: 9px 18px;
+    border-radius: 30px;
+    font-size: 0.76rem;
+    font-weight: 500;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.25s ease;
+}
+.tour-chapter-btn:hover {
+    background: rgba(240, 184, 39, 0.12);
+    border-color: var(--color-gold);
+    color: var(--color-gold);
+    transform: translateY(-2px);
+}
+/* Visible interactive golden progress track shown whenever content overflows */
+.tour-chapters-progress-bar {
+    display: none; /* Shown dynamically via JS / overflow */
+    width: 160px;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 999px;
+    margin: 8px auto 0 auto;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(240, 184, 39, 0.25);
+}
+.tour-chapters-progress-bar.is-scrollable {
+    display: block;
+}
+.tour-chapters-progress-thumb {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 44px;
+    height: 100%;
+    background: linear-gradient(90deg, var(--color-gold), #F8CB4F);
+    border-radius: 999px;
+    box-shadow: 0 0 10px rgba(240, 184, 39, 0.85);
+    transition: transform 0.06s linear;
+    will-change: transform;
+}
+
 @media (max-width: 1024px) {
     .grid-4 {
         grid-template-columns: repeat(2, 1fr);
@@ -2573,60 +2645,17 @@ html, body {
         font-size: 0.88rem !important;
     }
 
-    /* ── TOUR CHAPTER SHORTCUTS (THUMB-SCROLLABLE WITH VISIBLE GOLDEN INDICATOR LINE ON MOBILE) ── */
-    .tour-chapters-wrapper {
-        margin-top: 18px !important;
-        width: 100% !important;
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-    }
+    /* ── TOUR CHAPTER SHORTCUTS MOBILE TWEAKS ── */
     .tour-chapters-scroll {
-        display: flex !important;
-        flex-wrap: nowrap !important;
-        overflow-x: auto !important;
-        -webkit-overflow-scrolling: touch !important;
-        justify-content: flex-start !important;
+        padding: 4px 10px 10px 10px !important;
         gap: 8px !important;
-        padding: 6px 12px 10px 12px !important;
-        width: 100% !important;
-        scrollbar-width: none !important; /* Hide default native bar in favor of luxury custom track below */
-    }
-    .tour-chapters-scroll::-webkit-scrollbar {
-        display: none !important;
     }
     .tour-chapter-btn {
-        flex-shrink: 0 !important;
-        white-space: nowrap !important;
-        padding: 8px 16px !important;
-        border-radius: 20px !important;
+        padding: 7px 14px !important;
         font-size: 0.72rem !important;
-        background: rgba(255, 255, 255, 0.05) !important;
-        border: 1px solid rgba(255, 255, 255, 0.12) !important;
     }
-    /* Distinct luxury golden scroll track & active indicator thumb */
     .tour-chapters-progress-bar {
-        display: block !important;
-        width: 140px !important;
-        height: 3px !important;
-        background: rgba(255, 255, 255, 0.1) !important;
-        border-radius: 999px !important;
-        margin: 8px auto 0 auto !important;
-        position: relative !important;
-        overflow: hidden !important;
-        border: 1px solid rgba(240, 184, 39, 0.2) !important;
-    }
-    .tour-chapters-progress-thumb {
-        position: absolute !important;
-        top: 0 !important;
-        left: 0 !important;
-        width: 44px !important;
-        height: 100% !important;
-        background: linear-gradient(90deg, var(--color-gold), #F8CB4F) !important;
-        border-radius: 999px !important;
-        box-shadow: 0 0 10px rgba(240, 184, 39, 0.8) !important;
-        transition: transform 0.08s linear !important;
-        will-change: transform !important;
+        width: 130px !important;
     }
 
     /* ── INTRO PHOTO PRESENTATION: CLEAN ASYMMETRIC HERO COLLAGE ON MOBILE ── */

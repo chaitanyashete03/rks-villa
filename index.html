@@ -819,21 +819,26 @@
 
             // Sync Tour Chapters Scroll with visible Golden Progress Bar Indicator
             const tourScrollContainer = document.getElementById('tour-chapters-scroll');
+            const tourProgressBar = document.getElementById('tour-chapters-progress-bar');
             const tourThumb = document.getElementById('tour-chapters-progress-thumb');
-            if (tourScrollContainer && tourThumb) {
+            if (tourScrollContainer && tourThumb && tourProgressBar) {
                 const updateTourScrollIndicator = () => {
                     const maxScroll = tourScrollContainer.scrollWidth - tourScrollContainer.clientWidth;
-                    if (maxScroll > 0) {
-                        const scrollRatio = tourScrollContainer.scrollLeft / maxScroll;
-                        const trackWidth = tourScrollContainer.clientWidth > 300 ? 160 : 120;
+                    if (maxScroll > 2) {
+                        tourProgressBar.classList.add('is-scrollable');
+                        const scrollRatio = Math.min(Math.max(tourScrollContainer.scrollLeft / maxScroll, 0), 1);
+                        const trackWidth = tourProgressBar.clientWidth || 160;
                         const thumbWidth = 44;
-                        const maxThumbTravel = trackWidth - thumbWidth;
+                        const maxThumbTravel = Math.max(trackWidth - thumbWidth, 0);
                         tourThumb.style.transform = `translateX(${scrollRatio * maxThumbTravel}px)`;
+                    } else {
+                        tourProgressBar.classList.remove('is-scrollable');
                     }
                 };
                 tourScrollContainer.addEventListener('scroll', updateTourScrollIndicator, { passive: true });
                 window.addEventListener('resize', updateTourScrollIndicator);
-                updateTourScrollIndicator();
+                // Also trigger after layout rendering
+                setTimeout(updateTourScrollIndicator, 150);
             }
 
             const header = document.getElementById('site-header');
