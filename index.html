@@ -343,6 +343,7 @@
                         </div>
                     </div>
                 </div>
+
             </div>
         </section>
 
@@ -431,23 +432,28 @@
                 </div>
 
                 <!-- Interactive Chapter Jump Shortcuts -->
-                <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 20px;"
-                    class="reveal active">
-                    <button onclick="seekVillaTour(59)" class="btn btn-secondary"
-                        style="padding: 8px 14px; font-size: 0.72rem;"><i data-lucide="coffee" class="btn-icon"></i>
-                        Teak Bar & Kitchen (0:59)</button>
-                    <button onclick="seekVillaTour(106)" class="btn btn-secondary"
-                        style="padding: 8px 14px; font-size: 0.72rem;"><i data-lucide="waves" class="btn-icon"></i> Pool
-                        & Deck (1:46)</button>
-                    <button onclick="seekVillaTour(143)" class="btn btn-secondary"
-                        style="padding: 8px 14px; font-size: 0.72rem;"><i data-lucide="bed" class="btn-icon"></i> Master
-                        Bedrooms (2:23)</button>
-                    <button onclick="seekVillaTour(220)" class="btn btn-secondary"
-                        style="padding: 8px 14px; font-size: 0.72rem;"><i data-lucide="bath" class="btn-icon"></i> Master
-                        Bathtub Suite (3:40)</button>
-                    <button onclick="seekVillaTour(243)" class="btn btn-secondary"
-                        style="padding: 8px 14px; font-size: 0.72rem;"><i data-lucide="trees" class="btn-icon"></i>
-                        Garden & Gazebo (4:03)</button>
+                <div class="tour-chapters-wrapper reveal active">
+                    <div class="tour-chapters-scroll" id="tour-chapters-scroll">
+                        <button onclick="seekVillaTour(59)" class="btn btn-secondary tour-chapter-btn">
+                            <i data-lucide="coffee" class="btn-icon"></i> Teak Bar & Kitchen (0:59)
+                        </button>
+                        <button onclick="seekVillaTour(106)" class="btn btn-secondary tour-chapter-btn">
+                            <i data-lucide="waves" class="btn-icon"></i> Pool & Deck (1:46)
+                        </button>
+                        <button onclick="seekVillaTour(143)" class="btn btn-secondary tour-chapter-btn">
+                            <i data-lucide="bed" class="btn-icon"></i> Master Bedrooms (2:23)
+                        </button>
+                        <button onclick="seekVillaTour(220)" class="btn btn-secondary tour-chapter-btn">
+                            <i data-lucide="bath" class="btn-icon"></i> Master Bathtub Suite (3:40)
+                        </button>
+                        <button onclick="seekVillaTour(243)" class="btn btn-secondary tour-chapter-btn">
+                            <i data-lucide="trees" class="btn-icon"></i> Garden & Gazebo (4:03)
+                        </button>
+                    </div>
+                    <!-- Visible Interactive Golden Progress Scrollbar for Mobile -->
+                    <div class="tour-chapters-progress-bar" id="tour-chapters-progress-bar">
+                        <div class="tour-chapters-progress-thumb" id="tour-chapters-progress-thumb"></div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -576,6 +582,11 @@
                         </div>
                     </div>
                 </div>
+                <!-- Mobile Carousel Swipe Hint -->
+                <div class="mobile-swipe-indicator">
+                    <span>Swipe to explore amenities</span>
+                    <i data-lucide="arrow-right" style="width: 14px; height: 14px;"></i>
+                </div>
             </div>
         </section>
 
@@ -665,11 +676,22 @@
                     style="text-align: center; background: var(--color-card); border: 1px solid var(--color-gold); padding: 50px 30px; border-radius: 6px; box-shadow: 0 10px 30px rgba(201, 169, 110, 0.12);">
                     <span class="scarcity-banner">💡 Direct Host Deal</span>
                     <h2 class="title-large" style="margin-bottom: 12px;">Why Waste ₹11,000+ On Airbnb Service Fees?</h2>
-                    <p class="text-desc" style="max-width: 680px; margin-bottom: 30px;">
+                    <p class="text-desc" style="max-width: 680px; margin-bottom: 22px;">
                         When you book directly with host Ravi, you pay 0% platform commissions. That means instant
                         savings of ₹8,000 to ₹15,000 per stay, early check-in priority, and custom Goan meal packages
                         tailor-made for your group.
                     </p>
+                    <div class="direct-price-comparison-pill">
+                        <div class="compare-row compare-platform">
+                            <span class="platform-tag">Airbnb / OTAs</span>
+                            <span class="platform-price">₹45,000 + ₹11,250 Fees</span>
+                        </div>
+                        <div class="compare-divider"></div>
+                        <div class="compare-row compare-direct">
+                            <span class="direct-tag">✦ Direct with Host</span>
+                            <span class="direct-price">₹45,000 (Save ₹11,250)</span>
+                        </div>
+                    </div>
                     <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
                         <a href="rates.html" class="btn btn-primary">Lock Direct Rate & Save 15%</a>
                         <a href="https://wa.me/919970341234?text=Hi%20Ravi%2C%20I%20want%20to%20book%20RK%27s%20Villa%20directly%20without%20Airbnb%20fees"
@@ -795,26 +817,61 @@
                 }
             });
 
+            // Sync Tour Chapters Scroll with visible Golden Progress Bar Indicator
+            const tourScrollContainer = document.getElementById('tour-chapters-scroll');
+            const tourThumb = document.getElementById('tour-chapters-progress-thumb');
+            if (tourScrollContainer && tourThumb) {
+                const updateTourScrollIndicator = () => {
+                    const maxScroll = tourScrollContainer.scrollWidth - tourScrollContainer.clientWidth;
+                    if (maxScroll > 0) {
+                        const scrollRatio = tourScrollContainer.scrollLeft / maxScroll;
+                        const trackWidth = tourScrollContainer.clientWidth > 300 ? 160 : 120;
+                        const thumbWidth = 44;
+                        const maxThumbTravel = trackWidth - thumbWidth;
+                        tourThumb.style.transform = `translateX(${scrollRatio * maxThumbTravel}px)`;
+                    }
+                };
+                tourScrollContainer.addEventListener('scroll', updateTourScrollIndicator, { passive: true });
+                window.addEventListener('resize', updateTourScrollIndicator);
+                updateTourScrollIndicator();
+            }
+
             const header = document.getElementById('site-header');
+            const stickyCtaBar = document.querySelector('.mobile-sticky-cta-bar');
+            let lastScrollY = window.scrollY;
+
             window.addEventListener('scroll', () => {
-                if (window.scrollY > 50) {
+                const currentScrollY = window.scrollY;
+                if (currentScrollY > 50) {
                     header.classList.add('scrolled');
                 } else {
                     header.classList.remove('scrolled');
                 }
+
+                // Smart auto-hiding bottom sticky bar on mobile scroll
+                if (stickyCtaBar && window.innerWidth <= 768) {
+                    if (currentScrollY > lastScrollY && currentScrollY > 120) {
+                        // Scrolling down: hide bar smoothly for full-screen immersive reading
+                        stickyCtaBar.classList.add('cta-hidden');
+                    } else if (currentScrollY < lastScrollY) {
+                        // Scrolling up: reveal bar instantly for effortless booking/calling
+                        stickyCtaBar.classList.remove('cta-hidden');
+                    }
+                }
+                lastScrollY = currentScrollY;
             }, { passive: true });
 
             // Hero Feature Highlight Reel Controller & Smart Progressive Video Loader (Crystal-Clear 1080p)
             const heroVideo = document.getElementById('hero-video');
             const highlightCards = document.querySelectorAll('.hero-highlight-card');
 
-            // Autoplay crystal-clear Full HD 1080p drone loop on all devices
+            // Autoplay crystal-clear Full HD loop: native 9:16 portrait on mobile, 16:9 widescreen on desktop
             if (heroVideo) {
                 var isMobile = window.innerWidth <= 768;
-                // Always serve high-definition 1080p stream for maximum clarity on Retina phone screens
+                // Native 1080x1920 9:16 portrait video on mobile (zero digital crop/zoom = crystal-clear clarity)
                 var vSrc = 'videos/hero-loop-optimized.mp4';
                 
-                var delay = isMobile ? 800 : 400;
+                var delay = isMobile ? 600 : 400;
                 setTimeout(function() {
                     heroVideo.src = vSrc;
                     heroVideo.muted = true;
@@ -823,19 +880,67 @@
                 }, delay);
             }
 
-            highlightCards.forEach(card => {
-                card.addEventListener('click', () => {
-                    highlightCards.forEach(c => c.classList.remove('active'));
-                    card.classList.add('active');
+            let currentCardIdx = 0;
+            let autoCycleTimer = null;
 
-                    const videoSrc = card.dataset.video;
-                    if (heroVideo && videoSrc) {
-                        heroVideo.src = videoSrc;
-                        heroVideo.muted = true;
-                        heroVideo.play().catch(() => { });
+            function activateHighlightCard(idx, playVideo = true) {
+                if (!highlightCards.length) return;
+                currentCardIdx = (idx + highlightCards.length) % highlightCards.length;
+                highlightCards.forEach((c, i) => {
+                    if (i === currentCardIdx) {
+                        c.classList.add('active');
+                        // Scroll active card into view on mobile
+                        if (window.innerWidth <= 768) {
+                            c.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                        }
+                    } else {
+                        c.classList.remove('active');
                     }
                 });
+
+                if (playVideo && heroVideo) {
+                    const videoSrc = highlightCards[currentCardIdx].dataset.video;
+                    if (videoSrc) {
+                        heroVideo.src = videoSrc;
+                        heroVideo.muted = true;
+                        heroVideo.play().catch(() => {});
+                    }
+                }
+            }
+
+            // Continuous auto-cycle through the 4 cards (Pool -> Bedrooms -> Living & Bar -> Garden & Gazebo)
+            function startAutoCycle() {
+                stopAutoCycle();
+                autoCycleTimer = setInterval(() => {
+                    activateHighlightCard(currentCardIdx + 1, true);
+                }, 6000); // Transitions smoothly every 6 seconds in continuous loop
+            }
+
+            function stopAutoCycle() {
+                if (autoCycleTimer) {
+                    clearInterval(autoCycleTimer);
+                    autoCycleTimer = null;
+                }
+            }
+
+            // When a video naturally ends, transition to the next highlight video immediately
+            if (heroVideo) {
+                heroVideo.addEventListener('ended', () => {
+                    activateHighlightCard(currentCardIdx + 1, true);
+                });
+            }
+
+            // Manual user tap: switches card & resets 6s timer
+            highlightCards.forEach((card, index) => {
+                card.addEventListener('click', () => {
+                    stopAutoCycle();
+                    activateHighlightCard(index, true);
+                    startAutoCycle();
+                });
             });
+
+            // Start continuous cycle after initial video loads
+            setTimeout(startAutoCycle, 2000);
 
 
 

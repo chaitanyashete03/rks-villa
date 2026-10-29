@@ -2285,35 +2285,35 @@ html, body {
 }
 
 @media (max-width: 768px) {
-    /* Container Padding */
+    /* Container Padding & Breathing Room */
     .container {
-        padding-left: 16px !important;
-        padding-right: 16px !important;
+        padding-left: 20px !important;
+        padding-right: 20px !important;
     }
 
     /* Header & Mobile Drawer */
     .header-wrapper {
-        height: 72px !important;
+        height: 70px !important;
     }
 
     .header-wrapper.scrolled {
-        height: 72px !important;
+        height: 70px !important;
     }
 
     .site-logo-header {
-        height: 58px !important;
-        max-height: 62px !important;
+        height: 52px !important;
+        max-height: 56px !important;
     }
 
     .menu-toggle-btn {
-        width: 44px;
-        height: 44px;
+        width: 42px;
+        height: 42px;
         display: flex;
         align-items: center;
         justify-content: center;
-        background: rgba(255, 255, 255, 0.05);
+        background: rgba(255, 255, 255, 0.04);
         border-radius: 50%;
-        border: 1px solid var(--color-border);
+        border: 1px solid rgba(240, 184, 39, 0.25);
     }
 
     .mobile-menu-drawer {
@@ -2327,51 +2327,172 @@ html, body {
         padding: 12px 0 !important;
     }
 
-    /* Subpage Banners */
+    /* ── FULLSCREEN (100VH / 100DVH) IMMERSIVE HERO & SUBPAGE BANNERS ── */
+    .hero-wrapper,
     .subpage-banner {
-        min-height: 40vh !important;
-        padding-top: 100px !important;
-        padding-bottom: 35px !important;
+        min-height: 100vh !important;
+        min-height: 100dvh !important;
+        height: 100vh !important;
+        height: 100dvh !important;
+        width: 100% !important;
+        padding-top: calc(70px + 20px) !important;
+        padding-bottom: 40px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        position: relative !important;
+        background-size: cover !important;
+        background-position: center center !important;
+        box-sizing: border-box !important;
     }
 
-    .hero-title {
-        font-size: clamp(1.8rem, 7vw, 2.6rem) !important;
-        line-height: 1.25 !important;
+    /* Subpage Banner Content: Clean Minimalist Floating Typography */
+    .subpage-banner .hero-content {
+        margin: auto !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 0 20px !important;
+        background: transparent !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        border: none !important;
+        box-shadow: none !important;
+        text-align: center !important;
+        z-index: 2 !important;
     }
 
-    .hero-subhead {
+    .subpage-banner .hero-title {
+        font-size: clamp(2rem, 8vw, 2.6rem) !important;
+        margin-bottom: 14px !important;
+        line-height: 1.18 !important;
+        font-weight: 400 !important;
+        letter-spacing: 0.02em !important;
+        color: #FFFFFF !important;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.95), 0 4px 25px rgba(0, 0, 0, 0.9) !important;
+    }
+
+    .subpage-banner .hero-subhead {
         font-size: 0.95rem !important;
-        line-height: 1.5 !important;
-        padding: 0 8px;
+        line-height: 1.65 !important;
+        color: rgba(245, 240, 232, 0.94) !important;
+        margin-bottom: 0 !important;
+        max-width: 380px !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9) !important;
     }
 
-    /* Section Spacing */
+    /* Subpage Banner Scroll Chevron Positioned Cleanly at Bottom */
+    .subpage-banner .hero-scroll-btn {
+        display: block !important;
+        position: absolute !important;
+        bottom: 24px !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        z-index: 10 !important;
+        color: var(--color-gold) !important;
+    }
+
+    /* Homepage Hero Content */
+    .hero-wrapper:not(.subpage-banner) .hero-content {
+        padding-left: 18px !important;
+        padding-right: 18px !important;
+        margin-top: auto !important;
+        margin-bottom: auto !important;
+        z-index: 2 !important;
+    }
+
+    .hero-wrapper:not(.subpage-banner) .hero-title {
+        font-size: clamp(2rem, 8.2vw, 2.75rem) !important;
+        line-height: 1.16 !important;
+        letter-spacing: 0.02em !important;
+        font-weight: 400 !important;
+        margin-bottom: 14px !important;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.95), 0 4px 25px rgba(0, 0, 0, 0.9) !important;
+    }
+
+    .hero-wrapper:not(.subpage-banner) .hero-subhead {
+        font-size: 0.95rem !important;
+        line-height: 1.65 !important;
+        color: rgba(245, 240, 232, 0.92) !important;
+        letter-spacing: 0.01em !important;
+        padding: 0 4px !important;
+        margin-bottom: 22px !important;
+        max-width: 360px !important;
+    }
+
+    /* Hide Hero Highlight Bar completely on mobile for a calm, ultra-luxurious cinematic video view */
+    .hero-highlight-bar {
+        display: none !important;
+    }
+
+    /* Section Spacing - Editorial Luxury Rhythm */
     .section-py {
-        padding-top: 45px !important;
-        padding-bottom: 45px !important;
+        padding-top: 50px !important;
+        padding-bottom: 50px !important;
     }
 
-    /* Grid Layouts Stack */
+    /* Grid Layouts Stack cleanly by default across all subpages */
     .grid-3, .grid-2, .grid-4 {
+        display: grid !important;
         grid-template-columns: 1fr !important;
-        gap: 20px !important;
+        gap: 24px !important;
+        width: 100% !important;
     }
 
-    /* Luxury Service Cards & Amenity Cards */
-    .luxury-service-card, .amenity-card, .guide-distance-card {
-        border-radius: 10px !important;
+    /* ── HOMEPAGE FEATURED AMENITIES CAROUSEL ONLY ── */
+    .grid-3:has(.amenity-card-custom) {
+        display: flex !important;
+        overflow-x: auto !important;
+        scroll-snap-type: x mandatory !important;
+        -webkit-overflow-scrolling: touch !important;
+        gap: 16px !important;
+        padding: 8px 4px 20px 4px !important;
+        margin-left: -20px !important;
+        margin-right: -20px !important;
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+        scrollbar-width: none !important;
+    }
+
+    .grid-3:has(.amenity-card-custom)::-webkit-scrollbar {
+        display: none !important;
+    }
+
+    .amenity-card-custom {
+        flex: 0 0 82% !important;
+        max-width: 320px !important;
+        scroll-snap-align: start !important;
+        border-radius: 12px !important;
+        border: 1px solid rgba(255, 255, 255, 0.08) !important;
+        background: rgba(21, 24, 31, 0.85) !important;
+        backdrop-filter: blur(12px) !important;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35) !important;
+        transition: transform 0.3s ease !important;
+    }
+
+    .amenity-card-custom .amenity-img {
+        height: 190px !important;
+    }
+
+    /* Luxury Service Cards (Experiences Page) & Floor Cards (Villa Page) & Guide Distance Cards */
+    .luxury-service-card, .amenity-card, .guide-distance-card, .floor-clickable-card {
+        border-radius: 12px !important;
+        border-color: rgba(255, 255, 255, 0.08) !important;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3) !important;
     }
 
     .luxury-service-card .img-wrapper {
-        height: 210px !important;
+        height: 200px !important;
     }
 
     .luxury-service-card .content-area {
-        padding: 20px !important;
+        padding: 22px 18px !important;
     }
 
     .luxury-service-card h3 {
-        font-size: 1.15rem !important;
+        font-size: 1.18rem !important;
         margin-bottom: 8px !important;
     }
 
@@ -2452,29 +2573,240 @@ html, body {
         font-size: 0.88rem !important;
     }
 
-    /* Floating WhatsApp Button & Sticky Bottom Bar Safe Areas */
+    /* ── TOUR CHAPTER SHORTCUTS (THUMB-SCROLLABLE WITH VISIBLE GOLDEN INDICATOR LINE ON MOBILE) ── */
+    .tour-chapters-wrapper {
+        margin-top: 18px !important;
+        width: 100% !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+    .tour-chapters-scroll {
+        display: flex !important;
+        flex-wrap: nowrap !important;
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+        justify-content: flex-start !important;
+        gap: 8px !important;
+        padding: 6px 12px 10px 12px !important;
+        width: 100% !important;
+        scrollbar-width: none !important; /* Hide default native bar in favor of luxury custom track below */
+    }
+    .tour-chapters-scroll::-webkit-scrollbar {
+        display: none !important;
+    }
+    .tour-chapter-btn {
+        flex-shrink: 0 !important;
+        white-space: nowrap !important;
+        padding: 8px 16px !important;
+        border-radius: 20px !important;
+        font-size: 0.72rem !important;
+        background: rgba(255, 255, 255, 0.05) !important;
+        border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    }
+    /* Distinct luxury golden scroll track & active indicator thumb */
+    .tour-chapters-progress-bar {
+        display: block !important;
+        width: 140px !important;
+        height: 3px !important;
+        background: rgba(255, 255, 255, 0.1) !important;
+        border-radius: 999px !important;
+        margin: 8px auto 0 auto !important;
+        position: relative !important;
+        overflow: hidden !important;
+        border: 1px solid rgba(240, 184, 39, 0.2) !important;
+    }
+    .tour-chapters-progress-thumb {
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 44px !important;
+        height: 100% !important;
+        background: linear-gradient(90deg, var(--color-gold), #F8CB4F) !important;
+        border-radius: 999px !important;
+        box-shadow: 0 0 10px rgba(240, 184, 39, 0.8) !important;
+        transition: transform 0.08s linear !important;
+        will-change: transform !important;
+    }
+
+    /* ── INTRO PHOTO PRESENTATION: CLEAN ASYMMETRIC HERO COLLAGE ON MOBILE ── */
+    .villa-images {
+        gap: 10px !important;
+        margin-bottom: 24px !important;
+    }
+
+    .villa-img-large {
+        height: 240px !important;
+        border-radius: 10px !important;
+        overflow: hidden !important;
+    }
+
+    .villa-img-small {
+        height: 120px !important;
+        border-radius: 8px !important;
+        overflow: hidden !important;
+    }
+
+    .villa-img-large img,
+    .villa-img-small img {
+        border-radius: inherit !important;
+    }
+
+    /* ── UNIFIED ULTRA-PREMIUM FROSTED GLASS STICKY BAR ── */
+    /* Hide the floating WhatsApp circle on mobile to remove dual-button clutter */
+    .whatsapp-float-btn {
+        display: none !important;
+    }
+
     .mobile-sticky-cta-bar {
-        height: calc(56px + env(safe-area-inset-bottom, 0px)) !important;
-        padding-bottom: env(safe-area-inset-bottom, 0px) !important;
+        height: calc(64px + env(safe-area-inset-bottom, 0px)) !important;
+        padding: 10px 16px calc(10px + env(safe-area-inset-bottom, 0px)) 16px !important;
         z-index: 9998 !important;
-        background: rgba(10, 14, 20, 0.95) !important;
-        backdrop-filter: blur(12px) !important;
-        border-top: 1px solid var(--color-border) !important;
+        background: rgba(11, 12, 16, 0.88) !important;
+        backdrop-filter: blur(20px) saturate(180%) !important;
+        -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+        border-top: 1px solid rgba(240, 184, 39, 0.22) !important;
+        box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.6) !important;
+        display: flex !important;
+        align-items: center !important;
+        gap: 12px !important;
     }
 
     .sticky-cta-link {
         height: 44px !important;
-        font-size: 0.85rem !important;
+        border-radius: 24px !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 8px !important;
+        font-size: 0.8rem !important;
+        letter-spacing: 0.08em !important;
+        text-transform: uppercase !important;
+        font-weight: 700 !important;
+        transition: transform 0.2s ease !important;
+    }
+
+    .sticky-cta-link:active {
+        transform: scale(0.97) !important;
+    }
+
+    .sticky-cta-link.call {
+        flex: 1 !important;
+        background: rgba(255, 255, 255, 0.06) !important;
+        color: #F7F7F7 !important;
+        border: 1px solid rgba(255, 255, 255, 0.16) !important;
+    }
+
+    .sticky-cta-link.wa {
+        flex: 1.4 !important;
+        background: linear-gradient(135deg, #F0B827 0%, #F8CB4F 100%) !important;
+        color: #0A0A0A !important;
+        border: none !important;
+        box-shadow: 0 4px 16px rgba(240, 184, 39, 0.35) !important;
+    }
+
+    /* ── MOBILE AMENITIES SWIPE PILL HINT ── */
+    .mobile-swipe-indicator {
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 8px !important;
+        margin: 14px auto 0 auto !important;
+        padding: 6px 16px !important;
+        background: rgba(240, 184, 39, 0.08) !important;
+        border: 1px solid rgba(240, 184, 39, 0.22) !important;
+        border-radius: 20px !important;
+        color: var(--color-gold) !important;
+        font-size: 0.72rem !important;
+        letter-spacing: 0.08em !important;
+        text-transform: uppercase !important;
         font-weight: 600 !important;
     }
 
-    .whatsapp-float-btn {
-        bottom: calc(72px + env(safe-area-inset-bottom, 0px)) !important;
-        right: 16px !important;
-        width: 48px !important;
-        height: 48px !important;
-        z-index: 9997 !important;
-        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4) !important;
+    /* ── MOBILE MENU DRAWER LUXURY BADGE ── */
+    .mobile-menu-header-badge {
+        display: inline-flex !important;
+        align-items: center !important;
+        gap: 8px !important;
+        padding: 6px 14px !important;
+        background: rgba(255, 255, 255, 0.05) !important;
+        border: 1px solid rgba(240, 184, 39, 0.25) !important;
+        border-radius: 20px !important;
+        font-size: 0.72rem !important;
+        color: var(--color-gold) !important;
+        letter-spacing: 0.06em !important;
+        margin-bottom: 20px !important;
+        text-transform: uppercase !important;
+        font-weight: 600 !important;
+    }
+
+    .status-dot-pulse {
+        width: 7px !important;
+        height: 7px !important;
+        background-color: #25D366 !important;
+        border-radius: 50% !important;
+        box-shadow: 0 0 8px #25D366 !important;
+        animation: pulse-dot 1.5s infinite !important;
+    }
+
+    /* ── DIRECT PRICE COMPARISON PILL ── */
+    .direct-price-comparison-pill {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 8px !important;
+        max-width: 380px !important;
+        margin: 0 auto 28px auto !important;
+        background: rgba(10, 12, 16, 0.8) !important;
+        border: 1px solid rgba(240, 184, 39, 0.3) !important;
+        border-radius: 12px !important;
+        padding: 14px 18px !important;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4) !important;
+    }
+
+    .compare-row {
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        font-size: 0.84rem !important;
+    }
+
+    .platform-tag {
+        color: var(--color-muted) !important;
+        text-decoration: line-through !important;
+    }
+
+    .platform-price {
+        color: #e06c75 !important;
+        font-weight: 500 !important;
+    }
+
+    .compare-divider {
+        height: 1px !important;
+        background: rgba(255, 255, 255, 0.08) !important;
+        width: 100% !important;
+    }
+
+    .direct-tag {
+        color: var(--color-gold) !important;
+        font-weight: 700 !important;
+        letter-spacing: 0.02em !important;
+    }
+
+    .direct-price {
+        color: #25D366 !important;
+        font-weight: 700 !important;
+    }
+
+    /* ── AUTO-HIDING SMART STICKY BAR ── */
+    .mobile-sticky-cta-bar {
+        transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease !important;
+        will-change: transform !important;
+    }
+
+    .mobile-sticky-cta-bar.cta-hidden {
+        transform: translateY(100%) !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
     }
 
     /* Goa Guide Distance Links */
@@ -2913,4 +3245,12 @@ html.page-loaded body {
         0 10px 30px rgba(0, 0, 0, 0.45),
         inset 0 -1px 0 rgba(240, 184, 39, 0.22),
         0 1px 0 rgba(240, 184, 39, 0.12);
+}
+
+/* Hide mobile-specific indicators on desktop */
+@media (min-width: 769px) {
+    .mobile-swipe-indicator,
+    .mobile-menu-header-badge {
+        display: none !important;
+    }
 }
