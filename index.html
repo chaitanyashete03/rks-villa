@@ -601,8 +601,7 @@
                             </div>
                             <p style="color: white; font-weight: 500; font-size: 1.05rem;">Goa's Hidden Luxury Villa:
                                 4BHK Tour by Gaurav Vaikul</p>
-                            <span style="font-size: 0.8rem; color: rgba(255,255,255,0.7);">Click to stream video without
-                                slowing down page load</span>
+                            <span style="font-size: 0.8rem; color: rgba(255,255,255,0.85); letter-spacing: 0.05em;">Click to Watch Full Walkthrough Video</span>
                         </div>
                     </div>
                 </div>
@@ -805,17 +804,17 @@
                 }
             }, { passive: true });
 
-            // Hero Feature Highlight Reel Controller & Smart Progressive Video Loader (Mobile + Desktop)
+            // Hero Feature Highlight Reel Controller & Smart Progressive Video Loader (Crystal-Clear 1080p)
             const heroVideo = document.getElementById('hero-video');
             const highlightCards = document.querySelectorAll('.hero-highlight-card');
 
-            // Autoplay hero video on all devices: 597KB high-efficiency stream for mobile, 1080p for desktop
+            // Autoplay crystal-clear Full HD 1080p drone loop on all devices
             if (heroVideo) {
                 var isMobile = window.innerWidth <= 768;
-                var vSrc = isMobile ? 'videos/hero-loop-mobile.mp4' : 'videos/hero-loop-optimized.mp4';
+                // Always serve high-definition 1080p stream for maximum clarity on Retina phone screens
+                var vSrc = 'videos/hero-loop-optimized.mp4';
                 
-                // Allow browser main thread to finish initial layout and achieve green TBT
-                var delay = isMobile ? 1200 : 600;
+                var delay = isMobile ? 800 : 400;
                 setTimeout(function() {
                     heroVideo.src = vSrc;
                     heroVideo.muted = true;
