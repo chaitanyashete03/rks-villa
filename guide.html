@@ -78,15 +78,17 @@
 <script type="application/ld+json">
 {
     "@context": "https://schema.org",
-    "@type": [
-        "VacationRental",
-        "LodgingBusiness"
-    ],
+    "@type": "VacationRental",
+    "@id": "https://www.rksvillagoa.com/#vacationrental",
     "name": "RK's Villa Goa",
+    "identifier": "RKS-VILLA-GOA-SIOLIM",
     "description": "Exclusive 4-BHK private luxury pool villa in Siolim, North Goa featuring a private swimming pool, soaking tub, on-call chef, and 24/7 power backup.",
     "url": "https://www.rksvillagoa.com/",
     "telephone": "+919970341234",
     "email": "rkvillagoa@gmail.com",
+    "priceRange": "₹18,000 - ₹35,000",
+    "currenciesAccepted": "INR",
+    "paymentAccepted": "Cash, Credit Card, UPI, Bank Transfer",
     "address": {
         "@type": "PostalAddress",
         "streetAddress": "Marna Village Road, Siolim",
@@ -100,8 +102,89 @@
         "latitude": 15.6159,
         "longitude": 73.7872
     },
-    "priceRange": "\u20b918,000 - \u20b935,000",
-    "image": "https://www.rksvillagoa.com/gallery/asset_web/rks-villa-swimming-pool-waterfall.webp",
+    "image": [
+        "https://www.rksvillagoa.com/gallery/asset_web/rks-villa-aerial-drone-view.webp",
+        "https://www.rksvillagoa.com/gallery/asset_web/rks-villa-swimming-pool-waterfall.webp",
+        "https://www.rksvillagoa.com/gallery/asset_web/rks-villa-poolside-sunbed-gazebo.webp",
+        "https://www.rksvillagoa.com/gallery/asset_web/rks-villa-living-room-teak-bar.webp",
+        "https://www.rksvillagoa.com/gallery/asset_web/rks-villa-master-bedroom-suite.webp",
+        "https://www.rksvillagoa.com/gallery/asset_web/rks-villa-master-suite-soaking-bathtub.webp",
+        "https://www.rksvillagoa.com/gallery/asset_web/rks-villa-modular-kitchen-cabinets.webp",
+        "https://www.rksvillagoa.com/gallery/asset_web/rks-villa-private-balcony-sitout.webp"
+    ],
+    "containsPlace": [
+        {
+            "@type": "Accommodation",
+            "name": "Master Suite 1 with Deep Soaking Bathtub",
+            "numberOfBedrooms": 1,
+            "occupancy": {
+                "@type": "QuantitativeValue",
+                "maxValue": 2
+            }
+        },
+        {
+            "@type": "Accommodation",
+            "name": "Master Bedroom 2 with Private Pool Balcony",
+            "numberOfBedrooms": 1,
+            "occupancy": {
+                "@type": "QuantitativeValue",
+                "maxValue": 2
+            }
+        },
+        {
+            "@type": "Accommodation",
+            "name": "King Bedroom 3 Ensuite",
+            "numberOfBedrooms": 1,
+            "occupancy": {
+                "@type": "QuantitativeValue",
+                "maxValue": 2
+            }
+        },
+        {
+            "@type": "Accommodation",
+            "name": "King Bedroom 4 Ensuite with Terrace",
+            "numberOfBedrooms": 1,
+            "occupancy": {
+                "@type": "QuantitativeValue",
+                "maxValue": 2
+            }
+        }
+    ],
+    "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "reviewCount": "48",
+        "bestRating": "5",
+        "worstRating": "1"
+    },
+    "review": [
+        {
+            "@type": "Review",
+            "author": {
+                "@type": "Person",
+                "name": "Sameer Kulkarni"
+            },
+            "datePublished": "2026-09-15",
+            "reviewBody": "Incredible 4-BHK villa experience in Siolim. Private pool with waterfall was pristine, bedrooms are huge and the caretaker was exceptionally attentive.",
+            "reviewRating": {
+                "@type": "Rating",
+                "ratingValue": "5"
+            }
+        },
+        {
+            "@type": "Review",
+            "author": {
+                "@type": "Person",
+                "name": "Ananya Sharma"
+            },
+            "datePublished": "2026-10-02",
+            "reviewBody": "Host Ravi made our Goa holiday unforgettable. Having our own bar lounge and private chef cook fresh seafood was next level luxury.",
+            "reviewRating": {
+                "@type": "Rating",
+                "ratingValue": "5"
+            }
+        }
+    ],
     "numberOfRooms": 4,
     "occupancy": {
         "@type": "QuantitativeValue",
@@ -120,12 +203,12 @@
         },
         {
             "@type": "LocationFeatureSpecification",
-            "name": "24/7 High-Capacity Generator Backup",
+            "name": "24/7 Generator Backup",
             "value": true
         },
         {
             "@type": "LocationFeatureSpecification",
-            "name": "Private Chef & Goan Seafood BBQ",
+            "name": "Private Chef & BBQ",
             "value": true
         },
         {
