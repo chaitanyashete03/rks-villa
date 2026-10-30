@@ -80,7 +80,6 @@
     "@context": "https://schema.org",
     "@type": "VacationRental",
     "@id": "https://www.rksvillagoa.com/#vacationrental",
-    "additionalType": "https://schema.org/Villa",
     "name": "RK's Villa Goa",
     "identifier": "RKS-VILLA-GOA-SIOLIM",
     "description": "Exclusive 4-BHK private luxury pool villa in Siolim, North Goa featuring a private swimming pool, soaking tub, on-call chef, and 24/7 power backup.",
@@ -118,127 +117,62 @@
     "numberOfRooms": 4,
     "occupancy": {
         "@type": "QuantitativeValue",
-        "value": 10,
-        "maxValue": 10
+        "value": 10
     },
-    "containsPlace": [
-        {
-            "@type": "Accommodation",
-            "additionalType": "https://schema.org/HotelRoom",
-            "name": "Master Suite 1 with Deep Soaking Bathtub",
-            "numberOfBedrooms": 1,
-            "numberOfBathroomsTotal": 1,
-            "bed": {
-                "@type": "BedDetails",
-                "numberOfBeds": 1,
-                "typeOfBed": "King"
-            },
-            "occupancy": {
-                "@type": "QuantitativeValue",
-                "value": 2,
-                "maxValue": 2
-            },
-            "amenityFeature": [
-                {
-                    "@type": "LocationFeatureSpecification",
-                    "name": "Deep Soaking Bathtub",
-                    "value": true
-                },
-                {
-                    "@type": "LocationFeatureSpecification",
-                    "name": "Private Balcony",
-                    "value": true
-                }
-            ]
+    "containsPlace": {
+        "@type": "Accommodation",
+        "name": "Entire Luxury 4-BHK Villa with Private Pool & Lawn",
+        "numberOfBedrooms": 4,
+        "numberOfBathroomsTotal": 4,
+        "occupancy": {
+            "@type": "QuantitativeValue",
+            "value": 10
         },
-        {
-            "@type": "Accommodation",
-            "additionalType": "https://schema.org/HotelRoom",
-            "name": "Master Bedroom 2 with Private Pool Balcony",
-            "numberOfBedrooms": 1,
-            "numberOfBathroomsTotal": 1,
-            "bed": {
+        "bed": [
+            {
                 "@type": "BedDetails",
                 "numberOfBeds": 1,
                 "typeOfBed": "King"
             },
-            "occupancy": {
-                "@type": "QuantitativeValue",
-                "value": 2,
-                "maxValue": 2
-            },
-            "amenityFeature": [
-                {
-                    "@type": "LocationFeatureSpecification",
-                    "name": "Pool View Balcony",
-                    "value": true
-                },
-                {
-                    "@type": "LocationFeatureSpecification",
-                    "name": "Ensuite Bathroom",
-                    "value": true
-                }
-            ]
-        },
-        {
-            "@type": "Accommodation",
-            "additionalType": "https://schema.org/HotelRoom",
-            "name": "King Bedroom 3 Ensuite",
-            "numberOfBedrooms": 1,
-            "numberOfBathroomsTotal": 1,
-            "bed": {
+            {
                 "@type": "BedDetails",
                 "numberOfBeds": 1,
                 "typeOfBed": "King"
             },
-            "occupancy": {
-                "@type": "QuantitativeValue",
-                "value": 2,
-                "maxValue": 2
-            },
-            "amenityFeature": [
-                {
-                    "@type": "LocationFeatureSpecification",
-                    "name": "Garden View",
-                    "value": true
-                },
-                {
-                    "@type": "LocationFeatureSpecification",
-                    "name": "Ensuite Bathroom",
-                    "value": true
-                }
-            ]
-        },
-        {
-            "@type": "Accommodation",
-            "additionalType": "https://schema.org/HotelRoom",
-            "name": "King Bedroom 4 Ensuite with Terrace",
-            "numberOfBedrooms": 1,
-            "numberOfBathroomsTotal": 1,
-            "bed": {
+            {
                 "@type": "BedDetails",
                 "numberOfBeds": 1,
                 "typeOfBed": "King"
             },
-            "occupancy": {
-                "@type": "QuantitativeValue",
-                "value": 2,
-                "maxValue": 2
+            {
+                "@type": "BedDetails",
+                "numberOfBeds": 1,
+                "typeOfBed": "King"
+            }
+        ],
+        "amenityFeature": [
+            {
+                "@type": "LocationFeatureSpecification",
+                "name": "Private Swimming Pool with Waterfall",
+                "value": true
             },
-            "amenityFeature": [
-                {
-                    "@type": "LocationFeatureSpecification",
-                    "name": "Private Terrace",
-                    "value": true
-                },
-                {
-                    "@type": "LocationFeatureSpecification",
-                    "name": "Ensuite Bathroom",
-                    "value": true
-                }
-            ]
-        }
-    ],
+            {
+                "@type": "LocationFeatureSpecification",
+                "name": "Master Suite Soaking Bathtub",
+                "value": true
+            },
+            {
+                "@type": "LocationFeatureSpecification",
+                "name": "Private Balconies & Garden Gazebo",
+                "value": true
+            },
+            {
+                "@type": "LocationFeatureSpecification",
+                "name": "Teak Bar & Gourmet Modular Kitchen",
+                "value": true
+            }
+        ]
+    },
     "aggregateRating": {
         "@type": "AggregateRating",
         "ratingValue": "4.9",
